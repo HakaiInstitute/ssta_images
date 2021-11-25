@@ -78,7 +78,9 @@ console.log('hi')
   })
   // Camera
   const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-  camera.position.z = 2
+  // camera.position.z = 
+  camera.position.set(-1.5, 1.5, 1);
+
   scene.add(camera)
 
   // Controls
@@ -149,8 +151,9 @@ console.log('hi')
 
 
 function createWorker(data) {
-  try {
+
     return new Promise(function(resolve, reject) {
+      
         var v = new Worker(new URL('./for.js', import.meta.url));
         v.postMessage(data);
         v.onerror = function(event) {
@@ -163,14 +166,12 @@ function createWorker(data) {
  
         v.onerror = reject; // Rejects the promise if an error is raised by the web worker, passing along the ErrorEvent
       
-    });
-  }catch {
-    console.log('fail')
-  }
+    })
+ 
 }
 
 // let files = ['./data/DailyData201501.dat','./data/DailyData201502.dat','./data/DailyData201503.dat']
-const dates = Array.from({length: 60}, (_, i) => {
+const dates = Array.from({length: 120}, (_, i) => {
   const date = new Date(2015, 0, 1);
   date.setDate(i + 1);
   return date;
@@ -204,21 +205,9 @@ Promise.all(promises)
         }
       }
       load()
-        // let c = new Float32Array(data.length * 555976 * 3);
+   
 
-        // let colorData = Float32Concat(data[0],data[1])
-        //  colorData = Float32Concat(colorData,data[2])
-        //  colorData = Float32Concat(colorData,data[3])
-        // console.log(colorData.length)
-        // 
-        // for(j = 0; j < data.length; j++){
-            // printy(data[0])
-        // }
 
-        // animate();
-
-// printy(colorData)
-// test additional web workers
 
 
     })
