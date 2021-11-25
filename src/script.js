@@ -193,7 +193,6 @@ async function printy(text) {
 }
 Promise.all(promises)
     .then(function(textures) {
-      let colorData = null
         console.log(textures)
         async function load () { 
         for(let i = 0; i < textures.length; i++){
