@@ -24,7 +24,7 @@ const material = new THREE.MeshBasicMaterial({ map: earthTexture })
 const sphere = new THREE.Mesh(geometry, material)
 
 scene.add(sphere)
-
+let sphere2 = null
 function addImageBitmap() {
 
   new THREE.ImageBitmapLoader()
@@ -32,10 +32,13 @@ function addImageBitmap() {
     .load('./textures/ct5km_ssta_v3.1_20150510.png',
 
 // onLoad callback
+
 function ( imageBitmap ) {
   const texture = new THREE.CanvasTexture( imageBitmap );
+  console.log(texture)
   const materialSSTA = new THREE.MeshBasicMaterial( {transparent: true, map: texture } );
-  const sphere2 = new THREE.Mesh(geometry, materialSSTA);
+   sphere2 = new THREE.Mesh(geometry, materialSSTA);
+  sphere2.material.needsUpdate = true;
 scene.add(sphere2);
 })
 }
@@ -150,8 +153,8 @@ function createWorker(data) {
         var v = new Worker(new URL('./for.js', import.meta.url));
         v.postMessage(data);
         v.onmessage = function(event){
-            // console.log(event)
-            resolve(event.data);
+            // console.log(new THREE.CanvasTexture( event.data ))
+            resolve(new THREE.CanvasTexture( event.data ));
         };
  
         v.onerror = reject; // Rejects the promise if an error is raised by the web worker, passing along the ErrorEvent
@@ -160,7 +163,7 @@ function createWorker(data) {
 }
 
 // let files = ['./data/DailyData201501.dat','./data/DailyData201502.dat','./data/DailyData201503.dat']
-const dates = Array.from({length: 1}, (_, i) => {
+const dates = Array.from({length: 10}, (_, i) => {
   const date = new Date(2015, 0, 1);
   date.setDate(i + 1);
   return date;
@@ -173,8 +176,24 @@ for(let i = 0; i < dates.length; i++) {
 
 // runs the animation
 async function printy(text) {
-      // Rotation
-//  console.log(sphere2.material.map, text)
+  console.log(text)
+  // function addImageBitmap() {
+
+  //   new THREE.ImageBitmapLoader()
+  //     .setOptions( { imageOrientation: 'flipY'  } )
+  //     .load('./textures/ct5km_ssta_v3.1_20150510.png',
+  
+  // onLoad callback
+  // function ( imageBitmap ) {
+  //   const texture = new THREE.CanvasTexture( imageBitmap );
+    // const materialSSTA = new THREE.MeshBasicMaterial( {transparent: true, map: text } );
+    sphere2.material.map = text
+    // const sphere2 = new THREE.Mesh(geometry, materialSSTA);
+    sphere2.material.needsUpdate = true;
+  // scene.add(sphere2);
+  // })
+  // }
+  // addImageBitmap()
   
     // console.log('tick')
     // const count = 555976 * 3 //size of each grid
@@ -197,7 +216,7 @@ Promise.all(promises)
         async function load () { 
         for(let i = 0; i < textures.length; i++){
           // colorData =  i === 0 ? data[i] : Float32Concat(colorData,data[i])
-          await delay(1000);
+          await delay(100);
           
           printy(textures[i])
           
