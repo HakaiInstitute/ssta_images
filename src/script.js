@@ -78,7 +78,7 @@ console.log('hi')
   })
   // Camera
   const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-  camera.position.z = 3
+  camera.position.z = 2
   scene.add(camera)
 
   // Controls
@@ -149,9 +149,13 @@ console.log('hi')
 
 
 function createWorker(data) {
+  try {
     return new Promise(function(resolve, reject) {
         var v = new Worker(new URL('./for.js', import.meta.url));
         v.postMessage(data);
+        v.onerror = function(event) {
+          console.log('There is an error with your worker!');
+        }
         v.onmessage = function(event){
             // console.log(new THREE.CanvasTexture( event.data ))
             resolve(new THREE.CanvasTexture( event.data ));
@@ -160,10 +164,13 @@ function createWorker(data) {
         v.onerror = reject; // Rejects the promise if an error is raised by the web worker, passing along the ErrorEvent
       
     });
+  }catch {
+    console.log('fail')
+  }
 }
 
 // let files = ['./data/DailyData201501.dat','./data/DailyData201502.dat','./data/DailyData201503.dat']
-const dates = Array.from({length: 10}, (_, i) => {
+const dates = Array.from({length: 60}, (_, i) => {
   const date = new Date(2015, 0, 1);
   date.setDate(i + 1);
   return date;
@@ -176,36 +183,10 @@ for(let i = 0; i < dates.length; i++) {
 
 // runs the animation
 async function printy(text) {
-  console.log(text)
-  // function addImageBitmap() {
 
-  //   new THREE.ImageBitmapLoader()
-  //     .setOptions( { imageOrientation: 'flipY'  } )
-  //     .load('./textures/ct5km_ssta_v3.1_20150510.png',
-  
-  // onLoad callback
-  // function ( imageBitmap ) {
-  //   const texture = new THREE.CanvasTexture( imageBitmap );
-    // const materialSSTA = new THREE.MeshBasicMaterial( {transparent: true, map: text } );
     sphere2.material.map = text
-    // const sphere2 = new THREE.Mesh(geometry, materialSSTA);
     sphere2.material.needsUpdate = true;
-  // scene.add(sphere2);
-  // })
-  // }
-  // addImageBitmap()
-  
-    // console.log('tick')
-    // const count = 555976 * 3 //size of each grid
-    // for (let i = 0; i < v.length; i += count) {
-        // await delay(1000);
-        // console.log('tick')
-        // sphere2.material.map = text;
-        // sphere2.material.needsUpdate = true;
-        // renderer.render(scene, camera)
-        // animateFiles(dayofData)
-        
-    // }
+
 
 
 }
