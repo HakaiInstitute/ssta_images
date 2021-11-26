@@ -172,7 +172,7 @@ function createWorker(data) {
 
 // load dates
 
-d3.csv('../names.csv').then(function (allFiles) {
+d3.csv('./names.csv').then(function (allFiles) {
 
   // return just the file names that are dates
   const dateFiles = allFiles.filter((d) => {
