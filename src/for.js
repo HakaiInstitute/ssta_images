@@ -4,12 +4,20 @@ const loader = new THREE.ImageBitmapLoader().setOptions( { imageOrientation: 'fl
 
 
 onmessage = function (fileToLoad) {
-  // console.log()
-  loader.load(fileToLoad.data, (imageBitmap) => {
-    // console.log(imageBitmap)
+  // console.log(fileToLoad)
+  loader.load(fileToLoad.data, function (imageBitmap){
     const texture = new THREE.CanvasTexture( imageBitmap );
     // console.log(imageBitmap)
     postMessage(imageBitmap)
-  })
+  }, undefined, function (e){
+    console.error(e);
+    
+
+  }) 
+  // => {
+  //   // console.log(imageBitmap)
+    
+   
+  // })
 
 }

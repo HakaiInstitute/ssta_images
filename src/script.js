@@ -153,13 +153,13 @@ console.log('hi')
 function createWorker(data) {
 
     return new Promise(function(resolve, reject) {
-      
+      // console.log(import.meta.url)
         var v = new Worker(new URL('./for.js', import.meta.url));
+        
         v.postMessage(data);
-        v.onerror = function(event) {
-          console.log('There is an error with your worker!');
-        }
+  
         v.onmessage = function(event){
+          
             // console.log(new THREE.CanvasTexture( event.data ))
             resolve(new THREE.CanvasTexture( event.data ));
         };
@@ -170,49 +170,68 @@ function createWorker(data) {
  
 }
 
-// let files = ['./data/DailyData201501.dat','./data/DailyData201502.dat','./data/DailyData201503.dat']
-const dates = Array.from({length: 120}, (_, i) => {
-  const date = new Date(2015, 0, 1);
-  date.setDate(i + 1);
-  return date;
+// load dates
+
+d3.csv('../names.csv').then(function (allFiles) {
+
+  // return just the file names that are dates
+  const dateFiles = allFiles.filter((d) => {
+    if (!isNaN(Number(d.files.slice(-5, -4)))) {
+      return d.files;
+    }
+  }).map((d) => d.files).sort((a, b) => {
+    return b - a;
+  })
+
+  // console.log(dateFiles)
+
+  let promises = [];
+  for(let i = 0; i < 100; i++) {
+      promises.push(createWorker('./textures/'+ dateFiles[i]));
+  }
+  
+  // runs the animation
+  async function printy(text) {
+  
+      sphere2.material.map = text
+      sphere2.material.needsUpdate = true;
+  
+  
+  
+  }
+  Promise.all(promises)
+      .then(function(textures) {
+          // console.log(textures)
+          async function load () { 
+          for(let i = 0; i < textures.length; i++){
+            // colorData =  i === 0 ? data[i] : Float32Concat(colorData,data[i])
+            await delay(100);
+            
+            printy(textures[i])
+            
+          }
+        }
+        load()
+     
+  
+  
+  
+  
+      })
+
+
 })
 
-let promises = [];
-for(let i = 0; i < dates.length; i++) {
-    promises.push(createWorker('./textures/ct5km_ssta_v3.1_'+ dates[i].toISOString().slice(0, 10).replaceAll('-','')+ '.png'));
-}
 
-// runs the animation
-async function printy(text) {
-
-    sphere2.material.map = text
-    sphere2.material.needsUpdate = true;
+// let files = ['./data/DailyData201501.dat','./data/DailyData201502.dat','./data/DailyData201503.dat']
+// const dates = Array.from({length: 30}, (_, i) => {
+//   const date = new Date(2015, 0, 1);
+//   date.setDate(i + 1);
+//   return date;
+// })
 
 
-
-}
-Promise.all(promises)
-    .then(function(textures) {
-        console.log(textures)
-        async function load () { 
-        for(let i = 0; i < textures.length; i++){
-          // colorData =  i === 0 ? data[i] : Float32Concat(colorData,data[i])
-          await delay(100);
-          
-          printy(textures[i])
-          
-        }
-      }
-      load()
-   
-
-
-
-
-    })
-    .catch(function(error) {
-        // something went wrong
-    });
+  
 
 
 
