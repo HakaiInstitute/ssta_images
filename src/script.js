@@ -11,38 +11,60 @@ const loadingManager = new THREE.LoadingManager()
 const textureLoader = new THREE.TextureLoader(loadingManager)
 const loaderBM = new THREE.ImageBitmapLoader();
 
-const earthTexture = textureLoader.load('./textures/2k_earth_daymap.jpg')
+const earthTexture = textureLoader.load('./textures/BC_terrain.png')
+earthTexture.anisotropy = 16;
+
+// lights
+const light = new THREE.AmbientLight(0x404040, 4);
+
 // console.log(earthTexture)
 // earthTexture.needsUpdate = true
 
 // Scene
 const scene = new THREE.Scene()
-
+scene.add(light);
 // Object
 const geometry = new THREE.SphereGeometry(1, 64, 32)
-const material = new THREE.MeshBasicMaterial({ map: earthTexture })
-const sphere = new THREE.Mesh(geometry, material)
+const material = new THREE.MeshStandardMaterial({
+  transparent: true,
+  map: earthTexture
+});
+const sphereBG = new THREE.Mesh(geometry, material)
 
-scene.add(sphere)
-let sphere2 = null
+// scene.add(sphere)
+// const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150102.png')
+
+// const materialSSTA = new THREE.MeshBasicMaterial({
+//   map: texture,
+//   // color: "white"
+// });
+// materialSSTA.needsUpdate = true;
+
+// const sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
+
+
+let sphereSSTA = null
 function addImageBitmap() {
 
   new THREE.ImageBitmapLoader()
-    .setOptions( { imageOrientation: 'flipY'  } )
-    .load('./textures/ct5km_ssta_v3.1_20150510.png',
+    .setOptions( { imageOrientation: 'flipY',premultiplyAlpha: 'none'  } )
+    .load('./textures/ct5km_ssta_v3.1_20150102.png',
 
 // onLoad callback
 
 function ( imageBitmap ) {
   const texture = new THREE.CanvasTexture( imageBitmap );
-  console.log(texture)
-  const materialSSTA = new THREE.MeshBasicMaterial( {transparent: true, map: texture } );
-   sphere2 = new THREE.Mesh(geometry, materialSSTA);
-  sphere2.material.needsUpdate = true;
-scene.add(sphere2);
+  // console.log(texture)
+  const materialSSTA = new THREE.MeshBasicMaterial( { map: texture } );
+  // sphereSSTA.material.map = texture;
+  sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
+  sphereSSTA.material.needsUpdate = true;
+scene.add(sphereSSTA);
 })
 }
 addImageBitmap()
+scene.add(sphereBG);
+// scene.add(sphereSSTA);
 
 // const materialSSTA = new THREE.MeshBasicMaterial({
 //   map: new THREE.CanvasTexture(firstImage)
@@ -53,7 +75,7 @@ addImageBitmap()
 // scene.add(sphere2);
 // temperature Mesh
 
-console.log('hi')
+// console.log('hi')
 
 
   scene.position.y = 0.5
@@ -186,15 +208,16 @@ d3.csv('./names.csv').then(function (allFiles) {
   // console.log(dateFiles)
 
   let promises = [];
-  for(let i = 0; i < 100; i++) {
+  for(let i = 0; i < 10; i++) {
       promises.push(createWorker('./textures/'+ dateFiles[i]));
   }
   
   // runs the animation
   async function printy(text) {
   
-      sphere2.material.map = text
-      sphere2.material.needsUpdate = true;
+    sphereSSTA.material.map = text
+    // sphereSSTA.material.color = "white"
+    sphereSSTA.material.needsUpdate = true;
   
   
   

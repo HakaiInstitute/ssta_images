@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-const loader = new THREE.ImageBitmapLoader().setOptions( { imageOrientation: 'flipY'  } );
+const loader = new THREE.ImageBitmapLoader().setOptions( { imageOrientation: 'flipY',premultiplyAlpha: 'none' } );
 
 
 onmessage = function (fileToLoad) {
