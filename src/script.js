@@ -78,7 +78,7 @@ scene.add(sphereBG);
 // console.log('hi')
 
 
-  scene.position.y = 0.5
+  // scene.position.y = 0.5
 
   // Sizes
   const sizes = {
@@ -99,9 +99,10 @@ scene.add(sphereBG);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   })
   // Camera
-  const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+  const camera = new THREE.PerspectiveCamera(50, sizes.width / sizes.height)
   // camera.position.z = 
-  camera.position.set(-1.5, 1.5, 1);
+  camera.position.set(-1.5, 1.5, 1.2);
+  // camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   scene.add(camera)
 
@@ -208,7 +209,7 @@ d3.csv('./names.csv').then(function (allFiles) {
   // console.log(dateFiles)
 
   let promises = [];
-  for(let i = 0; i < 30; i++) {
+  for(let i = 0; i < 100; i++) {
       promises.push(createWorker('./textures/'+ dateFiles[i]));
   }
   
@@ -228,7 +229,7 @@ d3.csv('./names.csv').then(function (allFiles) {
           async function load () { 
           for(let i = 0; i < textures.length; i++){
             // colorData =  i === 0 ? data[i] : Float32Concat(colorData,data[i])
-            await delay(100);
+            await delay(200);
             
             printy(textures[i])
             
