@@ -1,7 +1,7 @@
 # Project specific
 monthOfDailyData.csv
 *.dat
-
+*.nc
 # Currently we need the dist folder since messed up LFS experimentation going on
 # dist
 
