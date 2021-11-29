@@ -13,56 +13,56 @@ const loaderBM = new THREE.ImageBitmapLoader();
 
 const earthTexture = textureLoader.load('./textures/BC_terrain.png')
 earthTexture.anisotropy = 16;
-
+// earthTexture.minFilter =  THREE.NearestMipmapNearestFilter
 // lights
-const light = new THREE.AmbientLight(0x404040, 4);
+// const light = new THREE.AmbientLight(0x404040, 4);
 
 // console.log(earthTexture)
 // earthTexture.needsUpdate = true
 
 // Scene
 const scene = new THREE.Scene()
-scene.add(light);
+// scene.add(light);
 // Object
 const geometry = new THREE.SphereGeometry(1, 64, 32)
-const material = new THREE.MeshStandardMaterial({
+const material = new THREE.MeshBasicMaterial({
   transparent: true,
   map: earthTexture
 });
 const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
-// const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150102.png')
+const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150102.png')
 
-// const materialSSTA = new THREE.MeshBasicMaterial({
-//   map: texture,
-//   // color: "white"
-// });
-// materialSSTA.needsUpdate = true;
+const materialSSTA = new THREE.MeshBasicMaterial({
+  map: texture,
+  // color: "white"
+});
+materialSSTA.needsUpdate = true;
 
-// const sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
-
-
-let sphereSSTA = null
-function addImageBitmap() {
-
-  new THREE.ImageBitmapLoader()
-    .setOptions( { imageOrientation: 'flipY',premultiplyAlpha: 'none'  } )
-    .load('./textures/ct5km_ssta_v3.1_20150102.png',
-
-// onLoad callback
-
-function ( imageBitmap ) {
-  const texture = new THREE.CanvasTexture( imageBitmap );
-  // console.log(texture)
-  const materialSSTA = new THREE.MeshBasicMaterial( { map: texture } );
-  // sphereSSTA.material.map = texture;
-  sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
-  sphereSSTA.material.needsUpdate = true;
+const sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
 scene.add(sphereSSTA);
-})
-}
-addImageBitmap()
+
+// let sphereSSTA = null
+// function addImageBitmap() {
+
+//   new THREE.ImageBitmapLoader()
+//     .setOptions( { imageOrientation: 'flipY',premultiplyAlpha: 'none'  } )
+//     .load('./textures/ct5km_ssta_v3.1_20150102.png',
+
+// // onLoad callback
+
+// function ( imageBitmap ) {
+//   const texture = new THREE.CanvasTexture( imageBitmap );
+//   // console.log(texture)
+//   const materialSSTA = new THREE.MeshBasicMaterial( { map: texture } );
+//   // sphereSSTA.material.map = texture;
+//   sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
+//   sphereSSTA.material.needsUpdate = true;
+// scene.add(sphereSSTA);
+// })
+// }
+// addImageBitmap()
 scene.add(sphereBG);
 // scene.add(sphereSSTA);
 
@@ -208,7 +208,7 @@ d3.csv('./names.csv').then(function (allFiles) {
   // console.log(dateFiles)
 
   let promises = [];
-  for(let i = 0; i < 10; i++) {
+  for(let i = 0; i < 30; i++) {
       promises.push(createWorker('./textures/'+ dateFiles[i]));
   }
   
