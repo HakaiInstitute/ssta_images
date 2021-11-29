@@ -101,7 +101,7 @@ scene.add(sphereBG);
   // Camera
   const camera = new THREE.PerspectiveCamera(50, sizes.width / sizes.height)
   // camera.position.z = 
-  camera.position.set(-1.5, 1.5, 1.2);
+  camera.position.set(-1.5, 1.6, 1.2);
   // camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   scene.add(camera)
@@ -209,7 +209,7 @@ d3.csv('./names.csv').then(function (allFiles) {
   // console.log(dateFiles)
 
   let promises = [];
-  for(let i = 0; i < 100; i++) {
+  for(let i = 0; i < 30; i++) {
       promises.push(createWorker('./textures/'+ dateFiles[i]));
   }
   
