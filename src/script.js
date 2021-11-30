@@ -32,7 +32,7 @@ const material = new THREE.MeshBasicMaterial({
 const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
-const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150102.png')
+const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150101.png')
 
 const materialSSTA = new THREE.MeshBasicMaterial({
   map: texture,
@@ -209,7 +209,7 @@ d3.csv('./names.csv').then(function (allFiles) {
   // console.log(dateFiles)
 
   let promises = [];
-  for(let i = 0; i < 30; i++) {
+  for(let i = 0; i < 100; i++) {
       promises.push(createWorker('./textures/'+ dateFiles[i]));
   }
   
