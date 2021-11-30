@@ -5,4 +5,4 @@ const filesArray = fs.readdirSync(path).filter(file => fs.lstatSync(path+file).i
 console.log(filesArray)
 filesArray.unshift("files")
 
-fs.writeFileSync('names.csv', filesArray.join(',\n'));
+fs.writeFileSync('static/names.csv', filesArray.join(',\n'));

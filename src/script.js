@@ -196,7 +196,7 @@ function createWorker(data) {
 // load dates
 
 d3.csv('./names.csv').then(function (allFiles) {
-
+// console.log(allFiles)
   // return just the file names that are dates
   const dateFiles = allFiles.filter((d) => {
     if (!isNaN(Number(d.files.slice(-5, -4)))) {
