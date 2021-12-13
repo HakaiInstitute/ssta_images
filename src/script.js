@@ -209,7 +209,7 @@ d3.csv('./names.csv').then(function (allFiles) {
   // console.log(dateFiles)
 
   let promises = [];
-  for(let i = 0; i < 100; i++) {
+  for(let i = 0; i < 30; i++) {
       promises.push(createWorker('./textures/'+ dateFiles[i]));
   }
   

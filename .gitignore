@@ -4,6 +4,7 @@ monthOfDailyData.csv
 *.nc
 
 dataProcessing/Daily/*
+dataProcessing/daily_mhw/*
 # Currently we need the dist folder since messed up LFS experimentation going on
 # dist
 
