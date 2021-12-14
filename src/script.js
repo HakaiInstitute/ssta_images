@@ -2,23 +2,47 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as d3 from 'd3'
+import {Runtime, Library, Inspector} from "./buoyviz/runtime.js";
+import buoyViz from "./buoyviz/index.js";
 
+
+// const runtime = new Runtime() 
+ 
+new Runtime().module(buoyViz, name => {
+  console.log(buoyViz)
+  if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
+  if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
+  // returns just the scrubber value
+  if (name === "time1"){
+    // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+    return {
+      pending() {
+      },
+      fulfilled(value) {
+        console.log(value)
+        return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
+        // node.innerText = value;
+      },
+      rejected(error) {
+        node.textContent = error.message;
+      }
+  }}
+  if (name === "ind") return true;
+  if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
+
+  if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
+  return ["update","HWsForDate","hex","hexbyLocation","selected","hexgeo","updateMapbox"].includes(name);
+});
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
 // Textures
 const loadingManager = new THREE.LoadingManager()
 const textureLoader = new THREE.TextureLoader(loadingManager)
-const loaderBM = new THREE.ImageBitmapLoader();
+// const loaderBM = new THREE.ImageBitmapLoader();
 
 const earthTexture = textureLoader.load('./textures/BC_terrain.png')
 earthTexture.anisotropy = 16;
-// earthTexture.minFilter =  THREE.NearestMipmapNearestFilter
-// lights
-// const light = new THREE.AmbientLight(0x404040, 4);
-
-// console.log(earthTexture)
-// earthTexture.needsUpdate = true
 
 // Scene
 const scene = new THREE.Scene()
@@ -33,7 +57,7 @@ const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
 const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150101.png')
-
+console.log(texture)
 const materialSSTA = new THREE.MeshBasicMaterial({
   map: texture,
   // color: "white"
@@ -43,39 +67,9 @@ materialSSTA.needsUpdate = true;
 const sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
 scene.add(sphereSSTA);
 
-// let sphereSSTA = null
-// function addImageBitmap() {
 
-//   new THREE.ImageBitmapLoader()
-//     .setOptions( { imageOrientation: 'flipY',premultiplyAlpha: 'none'  } )
-//     .load('./textures/ct5km_ssta_v3.1_20150102.png',
-
-// // onLoad callback
-
-// function ( imageBitmap ) {
-//   const texture = new THREE.CanvasTexture( imageBitmap );
-//   // console.log(texture)
-//   const materialSSTA = new THREE.MeshBasicMaterial( { map: texture } );
-//   // sphereSSTA.material.map = texture;
-//   sphereSSTA = new THREE.Mesh(geometry, materialSSTA);
-//   sphereSSTA.material.needsUpdate = true;
-// scene.add(sphereSSTA);
-// })
-// }
-// addImageBitmap()
 scene.add(sphereBG);
-// scene.add(sphereSSTA);
 
-// const materialSSTA = new THREE.MeshBasicMaterial({
-//   map: new THREE.CanvasTexture(firstImage)
-// });
-// materialSSTA.needsUpdate = true;
-
-// const sphere2 = new THREE.Mesh(geometry, materialSSTA);
-// scene.add(sphere2);
-// temperature Mesh
-
-// console.log('hi')
 
 
   // scene.position.y = 0.5
@@ -140,37 +134,12 @@ scene.add(sphereBG);
 
   tick()
 
-//   function animate() {
-//     // console.log(scene)
-//     scene.rotation.y += 0.04;
-//     requestAnimationFrame(animate);
-//     renderer.render(scene, camera);
-//     // labelRenderer.render(scene, camera);
-//   }
-//   function animate() {
-//     // resize();
-//     scene.rotation.y += 0.005;
-//     renderer.render(scene, camera);
-//     requestAnimationFrame(animate);
-//   }
-//   animate()
-  // all the rest of the data
-  
-
-  
-  
-  
-  
-
-
 
   function delay(milisec) {
     return new Promise(resolve => {
         setTimeout(() => { resolve('') }, milisec);
     })
 }
-
-
 
 
 function createWorker(data) {
