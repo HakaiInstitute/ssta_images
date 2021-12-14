@@ -8,31 +8,7 @@ import buoyViz from "./buoyviz/index.js";
 
 // const runtime = new Runtime() 
  
-new Runtime().module(buoyViz, name => {
-  console.log(buoyViz)
-  if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
-  if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
-  // returns just the scrubber value
-  if (name === "time1"){
-    // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
-    return {
-      pending() {
-      },
-      fulfilled(value) {
-        console.log(value)
-        return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
-        // node.innerText = value;
-      },
-      rejected(error) {
-        node.textContent = error.message;
-      }
-  }}
-  if (name === "ind") return true;
-  if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
 
-  if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
-  return ["update","HWsForDate","hex","hexbyLocation","selected","hexgeo","updateMapbox"].includes(name);
-});
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -161,59 +137,93 @@ function createWorker(data) {
     })
  
 }
+let allText = null
+let dateFiles = null
+d3.csv('./names.csv').then(function (allFiles) {
+  // console.log(allFiles)
+    // return just the file names that are dates
+    dateFiles = allFiles.filter((d) => {
+      if (!isNaN(Number(d.files.slice(-5, -4)))) {
+        return d.files;
+      }
+    }).map((d) => d.files).sort((a, b) => {
+      return b - a;
+    })
+  
+    // console.log(dateFiles)
+  
+    let promises = [];
+    for(let i = 0; i < 30; i++) {
+        promises.push(createWorker('./textures/'+ dateFiles[i]));
+    }
+    
+
+    Promise.all(promises)
+        .then(function(textures) {
+          allText = textures
+            // console.log(textures)
+          //   async function load () { 
+          //   for(let i = 0; i < textures.length; i++){
+          //     // colorData =  i === 0 ? data[i] : Float32Concat(colorData,data[i])
+          //     await delay(200);
+              
+          //     printy(textures[i])
+              
+          //   }
+          // }
+          // load()
+        })
+  
+  
+  })
+
+    // runs the animation
+    async function printy(text) {
+    
+      sphereSSTA.material.map = text
+      // sphereSSTA.material.color = "white"
+      sphereSSTA.material.needsUpdate = true;
+    
+    
+    
+    }
+new Runtime().module(buoyViz, name => {
+  console.log(buoyViz)
+  if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
+  if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
+  // returns just the scrubber value
+  if (name === "time1"){
+    // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+    return {
+      pending() {
+      },
+      fulfilled(value) {
+        console.log(value,allText)
+
+        const fileToUse = "ct5km_ssta_v3.1_" + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+        const ind = dateFiles.indexOf(fileToUse)
+        const textureToUse = allText[ind]
+        console.log(textureToUse)
+        printy(textureToUse)
+        // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
+  
+
+
+      },
+      rejected(error) {
+        node.textContent = error.message;
+      }
+  }}
+  if (name === "ind") return true;
+  if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
+
+  if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
+  return ["update","HWsForDate","hex","hexbyLocation","selected","hexgeo","updateMapbox"].includes(name);
+});
 
 // load dates
 
-d3.csv('./names.csv').then(function (allFiles) {
-// console.log(allFiles)
-  // return just the file names that are dates
-  const dateFiles = allFiles.filter((d) => {
-    if (!isNaN(Number(d.files.slice(-5, -4)))) {
-      return d.files;
-    }
-  }).map((d) => d.files).sort((a, b) => {
-    return b - a;
-  })
 
-  // console.log(dateFiles)
-
-  let promises = [];
-  for(let i = 0; i < 30; i++) {
-      promises.push(createWorker('./textures/'+ dateFiles[i]));
-  }
-  
-  // runs the animation
-  async function printy(text) {
-  
-    sphereSSTA.material.map = text
-    // sphereSSTA.material.color = "white"
-    sphereSSTA.material.needsUpdate = true;
-  
-  
-  
-  }
-  Promise.all(promises)
-      .then(function(textures) {
-          // console.log(textures)
-          async function load () { 
-          for(let i = 0; i < textures.length; i++){
-            // colorData =  i === 0 ? data[i] : Float32Concat(colorData,data[i])
-            await delay(200);
-            
-            printy(textures[i])
-            
-          }
-        }
-        load()
-     
-  
-  
-  
-  
-      })
-
-
-})
 
 
 // let files = ['./data/DailyData201501.dat','./data/DailyData201502.dat','./data/DailyData201503.dat']
