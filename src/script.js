@@ -33,7 +33,7 @@ const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
 const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150101.png')
-console.log(texture)
+// console.log(texture)
 const materialSSTA = new THREE.MeshBasicMaterial({
   map: texture,
   // color: "white"
@@ -137,10 +137,11 @@ function createWorker(data) {
     })
  
 }
+
 let allText = null
 let dateFiles = null
 d3.csv('./names.csv').then(function (allFiles) {
-  // console.log(allFiles)
+  console.log(allFiles)
     // return just the file names that are dates
     dateFiles = allFiles.filter((d) => {
       if (!isNaN(Number(d.files.slice(-5, -4)))) {
@@ -150,31 +151,16 @@ d3.csv('./names.csv').then(function (allFiles) {
       return b - a;
     })
   
-    // console.log(dateFiles)
   
     let promises = [];
-    for(let i = 0; i < 30; i++) {
+    for(let i = 0; i < 100; i++) {
         promises.push(createWorker('./textures/'+ dateFiles[i]));
     }
     
-
     Promise.all(promises)
         .then(function(textures) {
           allText = textures
-            // console.log(textures)
-          //   async function load () { 
-          //   for(let i = 0; i < textures.length; i++){
-          //     // colorData =  i === 0 ? data[i] : Float32Concat(colorData,data[i])
-          //     await delay(200);
-              
-          //     printy(textures[i])
-              
-          //   }
-          // }
-          // load()
         })
-  
-  
   })
 
     // runs the animation
@@ -183,14 +169,16 @@ d3.csv('./names.csv').then(function (allFiles) {
       sphereSSTA.material.map = text
       // sphereSSTA.material.color = "white"
       sphereSSTA.material.needsUpdate = true;
-    
-    
+
     
     }
 new Runtime().module(buoyViz, name => {
-  console.log(buoyViz)
+  // console.log(buoyViz)
   if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
   if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
+  if (name === "curDate") return new Inspector(document.querySelector("#observablehq-curDate-890dd666"));
+  if (name === "leg") return new Inspector(document.querySelector("#observablehq-leg-2162ef11"));
+
   // returns just the scrubber value
   if (name === "time1"){
     // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
@@ -198,17 +186,14 @@ new Runtime().module(buoyViz, name => {
       pending() {
       },
       fulfilled(value) {
-        console.log(value,allText)
+        // console.log(value,allText)
 
         const fileToUse = "ct5km_ssta_v3.1_" + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
         const ind = dateFiles.indexOf(fileToUse)
         const textureToUse = allText[ind]
-        console.log(textureToUse)
+        // console.log(textureToUse)
         printy(textureToUse)
         // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
-  
-
-
       },
       rejected(error) {
         node.textContent = error.message;
@@ -221,21 +206,3 @@ new Runtime().module(buoyViz, name => {
   return ["update","HWsForDate","hex","hexbyLocation","selected","hexgeo","updateMapbox"].includes(name);
 });
 
-// load dates
-
-
-
-
-// let files = ['./data/DailyData201501.dat','./data/DailyData201502.dat','./data/DailyData201503.dat']
-// const dates = Array.from({length: 30}, (_, i) => {
-//   const date = new Date(2015, 0, 1);
-//   date.setDate(i + 1);
-//   return date;
-// })
-
-
-  
-
-
-
-// })
