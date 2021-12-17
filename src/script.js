@@ -52,13 +52,13 @@ scene.add(sphereBG);
 
   // Sizes
   const sizes = {
-    width: 900,
-    height: 900
+    width: 600,
+    height: 600
   }
   window.addEventListener('resize', () => {
     // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+    // sizes.width = window.innerWidth
+    // sizes.height = window.innerHeight
 
     // Update camera
     camera.aspect = sizes.width / sizes.height
@@ -127,7 +127,7 @@ function createWorker(data) {
         v.postMessage(data);
   
         v.onmessage = function(event){
-          
+          v.terminate();
             // console.log(new THREE.CanvasTexture( event.data ))
             resolve(new THREE.CanvasTexture( event.data ));
         };
@@ -141,7 +141,7 @@ function createWorker(data) {
 let allText = null
 let dateFiles = null
 d3.csv('./names.csv').then(function (allFiles) {
-  console.log(allFiles)
+  console.log(allFiles.length)
     // return just the file names that are dates
     dateFiles = allFiles.filter((d) => {
       if (!isNaN(Number(d.files.slice(-5, -4)))) {
@@ -153,7 +153,7 @@ d3.csv('./names.csv').then(function (allFiles) {
   
   
     let promises = [];
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < 60; i++) {
         promises.push(createWorker('./textures/'+ dateFiles[i]));
     }
     
@@ -178,6 +178,8 @@ new Runtime().module(buoyViz, name => {
   if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
   if (name === "curDate") return new Inspector(document.querySelector("#observablehq-curDate-890dd666"));
   if (name === "leg") return new Inspector(document.querySelector("#observablehq-leg-2162ef11"));
+  if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
+  if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
 
   // returns just the scrubber value
   if (name === "time1"){
