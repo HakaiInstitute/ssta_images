@@ -153,7 +153,7 @@ d3.csv('./names.csv').then(function (allFiles) {
   
   
     let promises = [];
-    for(let i = 0; i < 60; i++) {
+    for(let i = 0; i < 100; i++) {
         promises.push(createWorker('./textures/'+ dateFiles[i]));
     }
     
@@ -180,6 +180,7 @@ new Runtime().module(buoyViz, name => {
   if (name === "leg") return new Inspector(document.querySelector("#observablehq-leg-2162ef11"));
   if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
   if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
+  if (name === "minFunc") return true;
 
   // returns just the scrubber value
   if (name === "time1"){
