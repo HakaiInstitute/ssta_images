@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as d3 from 'd3'
 import {Runtime, Library, Inspector} from "./buoyviz/runtime.js";
 import buoyViz from "./buoyviz/index.js";
+import { damp } from 'three/src/math/MathUtils';
 
 
 // const runtime = new Runtime() 
@@ -32,7 +33,14 @@ const material = new THREE.MeshBasicMaterial({
 const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
-const texture = textureLoader.load('./textures/ct5km_ssta_v3.1_20150101.png')
+//noaa-crw_mhw_v1.0.1_category_20150101
+
+const endDate = d3.utcDay()
+const startDate = d3.timeDay.offset(endDate, -90)
+const firstDayToLoad = "ct5km_ssta_v3.1_" + startDate.toISOString().substring(0, 10).replaceAll("-", "") +
+".png"
+console.log(firstDayToLoad)
+const texture = textureLoader.load('./textures/' + firstDayToLoad)
 // console.log(texture)
 const materialSSTA = new THREE.MeshBasicMaterial({
   map: texture,
@@ -139,31 +147,49 @@ function createWorker(data) {
 }
 
 let allText = null
-let dateFiles = null
-d3.csv('./names.csv').then(function (allFiles) {
-  console.log(allFiles.length)
+// let dateFiles = null
+
+// start by loading the last 90 days of anomaly data
+
+
+
+// const startDate = d3.timeDay.offset(endDate, -90)
+const everyDayBetween = d3.timeDay.range(startDate, endDate)
+
+// d3.csv('./names.csv').then(function (allFiles) {
+// console.log('dates',everyDayBetween)
+const dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().substring(0, 10).replaceAll("-", "") +
+".png")
+// dateFiles.map(day => {
+
+  // console.log(allFiles.length)
     // return just the file names that are dates
-    dateFiles = allFiles.filter((d) => {
-      if (!isNaN(Number(d.files.slice(-5, -4)))) {
-        return d.files;
-      }
-    }).map((d) => d.files).sort((a, b) => {
-      return b - a;
-    })
+    // dateFiles = allFiles.filter((d) => {
+    //   if (!isNaN(Number(d.files.slice(-5, -4)))) {
+    //     return d.files;
+    //   }
+    // }).map((d) => d.files).sort((a, b) => {
+    //   return b - a;
+    // })
   
-  
+
     let promises = [];
-    for(let i = 0; i < 100; i++) {
-        promises.push(createWorker('./textures/'+ dateFiles[i]));
+    for(let i = 0; i < dateFiles.length; i++) {
+      // let dateFile = "ct5km_ssta_v3.1_" +
+      // dateFiles[i].replaceAll("-", "") +
+      // ".png"
+      promises.push(createWorker('./textures/'+ dateFiles[i]));
     }
     
     Promise.all(promises)
         .then(function(textures) {
+          // console.log(textures);
           allText = textures
         })
-  })
+  // })
 
     // runs the animation
+    let category = 'anomaly'
     async function printy(text) {
     
       sphereSSTA.material.map = text
@@ -182,19 +208,46 @@ new Runtime().module(buoyViz, name => {
   if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
   if (name === "minFunc") return true;
 
-  // returns just the scrubber value
+
+
+ // returns just the brush dates
+ if (name === "limits"){
+  // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+  return {
+    pending() {
+    },
+    fulfilled(value) {
+      console.log(value)
+      // const fileName =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+      
+      // const fileToUse = fileName+ new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+      // console.log(fileToUse)
+      // const ind = dateFiles.indexOf(fileToUse)
+      // const textureToUse = allText[ind]
+      // // console.log(textureToUse)
+      // printy(textureToUse)
+      // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
+    },
+    rejected(error) {
+      node.textContent = error.message;
+    }
+}}
+
+  // returns just the checkbox value
   if (name === "time1"){
     // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
     return {
       pending() {
       },
       fulfilled(value) {
-        // console.log(value,allText)
-
-        const fileToUse = "ct5km_ssta_v3.1_" + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+        // console.log(value,category)
+        const fileName =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+        
+        const fileToUse = fileName+ new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+        // console.log(fileToUse,dateFiles)
         const ind = dateFiles.indexOf(fileToUse)
         const textureToUse = allText[ind]
-        // console.log(textureToUse)
+        // console.log(allText)
         printy(textureToUse)
         // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
       },
@@ -202,6 +255,27 @@ new Runtime().module(buoyViz, name => {
         node.textContent = error.message;
       }
   }}
+    // returns just the scrubber value
+    if (name === "colorView"){
+      // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+      return {
+        pending() {
+        },
+        fulfilled(value) {
+          category = value
+          console.log(value)
+  
+          // const fileToUse = "ct5km_ssta_v3.1_" + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+          // const ind = dateFiles.indexOf(fileToUse)
+          // const textureToUse = allText[ind]
+          // // console.log(textureToUse)
+          // printy(textureToUse)
+          // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
+        },
+        rejected(error) {
+          node.textContent = error.message;
+        }
+    }}
   if (name === "ind") return true;
   if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
 
