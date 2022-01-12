@@ -204,10 +204,10 @@ let firstLoad = 0
     pending() {
     },
     fulfilled(value) {
-      console.log(value)
+      
       if(firstLoad !== 0){
         // console.log(value)
-
+        console.log('this is running!')
         endDate = value[1]
         startDate = value[0]
         everyDayBetween = d3.timeDay.range(startDate, endDate)
@@ -258,9 +258,9 @@ let firstLoad = 0
           const fileName =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
           
           const fileToUse = fileName+ new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-          // console.log(fileToUse,dateFiles)
+          console.log(fileToUse)
           const ind = dateFiles.indexOf(fileToUse)
-          // console.log(ind,allText)
+          console.log(ind,allText)
           const textureToUse = allText[ind]
           // console.log(allText)
           printy(textureToUse)
