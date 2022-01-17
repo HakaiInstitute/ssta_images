@@ -34,7 +34,6 @@ const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
 //noaa-crw_mhw_v1.0.1_category_20150101
-
 let endDate = d3.utcDay()
 let startDate = d3.timeDay.offset(endDate, -30)
 const firstDayToLoad = "ct5km_ssta_v3.1_" + startDate.toISOString().substring(0, 10).replaceAll("-", "") +
@@ -184,6 +183,8 @@ let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().
 
     
     }
+    let firstLoad = 0, prefix = null;
+
 new Runtime().module(buoyViz, name => {
   // console.log(buoyViz)
   if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
@@ -195,7 +196,58 @@ new Runtime().module(buoyViz, name => {
   if (name === "minFunc") return true;
 
 // if first load don't load again below
-let firstLoad = 0
+
+
+// returns just the category selected
+// NEEDS to also trigger loading of all the images in limits.
+if (name === "colorView"){
+  // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+  return {
+    pending() {
+    },
+    fulfilled(value) {
+      category = value
+      console.log(value, firstLoad)
+      
+      // If not initial page load, download images
+      if(firstLoad !== 0){ 
+        console.log('category changed')
+
+        // endDate = value[1]
+        // startDate = value[0]
+        everyDayBetween = d3.timeDay.range(startDate, endDate)
+        console.log(everyDayBetween);
+
+         prefix =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+        dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
+  ".png")
+  
+  
+       let promises = [];
+        for(let i = 0; i < dateFiles.length; i++) {
+  
+          promises.push(createWorker('./textures/'+ dateFiles[i]));
+        }
+  
+        Promise.all(promises)
+            .then(function(textures) {
+              console.log('bang!')
+              allText = textures
+            })
+
+      }
+
+      // const fileToUse = "ct5km_ssta_v3.1_" + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+      // const ind = dateFiles.indexOf(fileToUse)
+      // const textureToUse = allText[ind]
+      // // console.log(textureToUse)
+      // printy(textureToUse)
+      // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
+    },
+    rejected(error) {
+      node.textContent = error.message;
+    }
+}}
 
  // returns just the brush dates but also loads the images for the interval selected
  if (name === "limits"){
@@ -205,14 +257,15 @@ let firstLoad = 0
     },
     fulfilled(value) {
       
-      // if(firstLoad !== 0){
-        // console.log(value)
-        console.log('this is running!')
+  
+        console.log('this is running!',category)
         endDate = value[1]
         startDate = value[0]
         everyDayBetween = d3.timeDay.range(startDate, endDate)
         console.log(value);
-        dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().substring(0, 10).replaceAll("-", "") +
+
+         prefix =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+        dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
   ".png")
   
   
@@ -231,15 +284,7 @@ let firstLoad = 0
       //   firstLoad = 1
       // }
     
-      // const fileName =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
-      
-      // const fileToUse = fileName+ new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-      // console.log(fileToUse)
-      // const ind = dateFiles.indexOf(fileToUse)
-      // const textureToUse = allText[ind]
-      // // console.log(textureToUse)
-      // printy(textureToUse)
-      // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
+    
     },
     rejected(error) {
       node.textContent = error.message;
@@ -265,6 +310,7 @@ let firstLoad = 0
           // console.log(allText)
           printy(textureToUse)
         }else {
+          console.log('here')
                 firstLoad = 1
         }
         // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
@@ -273,28 +319,8 @@ let firstLoad = 0
         node.textContent = error.message;
       }
   }}
-    // returns just the category selected
-    // NEEDS to also trigger loading of all the images in limits.
-    if (name === "colorView"){
-      // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
-      return {
-        pending() {
-        },
-        fulfilled(value) {
-          category = value
-          console.log(value)
-  
-          // const fileToUse = "ct5km_ssta_v3.1_" + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-          // const ind = dateFiles.indexOf(fileToUse)
-          // const textureToUse = allText[ind]
-          // // console.log(textureToUse)
-          // printy(textureToUse)
-          // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
-        },
-        rejected(error) {
-          node.textContent = error.message;
-        }
-    }}
+
+
   if (name === "ind") return true;
   if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
 
