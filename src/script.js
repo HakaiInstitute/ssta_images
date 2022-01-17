@@ -6,6 +6,31 @@ import {Runtime, Library, Inspector} from "./buoyviz/runtime.js";
 import buoyViz from "./buoyviz/index.js";
 // import { damp } from 'three/src/math/MathUtils';
 
+// Spinner setup 
+import {Spinner} from 'spin.js';
+var opts = {
+  lines: 13, // The number of lines to draw
+  length: 38, // The length of each line
+  width: 17, // The line thickness
+  radius: 45, // The radius of the inner circle
+  scale: 1, // Scales overall size of the spinner
+  corners: 1, // Corner roundness (0..1)
+  speed: 1.9, // Rounds per second
+  rotate: 0, // The rotation offset
+  animation: 'spinner-line-fade-quick', // The CSS animation name for the lines
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#ffffff', // CSS color or array of colors
+  fadeColor: 'transparent', // CSS color or array of colors
+  top: '50%', // Top position relative to parent
+  left: '50%', // Left position relative to parent
+  shadow: '0 0 1px transparent', // Box-shadow for the lines
+  zIndex: 2000000000, // The z-index (defaults to 2e9)
+  className: 'spinner', // The CSS class to assign to the spinner
+  position: 'absolute', // Element positioning
+};
+
+var target = document.getElementById('charts');
+
 
 // const runtime = new Runtime() 
  
@@ -161,16 +186,6 @@ let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().
 ".png")
 
 
-    // let promises = [];
-    // for(let i = 0; i < dateFiles.length; i++) {
- 
-    //   promises.push(createWorker('./textures/'+ dateFiles[i]));
-    // }
-    
-    // Promise.all(promises)
-    //     .then(function(textures) {
-    //       allText = textures
-    //     })
 
 
     // runs the animation
@@ -216,7 +231,7 @@ if (name === "colorView"){
         // endDate = value[1]
         // startDate = value[0]
         everyDayBetween = d3.timeDay.range(startDate, endDate)
-        console.log(everyDayBetween);
+        // console.log(everyDayBetween);
 
          prefix =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
         dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
@@ -224,6 +239,7 @@ if (name === "colorView"){
   
   
        let promises = [];
+       var spinner = new Spinner(opts).spin(target);
         for(let i = 0; i < dateFiles.length; i++) {
   
           promises.push(createWorker('./textures/'+ dateFiles[i]));
@@ -232,7 +248,10 @@ if (name === "colorView"){
         Promise.all(promises)
             .then(function(textures) {
               console.log('bang!')
+               // stop spin.js loader
+            spinner.stop();
               allText = textures
+              printy(allText[0])
             })
 
       }
@@ -270,6 +289,8 @@ if (name === "colorView"){
   
   
        let promises = [];
+       var spinner = new Spinner(opts).spin(target);
+
         for(let i = 0; i < dateFiles.length; i++) {
   
           promises.push(createWorker('./textures/'+ dateFiles[i]));
@@ -278,7 +299,9 @@ if (name === "colorView"){
         Promise.all(promises)
             .then(function(textures) {
               console.log('bang!')
+              spinner.stop();
               allText = textures
+              printy(allText[0])
             })
       // }  else {
       //   firstLoad = 1
