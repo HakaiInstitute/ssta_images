@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as d3 from 'd3'
 import {Runtime, Library, Inspector} from "./buoyviz/runtime.js";
 import buoyViz from "./buoyviz/index.js";
-import { damp } from 'three/src/math/MathUtils';
+// import { damp } from 'three/src/math/MathUtils';
 
 
 // const runtime = new Runtime() 
@@ -162,16 +162,16 @@ let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().
 ".png")
 
 
-    let promises = [];
-    for(let i = 0; i < dateFiles.length; i++) {
+    // let promises = [];
+    // for(let i = 0; i < dateFiles.length; i++) {
  
-      promises.push(createWorker('./textures/'+ dateFiles[i]));
-    }
+    //   promises.push(createWorker('./textures/'+ dateFiles[i]));
+    // }
     
-    Promise.all(promises)
-        .then(function(textures) {
-          allText = textures
-        })
+    // Promise.all(promises)
+    //     .then(function(textures) {
+    //       allText = textures
+    //     })
 
 
     // runs the animation
@@ -197,7 +197,7 @@ new Runtime().module(buoyViz, name => {
 // if first load don't load again below
 let firstLoad = 0
 
- // returns just the brush dates
+ // returns just the brush dates but also loads the images for the interval selected
  if (name === "limits"){
   // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
   return {
@@ -205,18 +205,18 @@ let firstLoad = 0
     },
     fulfilled(value) {
       
-      if(firstLoad !== 0){
+      // if(firstLoad !== 0){
         // console.log(value)
         console.log('this is running!')
         endDate = value[1]
         startDate = value[0]
         everyDayBetween = d3.timeDay.range(startDate, endDate)
-  
+        console.log(value);
         dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().substring(0, 10).replaceAll("-", "") +
   ".png")
   
   
-        promises = [];
+       let promises = [];
         for(let i = 0; i < dateFiles.length; i++) {
   
           promises.push(createWorker('./textures/'+ dateFiles[i]));
@@ -224,11 +224,12 @@ let firstLoad = 0
   
         Promise.all(promises)
             .then(function(textures) {
+              console.log('bang!')
               allText = textures
             })
-      }  else {
-        firstLoad = 1
-      }
+      // }  else {
+      //   firstLoad = 1
+      // }
     
       // const fileName =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
       
@@ -246,21 +247,20 @@ let firstLoad = 0
 }
 }
 
-  // returns just the checkbox value
+  // returns the current play date and then loads the texture for that date (which loaded when limits changed)
   if (name === "time1"){
-    // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
     return {
       pending() {
       },
       fulfilled(value) {
-        console.log(value)
+        // console.log(value,firstLoad,allText)
         if(firstLoad !== 0){
           const fileName =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
           
           const fileToUse = fileName+ new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-          console.log(fileToUse)
+          // console.log(fileToUse)
           const ind = dateFiles.indexOf(fileToUse)
-          console.log(ind,allText)
+          // console.log(ind,allText)
           const textureToUse = allText[ind]
           // console.log(allText)
           printy(textureToUse)
@@ -273,7 +273,8 @@ let firstLoad = 0
         node.textContent = error.message;
       }
   }}
-    // returns just the scrubber value
+    // returns just the category selected
+    // NEEDS to also trigger loading of all the images in limits.
     if (name === "colorView"){
       // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
       return {

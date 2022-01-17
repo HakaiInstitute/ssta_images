@@ -4,7 +4,9 @@
     "license": "UNLICENSED",
     "scripts": {
         "build": "webpack --config ./bundler/webpack.prod.js",
-        "dev": "webpack serve --config ./bundler/webpack.dev.js"
+        "dev": "webpack serve --config ./bundler/webpack.dev.js",
+        "lint": "eslint --ext .js --ignore-path .gitignore ."
+
     },
     "dependencies": {
         "@babel/core": "^7.14.6",
