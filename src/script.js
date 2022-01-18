@@ -116,6 +116,8 @@ scene.add(sphereBG);
   controls.enablePan = false;
   controls.minAzimuthAngle = -1//left rotate
   controls.maxAzimuthAngle = -0.85; // right
+  controls.minPolarAngle = .9//left rotate
+  controls.maxPolarAngle = .9; // right
   // controls.enableRotate = false;
 
   // Renderer
