@@ -116,9 +116,9 @@ scene.add(sphereBG);
   controls.enablePan = false;
   controls.minAzimuthAngle = -1//left rotate
   controls.maxAzimuthAngle = -0.85; // right
-  controls.minPolarAngle = .9//left rotate
-  controls.maxPolarAngle = .9; // right
-  // controls.enableRotate = false;
+  controls.minPolarAngle = .7;
+  controls.maxPolarAngle = .9; 
+  //  controls.enableRotate = false;
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({
