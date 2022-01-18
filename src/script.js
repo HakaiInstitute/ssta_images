@@ -60,7 +60,7 @@ const sphereBG = new THREE.Mesh(geometry, material)
 // scene.add(sphere)
 //noaa-crw_mhw_v1.0.1_category_20150101
 let endDate = d3.utcDay()
-let startDate = d3.timeDay.offset(endDate, -30)
+let startDate = d3.timeDay.offset(endDate, -10)
 const firstDayToLoad = "ct5km_ssta_v3.1_" + startDate.toISOString().substring(0, 10).replaceAll("-", "") +
 ".png"
 // console.log(firstDayToLoad)
@@ -111,8 +111,12 @@ scene.add(sphereBG);
   // Controls
   const controls = new OrbitControls(camera, canvas)
   controls.minDistance = 1.5
-  controls.maxDistance = 8
+  controls.maxDistance = 3
   controls.enableDamping = true
+  controls.enablePan = false;
+  controls.minAzimuthAngle = -1//left rotate
+  controls.maxAzimuthAngle = -0.85; // right
+  // controls.enableRotate = false;
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({
