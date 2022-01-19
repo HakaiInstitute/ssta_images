@@ -1,6 +1,6 @@
 # MHW Buoys without Globe
 
-https://observablehq.com/d/0b936d79280ee3bd@2317
+https://observablehq.com/d/0b936d79280ee3bd@2361
 
 View this notebook in your browser by running a web server in this folder. For
 example:

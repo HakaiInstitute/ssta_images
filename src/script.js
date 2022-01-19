@@ -208,6 +208,8 @@ let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().
 
 new Runtime().module(buoyViz, name => {
   // console.log(buoyViz)
+  if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
+
   if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
   if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
   if (name === "curDate") return new Inspector(document.querySelector("#observablehq-curDate-890dd666"));
