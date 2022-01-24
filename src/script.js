@@ -61,7 +61,7 @@ const sphereBG = new THREE.Mesh(geometry, material)
 //noaa-crw_mhw_v1.0.1_category_20150101
 let endDate = d3.utcDay()
 let startDate = d3.timeDay.offset(endDate, -10)
-const firstDayToLoad = "ct5km_ssta_v3.1_" + startDate.toISOString().substring(0, 10).replaceAll("-", "") +
+const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -12).toISOString().substring(0, 10).replaceAll("-", "") +
 ".png"
 // console.log(firstDayToLoad)
 const texture = textureLoader.load('./textures/' + firstDayToLoad)
@@ -217,6 +217,7 @@ new Runtime().module(buoyViz, name => {
   if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
   if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
   if (name === "minFunc") return true;
+  if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
 
 // if first load don't load again below
 
@@ -233,36 +234,36 @@ if (name === "colorView"){
       console.log(value, firstLoad)
       
       // If not initial page load, download images
-      if(firstLoad !== 0){ 
-        console.log('category changed')
+  //     if(firstLoad !== 0){ 
+  //       console.log('category changed')
 
-        // endDate = value[1]
-        // startDate = value[0]
-        everyDayBetween = d3.timeDay.range(startDate, endDate)
-        // console.log(everyDayBetween);
+  //       // endDate = value[1]
+  //       // startDate = value[0]
+  //       everyDayBetween = d3.timeDay.range(startDate, endDate)
+  //       // console.log(everyDayBetween);
 
-         prefix =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
-        dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
-  ".png")
+  //        prefix =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+  //       dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
+  // ".png")
   
   
-       let promises = [];
-       var spinner = new Spinner(opts).spin(target);
-        for(let i = 0; i < dateFiles.length; i++) {
+  //      let promises = [];
+  //      var spinner = new Spinner(opts).spin(target);
+  //       for(let i = 0; i < dateFiles.length; i++) {
   
-          promises.push(createWorker('./textures/'+ dateFiles[i]));
-        }
+  //         promises.push(createWorker('./textures/'+ dateFiles[i]));
+  //       }
   
-        Promise.all(promises)
-            .then(function(textures) {
-              console.log('bang!')
-               // stop spin.js loader
-            spinner.stop();
-              allText = textures
-              printy(allText[0])
-            })
+  //       Promise.all(promises)
+  //           .then(function(textures) {
+  //             console.log('bang!')
+  //              // stop spin.js loader
+  //           spinner.stop();
+  //             allText = textures
+  //             printy(allText[0])
+  //           })
 
-      }
+  //     }
 
       // const fileToUse = "ct5km_ssta_v3.1_" + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
       // const ind = dateFiles.indexOf(fileToUse)
@@ -288,8 +289,54 @@ if (name === "colorView"){
         console.log('this is running!',category)
         endDate = value[1]
         startDate = value[0]
+  //       everyDayBetween = d3.timeDay.range(startDate, endDate)
+  //       console.log(value);
+
+  //        prefix =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+  //       dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
+  // ".png")
+  
+  
+  //      let promises = [];
+  //      var spinner = new Spinner(opts).spin(target);
+
+  //       for(let i = 0; i < dateFiles.length; i++) {
+  
+  //         promises.push(createWorker('./textures/'+ dateFiles[i]));
+  //       }
+  
+  //       Promise.all(promises)
+  //           .then(function(textures) {
+  //             console.log('bang!')
+  //             spinner.stop();
+  //             allText = textures
+  //             printy(allText[0])
+  //           })
+      // }  else {
+      //   firstLoad = 1
+      // }
+    
+    
+    },
+    rejected(error) {
+      node.textContent = error.message;
+    }
+}  
+}
+
+if (name === "datesToPlot"){
+  // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+  return {
+    pending() {
+    },
+    fulfilled(value) {
+      // console.log(value)
+      if(value !== null){
+        // console.log('this is running!',category)
+        // endDate = value[1]
+        // startDate = value[0]
         everyDayBetween = d3.timeDay.range(startDate, endDate)
-        console.log(value);
+        // console.log(value);
 
          prefix =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
         dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
@@ -315,13 +362,14 @@ if (name === "colorView"){
       //   firstLoad = 1
       // }
     
-    
+    }
     },
     rejected(error) {
       node.textContent = error.message;
     }
+}  
 }
-}
+
 
   // returns the current play date and then loads the texture for that date (which loaded when limits changed)
   if (name === "time1"){
@@ -329,7 +377,7 @@ if (name === "colorView"){
       pending() {
       },
       fulfilled(value) {
-        // console.log(value,firstLoad,allText)
+        // console.log(value,firstLoad,allText) 
         if(firstLoad !== 0){
           const fileName =  category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
           
