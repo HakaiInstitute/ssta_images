@@ -64,7 +64,7 @@ let startDate = d3.timeDay.offset(endDate, -10)
 const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -12).toISOString().substring(0, 10).replaceAll("-", "") +
 ".png"
 // console.log(firstDayToLoad)
-const texture = textureLoader.load('./textures/' + firstDayToLoad)
+const texture = textureLoader.load('./textures/' + 'ct5km_ssta_v3.1_20220101.png')
 // console.log(texture)
 const materialSSTA = new THREE.MeshBasicMaterial({
   map: texture,

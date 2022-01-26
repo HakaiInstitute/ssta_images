@@ -4,7 +4,36 @@ body {background-color: #000000;}
     background-color: white;
 }
 
+/* #leg {
+  background-color: white
+} */
+.mapbox-improve-map {
+  display: none;
+}
 
+.brushFilter {
+background-color: black;
+color: "#e0f5ee"
+}
+
+.axisWhite line{
+stroke: #e0f5ee;
+}
+
+.axisWhite path{
+stroke: #e0f5ee;
+}
+
+.selection{
+fill-opacity: 1;
+stroke: none;
+}
+
+
+.legend{
+  background-color: white;
+  /* width: 380px; */
+}
 
 :root {
   --syntax_normal: #1b1e23;
@@ -58,6 +87,11 @@ body {background-color: #000000;}
 .observablehq--orange {
   color: #e6550d;
 }
+
+/* form {
+
+  color: white;
+} */
 
 .observablehq--null,
 .observablehq--undefined,
