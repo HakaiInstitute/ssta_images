@@ -339,7 +339,7 @@ new Runtime().module(buoyViz, name => {
 
                             
                         }
-                        console.log(promises);
+                        // console.log(promises);
                         Promise.all(promises)
                             .then(function(textures) {
                                 // console.log(textures)
