@@ -1,7 +1,7 @@
 body {background-color: #000000;}
 
 #selectBoxes {
-    background-color: white;
+    background-color: #e0f5ee;
 }
 
 /* #leg {
@@ -29,6 +29,14 @@ fill-opacity: 1;
 stroke: none;
 }
 
+h1 {
+  color: #e0f5ee;
+
+}
+.lead {
+  color: #e0f5ee;
+
+}
 
 .legend{
   background-color: white;
