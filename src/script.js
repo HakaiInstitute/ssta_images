@@ -214,8 +214,8 @@ async function printy(text) {
 
 }
 let firstLoad = 0,
-    prefix = null;
-
+    prefix = null,
+    spinner = null
 new Runtime().module(buoyViz, name => {
     // console.log(buoyViz)
     if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
@@ -271,10 +271,14 @@ new Runtime().module(buoyViz, name => {
     }
 
     if (name === "datesToPlot") {
+        
         return {
             pending() {},
             fulfilled(value) {
+                // spinner.stop();
                 // console.log(value)
+        //         console.log(typeof spinner)
+        // if(typeof spinner !== "undefined"){spinner.stop();}
                 if (value !== null) {
 
                     everyDayBetween = d3.timeDay.range(startDate, endDate)
@@ -288,7 +292,7 @@ new Runtime().module(buoyViz, name => {
                     if (dateFiles.length <= 30) {
 
                         let promises = [];
-                        var spinner = new Spinner(opts).spin(target);
+                         spinner = new Spinner(opts).spin(target);
 
                         for (let i = 0; i < dateFiles.length; i++) {
 
@@ -324,6 +328,7 @@ new Runtime().module(buoyViz, name => {
                                     // console.log(textures);
                                 }, undefined, function(e) {
                                     console.error(e);
+                                    spinner.stop();
                                 })
                             })
                         }
