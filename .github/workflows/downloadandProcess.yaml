@@ -23,7 +23,8 @@ jobs:
       - name: install requirements
         working-directory: ./dataProcessing
         run: |
-          conda install --file requirements.txt
+          conda install -c conda-forge --file requirements.txt
+ 
 
       - name: execute py script
         working-directory: ./dataProcessing
