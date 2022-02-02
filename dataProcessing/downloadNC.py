@@ -1,14 +1,14 @@
 from ftplib import FTP
 from pathlib import Path
 import datetime
-# import xarray as xr
-# import matplotlib.pyplot as plt
-# import cmocean.cm as cm
-# import numpy as np
-# import cartopy.crs as ccrs
-# # import cartopy.feature as cfeature
-# import cartopy.io.img_tiles as cimgt
-# import glob
+import xarray as xr
+import matplotlib.pyplot as plt
+import cmocean.cm as cm
+import numpy as np
+import cartopy.crs as ccrs
+# import cartopy.feature as cfeature
+import cartopy.io.img_tiles as cimgt
+import glob
 ## Get the data from ftp sites
 
 #ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/
