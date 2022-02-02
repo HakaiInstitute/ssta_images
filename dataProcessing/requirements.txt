@@ -1,3 +1,7 @@
+anaconda
+dask
+netCDF4
+bottleneck
 xarray
 numpy
 matplotlib
