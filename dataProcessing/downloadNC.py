@@ -24,7 +24,8 @@ ftp.cwd('pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/2022')
 fileAnomaly = 'ct5km_ssta_v3.1_{}.nc'.format(yesterday)
 script_path = Path(__file__).parent
 print(script_path)
-ftp.retrbinary(f'RETR {fileAnomaly}', open(str(Path(r'/Users/mathewbrown/Projects/mhw_images/ssta/dataProcessing') / fileAnomaly), 'wb').write)
+ftp.retrbinary(f'RETR {fileAnomaly}', open(rf'{fileAnomaly}', 'wb').write)
+# ftp.retrbinary(f'RETR {fileAnomaly}', open(str(Path(r'/Users/mathewbrown/Projects/mhw_images/ssta/dataProcessing') / fileAnomaly), 'wb').write)
 
 # MHW Category
 #ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/
