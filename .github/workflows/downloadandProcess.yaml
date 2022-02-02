@@ -23,12 +23,7 @@ jobs:
       - name: install requirements
         working-directory: ./dataProcessing
         run: |
-          pip3 install -r requirements.txt
-
-      - name: install cartopy
-        working-directory: ./dataProcessing
-        run: |
-          conda install -c conda-forge cartopy   
+          conda install --file requirements.txt
 
       - name: execute py script
         working-directory: ./dataProcessing
