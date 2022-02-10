@@ -213,37 +213,130 @@ window.addEventListener('mousemove', (event) => {
 })
 
 let clickedSite;
+const colors = new Map([
+    ["avg", "#5b6187"],
+    ["thresh", "#FEDB67"],
+    ["below", "#89119c"], // actuals below forecast
+    ["above", "pink"], // actuals above forecast
+    ["moderate", "#FEDB67"],
+    ["Strong", "#f26722"],
+    ["Severe", "#cd3728"],
+    ["Extreme", "#7E1416"],
+  
+    ["seas", "pink"]
+  ])
+
+let plotElement = document.querySelector("#observablehq-Plot")
+
 window.addEventListener('click', (event) =>{
     // mouse.x = event.clientX / sizes.width * 2 - 1
     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
+    while (plotElement.firstChild) {
+        plotElement.removeChild(plotElement.firstChild)
+      }
     if(currentIntersect){
         clickedSite = bouyData.filter(d => d.station ===currentIntersect.object.buoyId )
-        // console.log(currentIntersect.object.buoyId,bouyData.filter(d => d.station ===currentIntersect.object.buoyId ))
-        if(currentIntersect.object === allBouys[1]){
-            console.log('click on a shpere 1');
-        } else if(currentIntersect.object === allBouys[2]){
-            console.log('click on a shpere 2');
-        }else if(currentIntersect.object === allBouys[3]){
-            console.log('click on a shpere 3');
-        } else if(currentIntersect.object === allBouys[4]){
-            console.log('click on a shpere 4');
-        } else if(currentIntersect.object === allBouys[5]){
-            console.log('click on a shpere 5');
-        } else if(currentIntersect.object === allBouys[6]){
-            console.log('click on a shpere 6');
-        }else if(currentIntersect.object === allBouys[7]){
-            console.log('click on a shpere 7');
-        } else if(currentIntersect.object === allBouys[8]){
-            console.log('click on a shpere 8');
-        } else if(currentIntersect.object === allBouys[9]){
-            console.log('click on a shpere 9');
-        } else if(currentIntersect.object === allBouys[10]){
-            console.log('click on a shpere 10');
-        } else if(currentIntersect.object === allBouys[11]){
-            console.log('click on a shpere 11');
-        } else if(currentIntersect.object === allBouys[12]){
-            console.log('click on a shpere 12');
-        }
+        plotElement.appendChild(        Plot.plot({
+            style: {
+              backgroundColor: "#000000",
+              color: "#e0f5ee"
+              // fontFamily: "system-ui",
+              // fontSize: 9,
+              // overflow: "visible"
+            },
+            height: 250,
+            marks: [
+              Plot.line(clickedSite, {
+                x: "date",
+                y: "sst",
+                stroke: colors.get("sst"),
+        
+                curve: "step",
+                strokeWidth: 2
+              }),
+              Plot.line(clickedSite, {
+                x: "date",
+                y: "thresh",
+                stroke: colors.get("thresh"),
+                opacity: 0.7,
+                // curve: "step",
+                strokeWidth: 2
+              }),
+              Plot.line(clickedSite, {
+                x: "date",
+                y: "seas",
+                stroke: colors.get("seas"),
+                opacity: 0.7,
+                // curve: "step",
+                strokeWidth: 2
+              }),
+              Plot.areaY(clickedSite, {
+                x: "date",
+                y1: "thresh",
+                y2: "diff",
+                sort: "date",
+                curve: "step",
+                fill: colors.get("moderate")
+              }),
+        
+              Plot.areaY(clickedSite, {
+                x: "date",
+                y1: "thresh",
+                y2: "diffStrong",
+                sort: "date",
+                curve: "step",
+                fill: colors.get("Strong")
+              }),
+              Plot.areaY(clickedSite, {
+                x: "date",
+                y1: "thresh",
+                y2: "diffExtreme",
+                sort: "date",
+                curve: "step",
+                fill: colors.get("Extreme")
+              }),
+        
+              Plot.areaY(clickedSite, {
+                x: "date",
+                y1: "thresh",
+                y2: "diffSevere",
+                sort: "date",
+                curve: "step",
+                fill: colors.get("Severe")
+              }),
+        
+              // rule at bottom of chart marking y=0;
+              Plot.ruleY([0]),
+        
+              // vertical rule to mark date/time of event
+            //   Plot.ruleX([time1], {
+            //     stroke: "gray",
+            //     y1: 0,
+            //     y2: d3.max(clickedSite, (d) => d.sst)
+            //   })
+            ],
+        
+            color: {
+              domain: ["above", "below", "avg", "thresh"],
+              range: [
+                colors.get("above"),
+                colors.get("below"),
+                colors.get("actuals"),
+                colors.get("forecast")
+              ]
+              // legend: true
+            },
+            y: {
+              label: "↑ (°C)"
+            },
+        
+            marginLeft: 60,
+            // width
+          })
+          );
+
+
+   
     }
 })
 
@@ -377,35 +470,7 @@ const tick = () => {
 tick()
 
 
-function delay(milisec) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('')
-        }, milisec);
-    })
-}
 
-
-function createWorker(data) {
-
-    return new Promise(function(resolve, reject) {
-        // console.log(import.meta.url)
-        var v = new Worker(new URL('./for.js',
-            import.meta.url));
-
-        v.postMessage(data);
-
-        v.onmessage = function(event) {
-            v.terminate();
-            // console.log(new THREE.CanvasTexture( event.data ))
-            resolve(new THREE.CanvasTexture(event.data));
-        };
-
-        v.onerror = reject; // Rejects the promise if an error is raised by the web worker, passing along the ErrorEvent
-
-    })
-
-}
 
 let allText = null
 // let dateFiles = null
@@ -635,7 +700,7 @@ const main = runtime.module(buoyViz, name => {
 
 
     if (name === "ind") return true;
-    if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
+    // if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
 
     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
