@@ -112,26 +112,13 @@ const particleTexture = textureLoader.load('./textures/1.png')
 
 const count = 13;
 const positions = new Float32Array(count * 3);
-//   particlesGeometry.setAttribute("color", new THREE.Color(0xff0000));
-//   particlesMaterial.map = particleTexture
-// // particlesMaterial.transparent = true
-// particlesMaterial.alphaMap = particleTexture
-// particlesMaterial.depthWrite = false
-// particlesMaterial.blending = THREE.AdditiveBlending
-// particlesMaterial.vertexColors = true
+
 
 const buoys = [{"short_name":"C46004","lat":50.94,"lon":-135.87,"long_name":"Middle Nomad","pk":1},{"short_name":"C46036","lat":48.3,"lon":-133.86,"long_name":"South Nomad","pk":2},{"short_name":"C46131","lat":49.91,"lon":-124.99,"long_name":"Sentry Shoal","pk":3},{"short_name":"C46132","lat":49.74,"lon":-127.93,"long_name":"South Brooks","pk":4},{"short_name":"C46134","lat":48.66,"lon":-123.48,"long_name":"Pat Bay Test Buoy","pk":5},{"short_name":"C46145","lat":54.38,"lon":-132.42,"long_name":"Central Dixon Entran","pk":6},{"short_name":"C46146","lat":49.34,"lon":-123.73,"long_name":"Halibut Bank","pk":7},{"short_name":"C46147","lat":51.83,"lon":-131.23,"long_name":"South Moresby","pk":8},{"short_name":"C46181","lat":53.82,"lon":-128.84,"long_name":"Nanakwa Shoal","pk":9},{"short_name":"C46182","lat":49.48,"lon":-123.29,"long_name":"Pam Rocks","pk":10},{"short_name":"C46183","lat":53.57,"lon":-131.14,"long_name":"North Hecate Strait","pk":11},{"short_name":"C46184","lat":53.92,"lon":-138.85,"long_name":"North Nomad","pk":12},{"short_name":"C46185","lat":52.42,"lon":-129.79,"long_name":"South Hecate Strait","pk":13},{"short_name":"C46204","lat":51.38,"lon":-128.77,"long_name":"West Sea Otter","pk":14},{"short_name":"C46205","lat":54.3,"lon":-133.4,"long_name":"West Dixon Entrance","pk":15},{"short_name":"C46206","lat":48.83,"lon":-126,"long_name":"La Perouse Bank","pk":16},{"short_name":"C46207","lat":50.88,"lon":-129.91,"long_name":"East Dellwood","pk":17},{"short_name":"C46208","lat":52.51,"lon":-132.69,"long_name":"West Moresby","pk":18}]
 // d3.json("./buoys.json").then(function(buoys) {
     // console.log(data[0]);
 let allBouys = []
-// Material
-// particlesMaterial.transparent = true;
-// particlesMaterial.alphaMap = particleTexture;
-// particlesMaterial.alphaTest = 0.001;
-// particlesMaterial.map = particleTexture;
-// particlesMaterial.size = .05;
-// particlesMaterial.sizeAttenuation = true;
-// particlesMaterial.color = new THREE.Color("yellow");
+
 
 const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16)//new THREE.BufferGeometry();
 for (let i = 0; i < count; i++) {
@@ -165,9 +152,10 @@ for (let i = 0; i < count; i++) {
     // scene.add(particles)
 
 }
-
+const group = new THREE.Group();
 console.log(allBouys)
-scene.add(allBouys[0],allBouys[1],allBouys[2],allBouys[3],allBouys[4],allBouys[5],allBouys[6],allBouys[7],allBouys[8],allBouys[9],allBouys[10],allBouys[11],allBouys[12])
+group.add(allBouys[0],allBouys[1],allBouys[2],allBouys[3],allBouys[4],allBouys[5],allBouys[6],allBouys[7],allBouys[8],allBouys[9],allBouys[10],allBouys[11],allBouys[12])
+scene.add( group );
 
 // particlesMaterial.depthWrite = false;
 //    particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -180,14 +168,9 @@ scene.add(allBouys[0],allBouys[1],allBouys[2],allBouys[3],allBouys[4],allBouys[5
 // particles = new THREE.Points(particlesGeometry, particlesMaterial)
 // scene.add(allBouys)
 // scene.add(particles);
-// group.visible = false;
+group.visible = false;
 
-// scene.add(group);
-// controls.addEventListener("change", (event) => {
-//   controls.object.position.z > 1
-//     ? (group.visible = false)
-//     : (group.visible = true);
-// });
+
 
 // });
 
@@ -231,13 +214,31 @@ window.addEventListener('click', (event) =>{
     // mouse.x = event.clientX / sizes.width * 2 - 1
     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
     if(currentIntersect){
-        // console.log(currentIntersect)
+        console.log(currentIntersect)
         if(currentIntersect.object === allBouys[1]){
             console.log('click on a shpere 1');
         } else if(currentIntersect.object === allBouys[2]){
             console.log('click on a shpere 2');
         }else if(currentIntersect.object === allBouys[3]){
             console.log('click on a shpere 3');
+        } else if(currentIntersect.object === allBouys[4]){
+            console.log('click on a shpere 4');
+        } else if(currentIntersect.object === allBouys[5]){
+            console.log('click on a shpere 5');
+        } else if(currentIntersect.object === allBouys[6]){
+            console.log('click on a shpere 6');
+        }else if(currentIntersect.object === allBouys[7]){
+            console.log('click on a shpere 7');
+        } else if(currentIntersect.object === allBouys[8]){
+            console.log('click on a shpere 8');
+        } else if(currentIntersect.object === allBouys[9]){
+            console.log('click on a shpere 9');
+        } else if(currentIntersect.object === allBouys[10]){
+            console.log('click on a shpere 10');
+        } else if(currentIntersect.object === allBouys[11]){
+            console.log('click on a shpere 11');
+        } else if(currentIntersect.object === allBouys[12]){
+            console.log('click on a shpere 12');
         }
     }
 })
@@ -270,6 +271,13 @@ controls.maxAzimuthAngle = -0.85; // right
 controls.minPolarAngle = .7;
 controls.maxPolarAngle = .9;
 //  controls.enableRotate = false;
+// scene.add(group);
+controls.addEventListener("change", (event) => {
+    controls.object.position.z > 1
+      ? (group.visible = false)
+      : (group.visible = true);
+  });
+
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -424,188 +432,188 @@ async function printy(text) {
 let firstLoad = 0,
     prefix = null,
     spinner = null
-// new Runtime().module(buoyViz, name => {
-//     // console.log(buoyViz)
-//     if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
+new Runtime().module(buoyViz, name => {
+    // console.log(buoyViz)
+    if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
 
-//     if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
-//     if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
-//     if (name === "curDate") return new Inspector(document.querySelector("#observablehq-curDate-890dd666"));
-//     if (name === "leg") return new Inspector(document.querySelector("#observablehq-leg-2162ef11"));
-//     if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
-//     if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
-//     if (name === "minFunc") return true;
-//     if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
+    if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
+    if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
+    if (name === "curDate") return new Inspector(document.querySelector("#observablehq-curDate-890dd666"));
+    if (name === "leg") return new Inspector(document.querySelector("#observablehq-leg-2162ef11"));
+    if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
+    if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
+    if (name === "minFunc") return true;
+    if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
 
-//     // if first load don't load again below
-
-
-//     // returns just the category selected
-//     // NEEDS to also trigger loading of all the images in limits.
-//     if (name === "colorView") {
-//         // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
-//         return {
-//             pending() {},
-//             fulfilled(value) {
-//                 category = value
-//                 console.log(value, firstLoad)
-
-//             },
-//             rejected(error) {
-//                 node.textContent = error.message;
-//             }
-//         }
-//     }
-
-//     // returns just the brush dates but also loads the images for the interval selected
-//     if (name === "limits") {
-//         // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
-//         return {
-//             pending() {},
-//             fulfilled(value) {
+    // if first load don't load again below
 
 
-//                 console.log('this is running!', category)
-//                 endDate = value[1]
-//                 startDate = value[0]
+    // returns just the category selected
+    // NEEDS to also trigger loading of all the images in limits.
+    if (name === "colorView") {
+        // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+        return {
+            pending() {},
+            fulfilled(value) {
+                category = value
+                console.log(value, firstLoad)
+
+            },
+            rejected(error) {
+                node.textContent = error.message;
+            }
+        }
+    }
+
+    // returns just the brush dates but also loads the images for the interval selected
+    if (name === "limits") {
+        // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+        return {
+            pending() {},
+            fulfilled(value) {
+
+
+                console.log('this is running!', category)
+                endDate = value[1]
+                startDate = value[0]
 
 
 
-//             },
-//             rejected(error) {
-//                 node.textContent = error.message;
-//             }
-//         }
-//     }
+            },
+            rejected(error) {
+                node.textContent = error.message;
+            }
+        }
+    }
 
-//     if (name === "datesToPlot") {
+    if (name === "datesToPlot") {
 
-//         return {
-//             pending() {},
-//             fulfilled(value) {
-//                 // spinner.stop();
-//                 // console.log(value)
-//         //         console.log(typeof spinner)
-//         // if(typeof spinner !== "undefined"){spinner.stop();}
-//                 if (value !== null) {
+        return {
+            pending() {},
+            fulfilled(value) {
+                // spinner.stop();
+                // console.log(value)
+        //         console.log(typeof spinner)
+        // if(typeof spinner !== "undefined"){spinner.stop();}
+                if (value !== null) {
 
-//                     everyDayBetween = d3.timeDay.range(startDate, endDate)
+                    everyDayBetween = d3.timeDay.range(startDate, endDate)
 
-//                     prefix = category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
-//                     dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
-//                         ".png")
+                    prefix = category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+                    dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
+                        ".png")
 
-//                     console.log("dateFiles.length", dateFiles.length)
+                    console.log("dateFiles.length", dateFiles.length)
 
-//                     if (dateFiles.length <= 30) {
+                    if (dateFiles.length <= 30) {
 
-//                         let promises = [];
-//                          spinner = new Spinner(opts).spin(target);
+                        let promises = [];
+                         spinner = new Spinner(opts).spin(target);
 
-//                         for (let i = 0; i < dateFiles.length; i++) {
+                        for (let i = 0; i < dateFiles.length; i++) {
 
-//                             promises.push(createWorker('./textures/' + dateFiles[i]));
-//                         }
+                            promises.push(createWorker('./textures/' + dateFiles[i]));
+                        }
 
-//                         Promise.all(promises)
-//                             .then(function(textures) {
-//                                 console.log('bang!')
-//                                 spinner.stop();
-//                                 allText = textures
-//                                 printy(allText[0])
-//                             })
-//                     } else {
-//                         // try one ww to load them all 
-//                         var spinner = new Spinner(opts).spin(target);
-//                         const loader = new THREE.ImageBitmapLoader().setOptions({
-//                             imageOrientation: 'flipY',
-//                             premultiplyAlpha: 'none'
-//                         });
+                        Promise.all(promises)
+                            .then(function(textures) {
+                                console.log('bang!')
+                                spinner.stop();
+                                allText = textures
+                                printy(allText[0])
+                            })
+                    } else {
+                        // try one ww to load them all 
+                        var spinner = new Spinner(opts).spin(target);
+                        const loader = new THREE.ImageBitmapLoader().setOptions({
+                            imageOrientation: 'flipY',
+                            premultiplyAlpha: 'none'
+                        });
 
-//                          function loadImage(file) {
+                         function loadImage(file) {
 
-//                             return new Promise(function(resolve, reject) {
-//                                return loader.load(file, function(imageBitmap) {
-//                                 // console.log(imageBitmap)
+                            return new Promise(function(resolve, reject) {
+                               return loader.load(file, function(imageBitmap) {
+                                // console.log(imageBitmap)
 
-//                                     // return imageBitmap;
-//                                     resolve(new THREE.CanvasTexture(imageBitmap))
-//                                     // console.log(imageBitmap)
-//                                     // postMessage(imageBitmap)
-//                                     // textures.push(texture)
-//                                     // console.log(textures);
-//                                 }, undefined, function(e) {
-//                                     console.error(e);
-//                                     spinner.stop();
-//                                 })
-//                             })
-//                         }
-//                         // let textures = []
-//                         let promises = [];
-
-
-//                         for (let i = 0; i < dateFiles.length; i++) {
-//                             // console.log('./textures/' + dateFiles[i]);
-//                             let img =  loadImage('./textures/' + dateFiles[i])
-//                             // console.log(img)
-//                             promises.push(img)
+                                    // return imageBitmap;
+                                    resolve(new THREE.CanvasTexture(imageBitmap))
+                                    // console.log(imageBitmap)
+                                    // postMessage(imageBitmap)
+                                    // textures.push(texture)
+                                    // console.log(textures);
+                                }, undefined, function(e) {
+                                    console.error(e);
+                                    spinner.stop();
+                                })
+                            })
+                        }
+                        // let textures = []
+                        let promises = [];
 
 
-//                         }
-//                         // console.log(promises);
-//                         Promise.all(promises)
-//                             .then(function(textures) {
-//                                 // console.log(textures)
-//                                 spinner.stop();
-//                                 allText = textures
-//                                 printy(allText[0])
-//                             })
-//                         // console.log(textures);
-
-//                     }
+                        for (let i = 0; i < dateFiles.length; i++) {
+                            // console.log('./textures/' + dateFiles[i]);
+                            let img =  loadImage('./textures/' + dateFiles[i])
+                            // console.log(img)
+                            promises.push(img)
 
 
-//                 }
-//             },
-//             rejected(error) {
-//                 node.textContent = error.message;
-//             }
-//         }
-//     }
+                        }
+                        // console.log(promises);
+                        Promise.all(promises)
+                            .then(function(textures) {
+                                // console.log(textures)
+                                spinner.stop();
+                                allText = textures
+                                printy(allText[0])
+                            })
+                        // console.log(textures);
+
+                    }
 
 
-//     // returns the current play date and then loads the texture for that date (which loaded when limits changed)
-//     if (name === "time1") {
-//         return {
-//             pending() {},
-//             fulfilled(value) {
-//                 // console.log(value,firstLoad,allText) 
-//                 if (firstLoad !== 0) {
-//                     const fileName = category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
-
-//                     const fileToUse = fileName + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-//                     // console.log(fileToUse)
-//                     const ind = dateFiles.indexOf(fileToUse)
-//                     // console.log(ind,allText)
-//                     const textureToUse = allText[ind]
-//                     // console.log(allText)
-//                     printy(textureToUse)
-//                 } else {
-//                     console.log('here')
-//                     firstLoad = 1
-//                 }
-//                 // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
-//             },
-//             rejected(error) {
-//                 node.textContent = error.message;
-//             }
-//         }
-//     }
+                }
+            },
+            rejected(error) {
+                node.textContent = error.message;
+            }
+        }
+    }
 
 
-//     if (name === "ind") return true;
-//     if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
+    // returns the current play date and then loads the texture for that date (which loaded when limits changed)
+    if (name === "time1") {
+        return {
+            pending() {},
+            fulfilled(value) {
+                // console.log(value,firstLoad,allText) 
+                if (firstLoad !== 0) {
+                    const fileName = category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
-//     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
-//     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
-// });
+                    const fileToUse = fileName + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+                    // console.log(fileToUse)
+                    const ind = dateFiles.indexOf(fileToUse)
+                    // console.log(ind,allText)
+                    const textureToUse = allText[ind]
+                    // console.log(allText)
+                    printy(textureToUse)
+                } else {
+                    console.log('here')
+                    firstLoad = 1
+                }
+                // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
+            },
+            rejected(error) {
+                node.textContent = error.message;
+            }
+        }
+    }
+
+
+    if (name === "ind") return true;
+    if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
+
+    // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
+    return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
+});
