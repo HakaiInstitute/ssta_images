@@ -93,8 +93,8 @@ scene.add(sphereSSTA);
 scene.add(sphereBG);
 
 function latLongToVector3(lat, lon) {
-    var phi = (lat)* ( Math.PI / 180);
-    var theta = (lon + 180) * (Math.PI/180);
+    var phi = (lat) * (Math.PI / 180);
+    var theta = (lon + 180) * (Math.PI / 180);
 
     var x = -(Math.cos(phi) * Math.cos(theta));
     var y = (Math.sin(phi));
@@ -110,22 +110,124 @@ function latLongToVector3(lat, lon) {
 const particleTexture = textureLoader.load('./textures/1.png')
 
 
+const buoys = [{
+    "short_name": "C46004",
+    "lat": 50.94,
+    "lon": -135.87,
+    "long_name": "Middle Nomad",
+    "pk": 1
+}, {
+    "short_name": "C46036",
+    "lat": 48.3,
+    "lon": -133.86,
+    "long_name": "South Nomad",
+    "pk": 2
+}, {
+    "short_name": "C46131",
+    "lat": 49.91,
+    "lon": -124.99,
+    "long_name": "Sentry Shoal",
+    "pk": 3
+}, {
+    "short_name": "C46132",
+    "lat": 49.74,
+    "lon": -127.93,
+    "long_name": "South Brooks",
+    "pk": 4
+}, {
+    "short_name": "C46145",
+    "lat": 54.38,
+    "lon": -132.42,
+    "long_name": "Central Dixon Entran",
+    "pk": 6
+}, {
+    "short_name": "C46146",
+    "lat": 49.34,
+    "lon": -123.73,
+    "long_name": "Halibut Bank",
+    "pk": 7
+}, {
+    "short_name": "C46147",
+    "lat": 51.83,
+    "lon": -131.23,
+    "long_name": "South Moresby",
+    "pk": 8
+}, {
+    "short_name": "C46181",
+    "lat": 53.82,
+    "lon": -128.84,
+    "long_name": "Nanakwa Shoal",
+    "pk": 9
+}, {
+    "short_name": "C46182",
+    "lat": 49.48,
+    "lon": -123.29,
+    "long_name": "Pam Rocks",
+    "pk": 10
+}, {
+    "short_name": "C46183",
+    "lat": 53.57,
+    "lon": -131.14,
+    "long_name": "North Hecate Strait",
+    "pk": 11
+}, {
+    "short_name": "C46184",
+    "lat": 53.92,
+    "lon": -138.85,
+    "long_name": "North Nomad",
+    "pk": 12
+}, {
+    "short_name": "C46185",
+    "lat": 52.42,
+    "lon": -129.79,
+    "long_name": "South Hecate Strait",
+    "pk": 13
+}, {
+    "short_name": "C46204",
+    "lat": 51.38,
+    "lon": -128.77,
+    "long_name": "West Sea Otter",
+    "pk": 14
+}, {
+    "short_name": "C46205",
+    "lat": 54.3,
+    "lon": -133.4,
+    "long_name": "West Dixon Entrance",
+    "pk": 15
+}, {
+    "short_name": "C46206",
+    "lat": 48.83,
+    "lon": -126,
+    "long_name": "La Perouse Bank",
+    "pk": 16
+}, {
+    "short_name": "C46207",
+    "lat": 50.88,
+    "lon": -129.91,
+    "long_name": "East Dellwood",
+    "pk": 17
+}, {
+    "short_name": "C46208",
+    "lat": 52.51,
+    "lon": -132.69,
+    "long_name": "West Moresby",
+    "pk": 18
+}]
 
-const count = 13;
+const count = buoys.length;
 const positions = new Float32Array(count * 3);
-
-
-const buoys = [{"short_name":"C46004","lat":50.94,"lon":-135.87,"long_name":"Middle Nomad","pk":1},{"short_name":"C46036","lat":48.3,"lon":-133.86,"long_name":"South Nomad","pk":2},{"short_name":"C46131","lat":49.91,"lon":-124.99,"long_name":"Sentry Shoal","pk":3},{"short_name":"C46132","lat":49.74,"lon":-127.93,"long_name":"South Brooks","pk":4},{"short_name":"C46134","lat":48.66,"lon":-123.48,"long_name":"Pat Bay Test Buoy","pk":5},{"short_name":"C46145","lat":54.38,"lon":-132.42,"long_name":"Central Dixon Entran","pk":6},{"short_name":"C46146","lat":49.34,"lon":-123.73,"long_name":"Halibut Bank","pk":7},{"short_name":"C46147","lat":51.83,"lon":-131.23,"long_name":"South Moresby","pk":8},{"short_name":"C46181","lat":53.82,"lon":-128.84,"long_name":"Nanakwa Shoal","pk":9},{"short_name":"C46182","lat":49.48,"lon":-123.29,"long_name":"Pam Rocks","pk":10},{"short_name":"C46183","lat":53.57,"lon":-131.14,"long_name":"North Hecate Strait","pk":11},{"short_name":"C46184","lat":53.92,"lon":-138.85,"long_name":"North Nomad","pk":12},{"short_name":"C46185","lat":52.42,"lon":-129.79,"long_name":"South Hecate Strait","pk":13},{"short_name":"C46204","lat":51.38,"lon":-128.77,"long_name":"West Sea Otter","pk":14},{"short_name":"C46205","lat":54.3,"lon":-133.4,"long_name":"West Dixon Entrance","pk":15},{"short_name":"C46206","lat":48.83,"lon":-126,"long_name":"La Perouse Bank","pk":16},{"short_name":"C46207","lat":50.88,"lon":-129.91,"long_name":"East Dellwood","pk":17},{"short_name":"C46208","lat":52.51,"lon":-132.69,"long_name":"West Moresby","pk":18}]
 // d3.json("./buoys.json").then(function(buoys) {
-    // console.log(data[0]);
+// console.log(data[0]);
 let allBouys = []
 
 
-const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16)//new THREE.BufferGeometry();
+const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16) //new THREE.BufferGeometry();
 for (let i = 0; i < count; i++) {
-    const particlesMaterial = new THREE.MeshBasicMaterial({ color: '#ff0000' })//new THREE.PointsMaterial();
+    const particlesMaterial = new THREE.MeshBasicMaterial({
+        color: 'yellow'
+    }) //new THREE.PointsMaterial();
 
-    
+
     let positions = new Float32Array(3);
     // const i3 = i * 3;
 
@@ -139,7 +241,7 @@ for (let i = 0; i < count; i++) {
     // positions[0] = positionOnGlobe.x;
     // positions[1] = positionOnGlobe.y;
     // positions[2] = positionOnGlobe.z;
-// console.log(positions)
+    // console.log(positions)
     // particlesGeometry.setAttribute(
     //     "position",
     //     new THREE.BufferAttribute(positions, 3)
@@ -156,8 +258,8 @@ for (let i = 0; i < count; i++) {
 }
 const group = new THREE.Group();
 console.log(allBouys)
-group.add(allBouys[0],allBouys[1],allBouys[2],allBouys[3],allBouys[4],allBouys[5],allBouys[6],allBouys[7],allBouys[8],allBouys[9],allBouys[10],allBouys[11],allBouys[12])
-scene.add( group );
+group.add(allBouys[0], allBouys[1], allBouys[2], allBouys[3], allBouys[4], allBouys[5], allBouys[6], allBouys[7], allBouys[8], allBouys[9], allBouys[10], allBouys[11], allBouys[12])
+scene.add(group);
 
 // particlesMaterial.depthWrite = false;
 //    particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -181,8 +283,8 @@ group.visible = false;
 
 // Sizes
 const sizes = {
-    width: 900,
-    height: 900
+    width: window.innerWidth * 0.9,
+    height: window.innerHeight *0.75
 }
 window.addEventListener('resize', () => {
     // Update sizes
@@ -205,10 +307,10 @@ window.addEventListener('mousemove', (event) => {
     // console.log(rect)
     // mouse.x = event.clientX / sizes.width * 2 - 1
     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
-    mouse.x = ( ( event.clientX - rect.left ) / ( rect.right - rect.left ) ) * 2 - 1;
-    
+    mouse.x = ((event.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1;
 
-    mouse.y = - ( ( event.clientY - rect.top ) / ( rect.bottom - rect.top) ) * 2 + 1;
+
+    mouse.y = -((event.clientY - rect.top) / (rect.bottom - rect.top)) * 2 + 1;
 
 })
 
@@ -222,121 +324,120 @@ const colors = new Map([
     ["Strong", "#f26722"],
     ["Severe", "#cd3728"],
     ["Extreme", "#7E1416"],
-  
+
     ["seas", "pink"]
-  ])
+])
 
 let plotElement = document.querySelector("#observablehq-Plot")
 
-window.addEventListener('click', (event) =>{
+window.addEventListener('click', (event) => {
     // mouse.x = event.clientX / sizes.width * 2 - 1
     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
     while (plotElement.firstChild) {
         plotElement.removeChild(plotElement.firstChild)
-      }
-    if(currentIntersect){
-        clickedSite = bouyData.filter(d => d.station ===currentIntersect.object.buoyId )
-        plotElement.appendChild(        Plot.plot({
+    }
+    if (currentIntersect) {
+        clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
+        plotElement.appendChild(Plot.plot({
             style: {
-              backgroundColor: "#000000",
-              color: "#e0f5ee"
-              // fontFamily: "system-ui",
-              // fontSize: 9,
-              // overflow: "visible"
+                backgroundColor: "#000000",
+                color: "#e0f5ee"
+                // fontFamily: "system-ui",
+                // fontSize: 9,
+                // overflow: "visible"
             },
             height: 250,
             marks: [
-              Plot.line(clickedSite, {
-                x: "date",
-                y: "sst",
-                stroke: colors.get("sst"),
-        
-                curve: "step",
-                strokeWidth: 2
-              }),
-              Plot.line(clickedSite, {
-                x: "date",
-                y: "thresh",
-                stroke: colors.get("thresh"),
-                opacity: 0.7,
-                // curve: "step",
-                strokeWidth: 2
-              }),
-              Plot.line(clickedSite, {
-                x: "date",
-                y: "seas",
-                stroke: colors.get("seas"),
-                opacity: 0.7,
-                // curve: "step",
-                strokeWidth: 2
-              }),
-              Plot.areaY(clickedSite, {
-                x: "date",
-                y1: "thresh",
-                y2: "diff",
-                sort: "date",
-                curve: "step",
-                fill: colors.get("moderate")
-              }),
-        
-              Plot.areaY(clickedSite, {
-                x: "date",
-                y1: "thresh",
-                y2: "diffStrong",
-                sort: "date",
-                curve: "step",
-                fill: colors.get("Strong")
-              }),
-              Plot.areaY(clickedSite, {
-                x: "date",
-                y1: "thresh",
-                y2: "diffExtreme",
-                sort: "date",
-                curve: "step",
-                fill: colors.get("Extreme")
-              }),
-        
-              Plot.areaY(clickedSite, {
-                x: "date",
-                y1: "thresh",
-                y2: "diffSevere",
-                sort: "date",
-                curve: "step",
-                fill: colors.get("Severe")
-              }),
-        
-              // rule at bottom of chart marking y=0;
-              Plot.ruleY([0]),
-        
-              // vertical rule to mark date/time of event
-            //   Plot.ruleX([time1], {
-            //     stroke: "gray",
-            //     y1: 0,
-            //     y2: d3.max(clickedSite, (d) => d.sst)
-            //   })
+                Plot.line(clickedSite, {
+                    x: "date",
+                    y: "sst",
+                    stroke: colors.get("sst"),
+
+                    curve: "step",
+                    strokeWidth: 2
+                }),
+                Plot.line(clickedSite, {
+                    x: "date",
+                    y: "thresh",
+                    stroke: colors.get("thresh"),
+                    opacity: 0.7,
+                    // curve: "step",
+                    strokeWidth: 2
+                }),
+                Plot.line(clickedSite, {
+                    x: "date",
+                    y: "seas",
+                    stroke: colors.get("seas"),
+                    opacity: 0.7,
+                    // curve: "step",
+                    strokeWidth: 2
+                }),
+                Plot.areaY(clickedSite, {
+                    x: "date",
+                    y1: "thresh",
+                    y2: "diff",
+                    sort: "date",
+                    curve: "step",
+                    fill: colors.get("moderate")
+                }),
+
+                Plot.areaY(clickedSite, {
+                    x: "date",
+                    y1: "thresh",
+                    y2: "diffStrong",
+                    sort: "date",
+                    curve: "step",
+                    fill: colors.get("Strong")
+                }),
+                Plot.areaY(clickedSite, {
+                    x: "date",
+                    y1: "thresh",
+                    y2: "diffExtreme",
+                    sort: "date",
+                    curve: "step",
+                    fill: colors.get("Extreme")
+                }),
+
+                Plot.areaY(clickedSite, {
+                    x: "date",
+                    y1: "thresh",
+                    y2: "diffSevere",
+                    sort: "date",
+                    curve: "step",
+                    fill: colors.get("Severe")
+                }),
+
+                // rule at bottom of chart marking y=0;
+                Plot.ruleY([0]),
+
+                // vertical rule to mark date/time of event
+                //   Plot.ruleX([time1], {
+                //     stroke: "gray",
+                //     y1: 0,
+                //     y2: d3.max(clickedSite, (d) => d.sst)
+                //   })
             ],
-        
+
             color: {
-              domain: ["above", "below", "avg", "thresh"],
-              range: [
-                colors.get("above"),
-                colors.get("below"),
-                colors.get("actuals"),
-                colors.get("forecast")
-              ]
-              // legend: true
+                domain: ["above", "below", "avg", "thresh"],
+                range: [
+                    colors.get("above"),
+                    colors.get("below"),
+                    colors.get("actuals"),
+                    colors.get("forecast")
+                ]
+                // legend: true
             },
             y: {
-              label: "↑ (°C)"
+                label: "↑ (°C)"
             },
-        
+
             marginLeft: 60,
-            // width
-          })
-          );
+            width: sizes.width
+        }));
 
 
-   
+
     }
 })
 
@@ -359,8 +460,8 @@ var selectedObject = null;
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
-controls.minDistance = 1.5
-controls.maxDistance = 3
+controls.minDistance = 1.4
+controls.maxDistance = 2.3
 controls.enableDamping = true
 controls.enablePan = false;
 controls.minAzimuthAngle = -1 //left rotate
@@ -370,10 +471,10 @@ controls.maxPolarAngle = .9;
 //  controls.enableRotate = false;
 // scene.add(group);
 controls.addEventListener("change", (event) => {
-    controls.object.position.z > 1
-      ? (group.visible = false)
-      : (group.visible = true);
-  });
+    controls.object.position.z > 1 ?
+        (group.visible = false) :
+        (group.visible = true);
+});
 
 
 // Renderer
@@ -404,58 +505,58 @@ const tick = () => {
     raycaster.setFromCamera(mouse, camera);
 
 
-    const objectsToTest= allBouys//[allBouys[1],allBouys[2],allBouys[3]]
+    const objectsToTest = allBouys //[allBouys[1],allBouys[2],allBouys[3]]
     //    console.log(objectsToTest)
-       const intersects = raycaster.intersectObjects(objectsToTest)
+    const intersects = raycaster.intersectObjects(objectsToTest)
     //    console.log(intersects.length)
-       
-       for(const object of objectsToTest){
+
+    for (const object of objectsToTest) {
         object.material.color.set("#ff0000")
     }
-    
-       for(const intersect of intersects){
-           intersect.object.material.color.set("#0000ff")
-       }
-    
-       if(intersects.length){
-           if(currentIntersect === null){
-    
-           }
+
+    for (const intersect of intersects) {
+        intersect.object.material.color.set("#0000ff")
+    }
+
+    if (intersects.length) {
+        if (currentIntersect === null) {
+
+        }
         currentIntersect = intersects[0]
-       } else {
-           if(currentIntersect){
-    
-           }
+    } else {
+        if (currentIntersect) {
+
+        }
         currentIntersect = null
-           
-       }
+
+    }
 
     // // console.log(particles)
     // const intersects = raycaster.intersectObjects(allBouys, false)
     // console.log(intersects.length)
-    
 
-//  if ( intersects.length > 0 ) {
 
-//    if ( INTERSECTED != intersects[ 0 ].object ) {
+    //  if ( intersects.length > 0 ) {
 
-//     //    if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    //    if ( INTERSECTED != intersects[ 0 ].object ) {
 
-//        INTERSECTED = intersects[ 0 ].object;
-//        console.log(INTERSECTED)
-//        // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-//        // INTERSECTED.material.emissive.setHex( 0xff0000 );
-//        INTERSECTED.material.color.set("blue")
+    //     //    if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
-//    }
+    //        INTERSECTED = intersects[ 0 ].object;
+    //        console.log(INTERSECTED)
+    //        // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+    //        // INTERSECTED.material.emissive.setHex( 0xff0000 );
+    //        INTERSECTED.material.color.set("blue")
 
-// } else {
+    //    }
 
-//    if ( INTERSECTED ) INTERSECTED.material.color.set("#ff0000");
-//    // object.material.color.set("#ff0000")
-//    INTERSECTED = null;
-// }
-  
+    // } else {
+
+    //    if ( INTERSECTED ) INTERSECTED.material.color.set("#ff0000");
+    //    // object.material.color.set("#ff0000")
+    //    INTERSECTED = null;
+    // }
+
 
     // Update controls
     controls.update()
@@ -489,7 +590,7 @@ let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().
 
 
 // runs the animation
-let category = 'anomaly'
+let category = 'Anomaly'
 async function printy(text) {
 
     sphereSSTA.material.map = text
@@ -506,7 +607,7 @@ let firstLoad = 0,
 const library = new Library();
 
 // Instantiate the notebook.
-const runtime = self.runtime = new Runtime(library);    
+const runtime = self.runtime = new Runtime(library);
 const main = runtime.module(buoyViz, name => {
     // console.log(buoyViz)
     if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
@@ -568,13 +669,13 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
                 // spinner.stop();
                 // console.log(value)
-        //         console.log(typeof spinner)
-        // if(typeof spinner !== "undefined"){spinner.stop();}
+                //         console.log(typeof spinner)
+                // if(typeof spinner !== "undefined"){spinner.stop();}
                 if (value !== null) {
 
                     everyDayBetween = d3.timeDay.range(startDate, endDate)
 
-                    prefix = category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+                    prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
                     dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
                         ".png")
 
@@ -583,7 +684,7 @@ const main = runtime.module(buoyViz, name => {
                     if (dateFiles.length <= 30) {
 
                         let promises = [];
-                         spinner = new Spinner(opts).spin(target);
+                        spinner = new Spinner(opts).spin(target);
 
                         for (let i = 0; i < dateFiles.length; i++) {
 
@@ -605,11 +706,11 @@ const main = runtime.module(buoyViz, name => {
                             premultiplyAlpha: 'none'
                         });
 
-                         function loadImage(file) {
+                        function loadImage(file) {
 
                             return new Promise(function(resolve, reject) {
-                               return loader.load(file, function(imageBitmap) {
-                                // console.log(imageBitmap)
+                                return loader.load(file, function(imageBitmap) {
+                                    // console.log(imageBitmap)
 
                                     // return imageBitmap;
                                     resolve(new THREE.CanvasTexture(imageBitmap))
@@ -629,7 +730,7 @@ const main = runtime.module(buoyViz, name => {
 
                         for (let i = 0; i < dateFiles.length; i++) {
                             // console.log('./textures/' + dateFiles[i]);
-                            let img =  loadImage('./textures/' + dateFiles[i])
+                            let img = loadImage('./textures/' + dateFiles[i])
                             // console.log(img)
                             promises.push(img)
 
@@ -664,7 +765,7 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
                 // console.log(value,firstLoad,allText) 
                 if (firstLoad !== 0) {
-                    const fileName = category === 'anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+                    const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
                     const fileToUse = fileName + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
                     // console.log(fileToUse)
