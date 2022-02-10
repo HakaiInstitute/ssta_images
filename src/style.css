@@ -151,3 +151,21 @@ h1 {
   white-space: pre-wrap;
 }
 
+.webgl {
+  position: relative;
+}
+
+#observablehq-Plot{
+  position: absolute;
+
+  width: 30%;
+  height: 50px;            
+  /* top: 0;
+  left: 0; */
+  opacity: 0.8;  /* for demo purpose  */
+}
+
+.stack-top{
+  z-index: 9;
+  margin-left: 60%; /* for demo purpose  */
+}

@@ -433,7 +433,7 @@ window.addEventListener('click', (event) => {
             },
 
             marginLeft: 60,
-            width: sizes.width
+            // width: sizes.width
         }));
 
 
