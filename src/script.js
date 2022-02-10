@@ -12,7 +12,8 @@ import {
 } from "./buoyviz/runtime.js";
 import buoyViz from "./buoyviz/index.js";
 // import { damp } from 'three/src/math/MathUtils';
-
+import * as Plot from "@observablehq/plot";
+// console.log(Plot);
 // Spinner setup 
 import {
     Spinner
@@ -148,6 +149,7 @@ for (let i = 0; i < count; i++) {
     particles.position.x = positionOnGlobe.x
     particles.position.y = positionOnGlobe.y
     particles.position.z = positionOnGlobe.z
+    particles.buoyId = buoys[i].pk
     allBouys.push(particles)
     // scene.add(particles)
 
@@ -210,11 +212,13 @@ window.addEventListener('mousemove', (event) => {
 
 })
 
+let clickedSite;
 window.addEventListener('click', (event) =>{
     // mouse.x = event.clientX / sizes.width * 2 - 1
     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
     if(currentIntersect){
-        console.log(currentIntersect)
+        clickedSite = bouyData.filter(d => d.station ===currentIntersect.object.buoyId )
+        // console.log(currentIntersect.object.buoyId,bouyData.filter(d => d.station ===currentIntersect.object.buoyId ))
         if(currentIntersect.object === allBouys[1]){
             console.log('click on a shpere 1');
         } else if(currentIntersect.object === allBouys[2]){
@@ -431,8 +435,14 @@ async function printy(text) {
 }
 let firstLoad = 0,
     prefix = null,
-    spinner = null
-new Runtime().module(buoyViz, name => {
+    spinner = null,
+    bouyData
+
+const library = new Library();
+
+// Instantiate the notebook.
+const runtime = self.runtime = new Runtime(library);    
+const main = runtime.module(buoyViz, name => {
     // console.log(buoyViz)
     if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
 
@@ -609,6 +619,19 @@ new Runtime().module(buoyViz, name => {
             }
         }
     }
+    if (name === "buoyDailyData") {
+        return {
+            pending() {},
+            fulfilled(value) {
+                console.log(value);
+                bouyData = value
+            },
+            rejected(error) {
+                node.textContent = error.message;
+            }
+        }
+    }
+
 
 
     if (name === "ind") return true;
@@ -617,3 +640,10 @@ new Runtime().module(buoyViz, name => {
     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
+
+// main.redefine("clickedSite", library.Generators.observe(notify => {
+//     const data = clickedSite;
+//     console.log(data)
+//     notify(data);
+//     // return () => socket.close();
+//   }));
