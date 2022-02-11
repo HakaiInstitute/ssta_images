@@ -92,16 +92,16 @@ scene.add(sphereSSTA);
 
 scene.add(sphereBG);
 
-function latLongToVector3(lat, lon) {
-    var phi = (lat) * (Math.PI / 180);
-    var theta = (lon + 180) * (Math.PI / 180);
-
-    var x = -(Math.cos(phi) * Math.cos(theta));
-    var y = (Math.sin(phi));
-    var z = (Math.cos(phi) * Math.sin(theta));
-
+function latLongToVector3(lat, lon, radius, heigth) {
+    var phi = (lat * Math.PI) / 180;
+    var theta = ((lon - 180) * Math.PI) / 180;
+  
+    var x = -(radius + heigth) * Math.cos(phi) * Math.cos(theta);
+    var y = (radius + heigth) * Math.sin(phi);
+    var z = (radius + heigth) * Math.cos(phi) * Math.sin(theta);
+    // console.log(x, y, z);
     return new THREE.Vector3(x, y, z);
-}
+  }
 
 // the geometry that will contain all our cubes
 //   const totalGeom = new THREE.BufferGeometry();
@@ -110,118 +110,144 @@ function latLongToVector3(lat, lon) {
 const particleTexture = textureLoader.load('./textures/1.png')
 
 
-const buoys = [{
-    "short_name": "C46004",
-    "lat": 50.94,
-    "lon": -135.87,
-    "long_name": "Middle Nomad",
-    "pk": 1
-}, {
-    "short_name": "C46036",
-    "lat": 48.3,
-    "lon": -133.86,
-    "long_name": "South Nomad",
-    "pk": 2
-}, {
-    "short_name": "C46131",
-    "lat": 49.91,
-    "lon": -124.99,
-    "long_name": "Sentry Shoal",
-    "pk": 3
-}, {
-    "short_name": "C46132",
-    "lat": 49.74,
-    "lon": -127.93,
-    "long_name": "South Brooks",
-    "pk": 4
-}, {
-    "short_name": "C46145",
-    "lat": 54.38,
-    "lon": -132.42,
-    "long_name": "Central Dixon Entran",
-    "pk": 6
-}, {
-    "short_name": "C46146",
-    "lat": 49.34,
-    "lon": -123.73,
-    "long_name": "Halibut Bank",
-    "pk": 7
-}, {
-    "short_name": "C46147",
-    "lat": 51.83,
-    "lon": -131.23,
-    "long_name": "South Moresby",
-    "pk": 8
-}, {
-    "short_name": "C46181",
-    "lat": 53.82,
-    "lon": -128.84,
-    "long_name": "Nanakwa Shoal",
-    "pk": 9
-}, {
-    "short_name": "C46182",
-    "lat": 49.48,
-    "lon": -123.29,
-    "long_name": "Pam Rocks",
-    "pk": 10
-}, {
-    "short_name": "C46183",
-    "lat": 53.57,
-    "lon": -131.14,
-    "long_name": "North Hecate Strait",
-    "pk": 11
-}, {
-    "short_name": "C46184",
-    "lat": 53.92,
-    "lon": -138.85,
-    "long_name": "North Nomad",
-    "pk": 12
-}, {
-    "short_name": "C46185",
-    "lat": 52.42,
-    "lon": -129.79,
-    "long_name": "South Hecate Strait",
-    "pk": 13
-}, {
-    "short_name": "C46204",
-    "lat": 51.38,
-    "lon": -128.77,
-    "long_name": "West Sea Otter",
-    "pk": 14
-}, {
-    "short_name": "C46205",
-    "lat": 54.3,
-    "lon": -133.4,
-    "long_name": "West Dixon Entrance",
-    "pk": 15
-}, {
-    "short_name": "C46206",
-    "lat": 48.83,
-    "lon": -126,
-    "long_name": "La Perouse Bank",
-    "pk": 16
-}, {
-    "short_name": "C46207",
-    "lat": 50.88,
-    "lon": -129.91,
-    "long_name": "East Dellwood",
-    "pk": 17
-}, {
-    "short_name": "C46208",
-    "lat": 52.51,
-    "lon": -132.69,
-    "long_name": "West Moresby",
-    "pk": 18
-}]
+const buoys =[
+    {
+      short_name: "C46004",
+      lat: 50.94,
+      lon: -135.87,
+      long_name: "Middle Nomad",
+      pk: 1
+    },
+    {
+      short_name: "C46036",
+      lat: 48.3,
+      lon: -133.86,
+      long_name: "South Nomad",
+      pk: 2
+    },
+    {
+      short_name: "C46131",
+      lat: 49.91,
+      lon: -124.99,
+      long_name: "Sentry Shoal",
+      pk: 3
+    },
+    {
+      short_name: "C46132",
+      lat: 49.74,
+      lon: -127.93,
+      long_name: "South Brooks",
+      pk: 4
+    },
+    // {
+    //   short_name: "C46134",
+    //   lat: 48.66,
+    //   lon: -123.48,
+    //   long_name: "Pat Bay Test Buoy",
+    //   pk: 5
+    // },
+    {
+      short_name: "C46145",
+      lat: 54.38,
+      lon: -132.42,
+      long_name: "Central Dixon Entran",
+      pk: 6
+    },
+    {
+      short_name: "C46146",
+      lat: 49.34,
+      lon: -123.73,
+      long_name: "Halibut Bank",
+      pk: 7
+    },
+    {
+      short_name: "C46147",
+      lat: 51.83,
+      lon: -131.23,
+      long_name: "South Moresby",
+      pk: 8
+    },
+    // {
+    //   short_name: "C46181",
+    //   lat: 53.82,
+    //   lon: -128.84,
+    //   long_name: "Nanakwa Shoal",
+    //   pk: 9
+    // },
+    // {
+    //   short_name: "C46182",
+    //   lat: 49.48,
+    //   lon: -123.29,
+    //   long_name: "Pam Rocks",
+    //   pk: 10
+    // },
+    {
+      short_name: "C46183",
+      lat: 53.57,
+      lon: -131.14,
+      long_name: "North Hecate Strait",
+      pk: 11
+    },
+    {
+      short_name: "C46184",
+      lat: 53.92,
+      lon: -138.85,
+      long_name: "North Nomad",
+      pk: 12
+    },
+    {
+      short_name: "C46185",
+      lat: 52.42,
+      lon: -129.79,
+      long_name: "South Hecate Strait",
+      pk: 13
+    },
+    {
+      short_name: "C46204",
+      lat: 51.38,
+      lon: -128.77,
+      long_name: "West Sea Otter",
+      pk: 14
+    },
+    {
+      short_name: "C46205",
+      lat: 54.3,
+      lon: -133.4,
+      long_name: "West Dixon Entrance",
+      pk: 15
+    },
+    {
+      short_name: "C46206",
+      lat: 48.83,
+      lon: -126,
+      long_name: "La Perouse Bank",
+      pk: 16
+    },
+    {
+      short_name: "C46207",
+      lat: 50.88,
+      lon: -129.91,
+      long_name: "East Dellwood",
+      pk: 17
+    },
+    {
+      short_name: "C46208",
+      lat: 52.51,
+      lon: -132.69,
+      long_name: "West Moresby",
+      pk: 18
+    }
+  ]
 
 const count = buoys.length;
+console.log(count)
 const positions = new Float32Array(count * 3);
 // d3.json("./buoys.json").then(function(buoys) {
 // console.log(data[0]);
 let allBouys = []
 
 
-const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16) //new THREE.BufferGeometry();
+const particlesGeometry = new THREE.SphereGeometry(0.006, 16, 16) //new THREE.BufferGeometry();
 for (let i = 0; i < count; i++) {
     const particlesMaterial = new THREE.MeshBasicMaterial({
         color: 'yellow'
@@ -241,7 +267,7 @@ for (let i = 0; i < count; i++) {
     // positions[0] = positionOnGlobe.x;
     // positions[1] = positionOnGlobe.y;
     // positions[2] = positionOnGlobe.z;
-    // console.log(positions)
+    console.log(positions)
     // particlesGeometry.setAttribute(
     //     "position",
     //     new THREE.BufferAttribute(positions, 3)
@@ -252,6 +278,7 @@ for (let i = 0; i < count; i++) {
     particles.position.y = positionOnGlobe.y
     particles.position.z = positionOnGlobe.z
     particles.buoyId = buoys[i].pk
+    particles.long_name = buoys[i].long_name
     allBouys.push(particles)
     // scene.add(particles)
 
@@ -331,12 +358,15 @@ const colors = new Map([
 let plotElement = document.querySelector("#observablehq-Plot")
 
 window.addEventListener('click', (event) => {
+    console.log(currentIntersect.object.long_name)
     // mouse.x = event.clientX / sizes.width * 2 - 1
     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
-    while (plotElement.firstChild) {
-        plotElement.removeChild(plotElement.firstChild)
-    }
+  
     if (currentIntersect) {
+        while (plotElement.firstChild) {
+            plotElement.removeChild(plotElement.firstChild)
+        }
+        console.log('here')
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
         plotElement.appendChild(Plot.plot({
             style: {
@@ -460,7 +490,7 @@ var selectedObject = null;
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
-controls.minDistance = 1.4
+controls.minDistance = 1.3
 controls.maxDistance = 2.3
 controls.enableDamping = true
 controls.enablePan = false;
@@ -789,7 +819,7 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                console.log(value);
+                // console.log(value);
                 bouyData = value
             },
             rejected(error) {
@@ -807,9 +837,3 @@ const main = runtime.module(buoyViz, name => {
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
 
-// main.redefine("clickedSite", library.Generators.observe(notify => {
-//     const data = clickedSite;
-//     console.log(data)
-//     notify(data);
-//     // return () => socket.close();
-//   }));
