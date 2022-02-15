@@ -541,7 +541,7 @@ const tick = () => {
     //    console.log(intersects.length)
 
     for (const object of objectsToTest) {
-        object.material.color.set("#ff0000")
+        object.material.color.set("#eeff00")
     }
 
     for (const intersect of intersects) {
