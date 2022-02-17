@@ -267,7 +267,7 @@ for (let i = 0; i < count; i++) {
     // positions[0] = positionOnGlobe.x;
     // positions[1] = positionOnGlobe.y;
     // positions[2] = positionOnGlobe.z;
-    console.log(positions)
+    // console.log(positions)
     // particlesGeometry.setAttribute(
     //     "position",
     //     new THREE.BufferAttribute(positions, 3)
@@ -355,121 +355,7 @@ const colors = new Map([
     ["seas", "pink"]
 ])
 
-let plotElement = document.querySelector("#observablehq-Plot")
 
-window.addEventListener('click', (event) => {
-    console.log(currentIntersect.object.long_name)
-    // mouse.x = event.clientX / sizes.width * 2 - 1
-    // mouse.y = -(event.clientY / sizes.height * 2 - 1)
-  
-    if (currentIntersect) {
-        while (plotElement.firstChild) {
-            plotElement.removeChild(plotElement.firstChild)
-        }
-        console.log('here')
-        clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
-        plotElement.appendChild(Plot.plot({
-            style: {
-                backgroundColor: "#000000",
-                color: "#e0f5ee"
-                // fontFamily: "system-ui",
-                // fontSize: 9,
-                // overflow: "visible"
-            },
-            height: 250,
-            marks: [
-                Plot.line(clickedSite, {
-                    x: "date",
-                    y: "sst",
-                    stroke: colors.get("sst"),
-
-                    curve: "step",
-                    strokeWidth: 2
-                }),
-                Plot.line(clickedSite, {
-                    x: "date",
-                    y: "thresh",
-                    stroke: colors.get("thresh"),
-                    opacity: 0.7,
-                    // curve: "step",
-                    strokeWidth: 2
-                }),
-                Plot.line(clickedSite, {
-                    x: "date",
-                    y: "seas",
-                    stroke: colors.get("seas"),
-                    opacity: 0.7,
-                    // curve: "step",
-                    strokeWidth: 2
-                }),
-                Plot.areaY(clickedSite, {
-                    x: "date",
-                    y1: "thresh",
-                    y2: "diff",
-                    sort: "date",
-                    curve: "step",
-                    fill: colors.get("moderate")
-                }),
-
-                Plot.areaY(clickedSite, {
-                    x: "date",
-                    y1: "thresh",
-                    y2: "diffStrong",
-                    sort: "date",
-                    curve: "step",
-                    fill: colors.get("Strong")
-                }),
-                Plot.areaY(clickedSite, {
-                    x: "date",
-                    y1: "thresh",
-                    y2: "diffExtreme",
-                    sort: "date",
-                    curve: "step",
-                    fill: colors.get("Extreme")
-                }),
-
-                Plot.areaY(clickedSite, {
-                    x: "date",
-                    y1: "thresh",
-                    y2: "diffSevere",
-                    sort: "date",
-                    curve: "step",
-                    fill: colors.get("Severe")
-                }),
-
-                // rule at bottom of chart marking y=0;
-                Plot.ruleY([0]),
-
-                // vertical rule to mark date/time of event
-                //   Plot.ruleX([time1], {
-                //     stroke: "gray",
-                //     y1: 0,
-                //     y2: d3.max(clickedSite, (d) => d.sst)
-                //   })
-            ],
-
-            color: {
-                domain: ["above", "below", "avg", "thresh"],
-                range: [
-                    colors.get("above"),
-                    colors.get("below"),
-                    colors.get("actuals"),
-                    colors.get("forecast")
-                ]
-                // legend: true
-            },
-            y: {
-                label: "↑ (°C)"
-            },
-
-            marginLeft: 60,
-            // width: sizes.width
-        }));
-
-
-
-    }
-})
 
 
 // Camera
@@ -528,25 +414,26 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 // const threshold = 0.05;
 // raycaster.params.Points.threshold = threshold;
 let currentIntersect = null
-
+const objectsToTest = allBouys //[allBouys[1],allBouys[2],allBouys[3]]
 const tick = () => {
 
 
     raycaster.setFromCamera(mouse, camera);
+    // const objectsTo = allBouys.push(sphereBG)
+    // console.log(objectsTo)
 
-
-    const objectsToTest = allBouys //[allBouys[1],allBouys[2],allBouys[3]]
+   
     //    console.log(objectsToTest)
     const intersects = raycaster.intersectObjects(objectsToTest)
     //    console.log(intersects.length)
 
-    for (const object of objectsToTest) {
-        object.material.color.set("#eeff00")
-    }
+    // for (const object of objectsToTest) {
+    //     object.material.color.set("#eeff00")
+    // }
 
-    for (const intersect of intersects) {
-        intersect.object.material.color.set("#0000ff")
-    }
+    // for (const intersect of intersects) {
+    //     intersect.object.material.color.set("#0000ff")
+    // }
 
     if (intersects.length) {
         if (currentIntersect === null) {
@@ -561,33 +448,7 @@ const tick = () => {
 
     }
 
-    // // console.log(particles)
-    // const intersects = raycaster.intersectObjects(allBouys, false)
-    // console.log(intersects.length)
-
-
-    //  if ( intersects.length > 0 ) {
-
-    //    if ( INTERSECTED != intersects[ 0 ].object ) {
-
-    //     //    if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-
-    //        INTERSECTED = intersects[ 0 ].object;
-    //        console.log(INTERSECTED)
-    //        // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-    //        // INTERSECTED.material.emissive.setHex( 0xff0000 );
-    //        INTERSECTED.material.color.set("blue")
-
-    //    }
-
-    // } else {
-
-    //    if ( INTERSECTED ) INTERSECTED.material.color.set("#ff0000");
-    //    // object.material.color.set("#ff0000")
-    //    INTERSECTED = null;
-    // }
-
-
+   
     // Update controls
     controls.update()
 
@@ -634,8 +495,57 @@ let firstLoad = 0,
     spinner = null,
     bouyData
 
-const library = new Library();
+function animateImages(){
+    everyDayBetween = d3.timeDay.range(startDate, endDate)
 
+    prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+    dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
+        ".png")
+
+    console.log("dateFiles.length", dateFiles.length)
+
+        // try one ww to load them all 
+        var spinner = new Spinner(opts).spin(target);
+        const loader = new THREE.ImageBitmapLoader().setOptions({
+            imageOrientation: 'flipY',
+            premultiplyAlpha: 'none'
+        });
+
+        function loadImage(file) {
+
+            return new Promise(function(resolve, reject) {
+                return loader.load(file, function(imageBitmap) {
+                
+                    resolve(new THREE.CanvasTexture(imageBitmap))
+                    
+                }, undefined, function(e) {
+                    console.error(e);
+                    spinner.stop();
+                })
+            })
+        }
+        
+        let promises = [];
+
+
+        for (let i = 0; i < dateFiles.length; i++) {
+            // console.log('./textures/' + dateFiles[i]);
+            let img = loadImage('./textures/' + dateFiles[i])
+            // console.log(img)
+            promises.push(img)
+        }
+        // console.log(promises);
+        Promise.all(promises)
+            .then(function(textures) {
+                // console.log(textures)
+                spinner.stop();
+                allText = textures
+                printy(allText[0])
+            })
+}
+
+const library = new Library();
+// let whatTimeIsit;
 // Instantiate the notebook.
 const runtime = self.runtime = new Runtime(library);
 const main = runtime.module(buoyViz, name => {
@@ -650,6 +560,7 @@ const main = runtime.module(buoyViz, name => {
     if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
     if (name === "minFunc") return true;
     if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
+    if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-097224fc"));
 
     // if first load don't load again below
 
@@ -663,6 +574,7 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
                 category = value
                 console.log(value, firstLoad)
+                animateImages()
 
             },
             rejected(error) {
@@ -692,92 +604,18 @@ const main = runtime.module(buoyViz, name => {
         }
     }
 
+
+
+
     if (name === "datesToPlot") {
 
         return {
             pending() {},
             fulfilled(value) {
-                // spinner.stop();
-                // console.log(value)
-                //         console.log(typeof spinner)
-                // if(typeof spinner !== "undefined"){spinner.stop();}
+          
                 if (value !== null) {
 
-                    everyDayBetween = d3.timeDay.range(startDate, endDate)
-
-                    prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
-                    dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
-                        ".png")
-
-                    console.log("dateFiles.length", dateFiles.length)
-
-                    if (dateFiles.length <= 30) {
-
-                        let promises = [];
-                        spinner = new Spinner(opts).spin(target);
-
-                        for (let i = 0; i < dateFiles.length; i++) {
-
-                            promises.push(createWorker('./textures/' + dateFiles[i]));
-                        }
-
-                        Promise.all(promises)
-                            .then(function(textures) {
-                                console.log('bang!')
-                                spinner.stop();
-                                allText = textures
-                                printy(allText[0])
-                            })
-                    } else {
-                        // try one ww to load them all 
-                        var spinner = new Spinner(opts).spin(target);
-                        const loader = new THREE.ImageBitmapLoader().setOptions({
-                            imageOrientation: 'flipY',
-                            premultiplyAlpha: 'none'
-                        });
-
-                        function loadImage(file) {
-
-                            return new Promise(function(resolve, reject) {
-                                return loader.load(file, function(imageBitmap) {
-                                    // console.log(imageBitmap)
-
-                                    // return imageBitmap;
-                                    resolve(new THREE.CanvasTexture(imageBitmap))
-                                    // console.log(imageBitmap)
-                                    // postMessage(imageBitmap)
-                                    // textures.push(texture)
-                                    // console.log(textures);
-                                }, undefined, function(e) {
-                                    console.error(e);
-                                    spinner.stop();
-                                })
-                            })
-                        }
-                        // let textures = []
-                        let promises = [];
-
-
-                        for (let i = 0; i < dateFiles.length; i++) {
-                            // console.log('./textures/' + dateFiles[i]);
-                            let img = loadImage('./textures/' + dateFiles[i])
-                            // console.log(img)
-                            promises.push(img)
-
-
-                        }
-                        // console.log(promises);
-                        Promise.all(promises)
-                            .then(function(textures) {
-                                // console.log(textures)
-                                spinner.stop();
-                                allText = textures
-                                printy(allText[0])
-                            })
-                        // console.log(textures);
-
-                    }
-
+                    animateImages()
 
                 }
             },
@@ -795,6 +633,8 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
                 // console.log(value,firstLoad,allText) 
                 if (firstLoad !== 0) {
+                    // whatTimeIsit = value
+
                     const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
                     const fileToUse = fileName + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
@@ -831,9 +671,45 @@ const main = runtime.module(buoyViz, name => {
 
 
     if (name === "ind") return true;
-    // if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-c174eddc"));
 
     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
+// d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
+window.addEventListener('click', (event) => {
+    console.log(currentIntersect);
+    if(currentIntersect === null){
+        // currentIntersect.object.material.color.set("yellow")
+        // d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
+    } else {
+          for (const object of objectsToTest) {
+        object.material.color.set("#eeff00")
+    }
+        currentIntersect.object.material.color.set("#04ff00")
+        currentIntersect.object.material.needsUpdate = true;
+        console.log(currentIntersect.object.material.color);
+        // d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
+        clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
+        console.log(clickedSite)
+        main.redefine("clickedSite", clickedSite);
+    }
+    
+    
+})
+// let plotElement = document.querySelector("#observablehq-Plot")
 
+// window.addEventListener('click', (event) => {
+//     clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
+// })
+//     console.log(currentIntersect.object.long_name)
+//     // mouse.x = event.clientX / sizes.width * 2 - 1
+//     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
+  
+//     if (currentIntersect) {
+//         while (plotElement.firstChild) {
+//             plotElement.removeChild(plotElement.firstChild)
+//         }
+//         console.log('here')
+//         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
+//         plotElement.appendChild(Plot.plot({
+//             style: {
