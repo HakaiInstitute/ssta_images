@@ -675,13 +675,14 @@ const main = runtime.module(buoyViz, name => {
     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
-// d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
+d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
 window.addEventListener('click', (event) => {
     console.log(currentIntersect);
     if(currentIntersect === null){
         // currentIntersect.object.material.color.set("yellow")
         // d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
     } else {
+        d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
           for (const object of objectsToTest) {
         object.material.color.set("#eeff00")
     }
@@ -695,6 +696,13 @@ window.addEventListener('click', (event) => {
     }
     
     
+})
+
+window.addEventListener('dblclick', (event) => {
+    d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
+    for (const object of objectsToTest) {
+        object.material.color.set("#eeff00")
+    }
 })
 // let plotElement = document.querySelector("#observablehq-Plot")
 
