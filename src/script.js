@@ -73,8 +73,8 @@ const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
 //noaa-crw_mhw_v1.0.1_category_20150101
-let endDate = d3.utcDay()
-let startDate = d3.timeDay.offset(endDate, -10)
+let endDate = null //d3.utcDay()
+let startDate = null //d3.timeDay.offset(endDate, -10)
 const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -12).toISOString().substring(0, 10).replaceAll("-", "") +
     ".png"
 // console.log(firstDayToLoad)
@@ -473,9 +473,9 @@ let allText = null
 
 // const startDate = d3.timeDay.offset(endDate, -90)
 let everyDayBetween = d3.timeDay.range(startDate, endDate)
-
-let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().substring(0, 10).replaceAll("-", "") +
-    ".png")
+let dateFiles
+// let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().substring(0, 10).replaceAll("-", "") +
+    // ".png")
 
 
 
@@ -495,17 +495,22 @@ let firstLoad = 0,
     spinner = null,
     bouyData
 
-function animateImages(){
+function animateImages(showSpin=1){
     everyDayBetween = d3.timeDay.range(startDate, endDate)
+    console.log(startDate, endDate);
 
     prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
     dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
         ".png")
 
-    console.log("dateFiles.length", dateFiles.length)
+    console.log("dateFiles.length", dateFiles.length,showSpin)
 
         // try one ww to load them all 
-        var spinner = new Spinner(opts).spin(target);
+        if(showSpin !=0){
+        console.log('run spinner');
+            var spinner = new Spinner(opts).spin(target);
+        }
+
         const loader = new THREE.ImageBitmapLoader().setOptions({
             imageOrientation: 'flipY',
             premultiplyAlpha: 'none'
@@ -520,7 +525,7 @@ function animateImages(){
                     
                 }, undefined, function(e) {
                     console.error(e);
-                    spinner.stop();
+                    if(showSpin != 0){spinner.stop()};
                 })
             })
         }
@@ -538,7 +543,7 @@ function animateImages(){
         Promise.all(promises)
             .then(function(textures) {
                 // console.log(textures)
-                spinner.stop();
+                if(showSpin != 0){spinner.stop()};
                 allText = textures
                 printy(allText[0])
             })
@@ -574,7 +579,10 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
                 category = value
                 console.log(value, firstLoad)
-                animateImages()
+                if(firstLoad != 0){
+                    animateImages()
+                }
+                // firstLoad === 0 ? animateImages(0) : animateImages()
 
             },
             rejected(error) {
@@ -614,8 +622,10 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
           
                 if (value !== null) {
-
-                    animateImages()
+                    console.log(firstLoad);
+                    firstLoad === 0 || firstLoad === 1 ? animateImages(0) : animateImages()
+                    firstLoad += 1
+                    // animateImages()
 
                 }
             },
@@ -646,7 +656,7 @@ const main = runtime.module(buoyViz, name => {
                     printy(textureToUse)
                 } else {
                     console.log('here')
-                    firstLoad = 1
+                    firstLoad += 1
                 }
                 // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
             },
