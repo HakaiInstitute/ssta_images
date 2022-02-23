@@ -73,12 +73,12 @@ const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
 //noaa-crw_mhw_v1.0.1_category_20150101
-let endDate = null //d3.utcDay()
+let endDate = d3.utcDay()
 let startDate = null //d3.timeDay.offset(endDate, -10)
-const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -12).toISOString().substring(0, 10).replaceAll("-", "") +
+const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -365).toISOString().substring(0, 10).replaceAll("-", "") +
     ".png"
-// console.log(firstDayToLoad)
-const texture = textureLoader.load('./textures/' + 'ct5km_ssta_v3.1_20220101.png')
+console.log(firstDayToLoad)
+const texture = textureLoader.load('./textures/' + firstDayToLoad)
 // console.log(texture)
 const materialSSTA = new THREE.MeshBasicMaterial({
     map: texture,
