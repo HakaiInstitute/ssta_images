@@ -162,16 +162,87 @@ h1 {
 #observablehq-lineChart-097224fc{
   position: absolute;
 
-  width: 30%;
+  width: 40%;
   /* height: 100px;             */
   /* top: 0;
   left: 0; */
   opacity: 0.9;  /* for demo purpose  */
 }
 
+#observablehq-leg-2162ef11{
+  position: absolute;
+
+  width: 20%; 
+  opacity: 0.9;  /* for demo purpose  */
+}
+
+#observablehq-eventText-bf0be2b8{
+  position: absolute;
+  opacity: 0.9; 
+}
+
+#observablehq-viewof-limits-5fc774d0{
+  position: absolute;
+  width: 80%; 
+  opacity: 0.9; 
+}
+
+#observablehq-viewof-colorView-5fc774d0{
+  position: absolute;
+  width: 80%; 
+  opacity: 0.9; 
+}
+
+#observablehq-viewof-time1-273ac292{
+  position: absolute;
+  width: 80%; 
+  opacity: 0.9; 
+}
+
+#observablehq-curDate-890dd666{
+  position: absolute;
+  width: 80%; 
+  opacity: 0.9; 
+}
 .stack-top{
   z-index: 9;
   margin-left: 55%; /* for demo purpose  */
+}
+
+.stack-leg{
+  z-index: 9;
+  left:10%;
+  margin-top: 45%; /* for demo purpose  */
+}
+
+.stack-text{
+  z-index: 9;
+  left:10%;
+  margin-top: 50%; /* for demo purpose  */
+}
+
+.stack-limits{
+  z-index: 9;
+  left:10%;
+  margin-top: 52%; /* for demo purpose  */
+}
+
+.stack-cat{
+  z-index: 9;
+  left:10%;
+  margin-top: 0%; /* for demo purpose  */
+}
+
+.stack-time{
+  z-index: 9;
+  left:10%;
+  margin-top: 2%; /* for demo purpose  */
+}
+
+.stack-date{
+  z-index: 9;
+  left:10%;
+  margin-top:5%; /* for demo purpose  */
 }
 
 /*# sourceMappingURL=main.css.map*/
