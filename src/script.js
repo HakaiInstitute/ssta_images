@@ -496,6 +496,7 @@ let firstLoad = 0,
     bouyData
 
 function animateImages(showSpin=1){
+    console.log('animatImages run');
     everyDayBetween = d3.timeDay.range(startDate, endDate)
     console.log(startDate, endDate);
 
@@ -545,6 +546,7 @@ function animateImages(showSpin=1){
                 // console.log(textures)
                 if(showSpin != 0){spinner.stop()};
                 allText = textures
+                console.log('printy run here');
                 printy(allText[0])
             })
 }
@@ -580,6 +582,7 @@ const main = runtime.module(buoyViz, name => {
                 category = value
                 console.log(value, firstLoad)
                 if(firstLoad != 0){
+                    console.log("colorView runs animateImages");
                     animateImages()
                 }
                 // firstLoad === 0 ? animateImages(0) : animateImages()
@@ -621,9 +624,9 @@ const main = runtime.module(buoyViz, name => {
             pending() {},
             fulfilled(value) {
           
-                if (value !== null) {
-                    console.log(firstLoad);
-                    firstLoad === 0 || firstLoad === 1 ? animateImages(0) : animateImages()
+                if (value !== null && firstLoad !==0) {
+                    console.log('animateImages run by datesToPlot',firstLoad);
+                    firstLoad === 0 || firstLoad === 1 || firstLoad === 2 ? animateImages(0) : animateImages()
                     firstLoad += 1
                     // animateImages()
 
@@ -638,11 +641,12 @@ const main = runtime.module(buoyViz, name => {
 
     // returns the current play date and then loads the texture for that date (which loaded when limits changed)
     if (name === "time1") {
+        // this runs when play is pressed
         return {
             pending() {},
             fulfilled(value) {
                 // console.log(value,firstLoad,allText) 
-                if (firstLoad !== 0) {
+                if (firstLoad > 2 && allText != null) {
                     // whatTimeIsit = value
 
                     const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
@@ -652,10 +656,10 @@ const main = runtime.module(buoyViz, name => {
                     const ind = dateFiles.indexOf(fileToUse)
                     // console.log(ind,allText)
                     const textureToUse = allText[ind]
-                    // console.log(allText)
+                    // console.log('run printy here')
                     printy(textureToUse)
                 } else {
-                    console.log('here')
+                    
                     firstLoad += 1
                 }
                 // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
@@ -687,7 +691,7 @@ const main = runtime.module(buoyViz, name => {
 });
 d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
 window.addEventListener('click', (event) => {
-    console.log(currentIntersect);
+    // console.log(currentIntersect);
     if(currentIntersect === null){
         // currentIntersect.object.material.color.set("yellow")
         // d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
