@@ -18,15 +18,15 @@ today = datetime.datetime.utcnow().date()
 
 yesterday = today - datetime.timedelta(days=1)
 yesterday = yesterday.strftime("%Y%m%d")
-ddir='./static/textures'
+ddir='./static/textures/'
 
 ftp = FTP("ftp.star.nesdis.noaa.gov")
 ftp.login()
 ftp.cwd("pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/2022")
 fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
-script_path = Path(__file__).parent
-print(script_path)
-local_filename = os.path.join(ddir, fileAnomaly)
+# script_path = Path(__file__).parent
+# print(script_path)
+local_filename = ddir + fileAnomaly
 with open(local_filename, 'wb') as f_output:
     ftp.retrbinary(f"RETR {fileAnomaly}", f_output.write)
     # ftp.retrbinary('RETR '+ filename, f_output.write)
@@ -135,7 +135,7 @@ ftp.cwd("pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/2022")
 fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
 script_path = Path(__file__).parent
 print(script_path)
-local_filename = os.path.join(ddir, fileHW)
+local_filename = ddir + fileHW
 with open(local_filename, 'wb') as f_output:
     ftp.retrbinary(f"RETR {fileHW}", f_output.write)
 # ftp.retrbinary(f"RETR {fileHW}", open(rf"{fileHW}", "wb").write)
