@@ -62,7 +62,7 @@ def last_4chars(x):
 # files = sorted(nc_files, key = last_4chars)  
 # for file in files[0:2]:
 
-with xr.open_dataset(fileAnomaly) as data:
+with xr.open_dataset(local_filename) as data:
     dataDub = data
     dataDub2 = data
     mask_lon = (data.lon >= min_lon) & (data.lon <= max_lon) #| ((data.lon >= mmin_lon) & (data.lon <= mmax_lon))
@@ -144,7 +144,7 @@ ftp.close()
 
 import matplotlib.colors
 
-with xr.open_dataset(fileHW) as data:
+with xr.open_dataset(local_filename) as data:
 
     dataDub = data
     dataDub2 = data
