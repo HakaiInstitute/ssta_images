@@ -547,12 +547,19 @@ function animateImages(showSpin=1){
                 if(showSpin != 0){spinner.stop()};
                 allText = textures
                 console.log('printy run here');
-                printy(allText[0])
+                const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+
+                const fileToUse = fileName + new Date(currentDate).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
+                // console.log(fileToUse)
+                const ind = dateFiles.indexOf(fileToUse)
+                // console.log(ind,allText)
+                const textureToUse = allText[ind]
+                printy(allText[ind])
             })
 }
 
 const library = new Library();
-// let whatTimeIsit;
+let currentDate;
 // Instantiate the notebook.
 const runtime = self.runtime = new Runtime(library);
 const main = runtime.module(buoyViz, name => {
@@ -647,7 +654,7 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
                 // console.log(value,firstLoad,allText) 
                 if (firstLoad > 2 && allText != null) {
-                    // whatTimeIsit = value
+                     currentDate = value
 
                     const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
@@ -702,10 +709,10 @@ window.addEventListener('click', (event) => {
     }
         currentIntersect.object.material.color.set("#04ff00")
         currentIntersect.object.material.needsUpdate = true;
-        console.log(currentIntersect.object.material.color);
+        // console.log(currentIntersect.object.material.color);
         // d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
-        console.log(clickedSite)
+        // console.log(clickedSite)
         main.redefine("clickedSite", clickedSite);
     }
     
