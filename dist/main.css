@@ -211,20 +211,35 @@ h1 {
 
 .stack-leg{
   z-index: 9;
+  /* left:10%;
+  margin-top: 45%; */
   left:10%;
-  margin-top: 45%; /* for demo purpose  */
+  right:0;
+  bottom:100px;
+  margin:5px;
+  padding:5px;
 }
 
 .stack-text{
   z-index: 9;
+  /* left:10%;
+  margin-top: 50%;  */
   left:10%;
-  margin-top: 50%; /* for demo purpose  */
+  right:0;
+  bottom:50px;
+  margin:5px;
+  padding:5px;
 }
 
 .stack-limits{
   z-index: 9;
+  /* left:10%;
+  margin-top: 52%; */
   left:10%;
-  margin-top: 52%; /* for demo purpose  */
+  right:0;
+  bottom:10px;
+  margin:5px;
+  padding:5px;
 }
 
 .stack-cat{
@@ -242,7 +257,7 @@ h1 {
 .stack-date{
   z-index: 9;
   left:10%;
-  margin-top:5%; /* for demo purpose  */
+  margin-top:4%; /* for demo purpose  */
 }
 
 /*# sourceMappingURL=main.css.map*/
