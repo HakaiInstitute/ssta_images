@@ -133,8 +133,8 @@ ftp = FTP("ftp.star.nesdis.noaa.gov")
 ftp.login()
 ftp.cwd("pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/2022")
 fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
-script_path = Path(__file__).parent
-print(script_path)
+# script_path = Path(__file__).parent
+# print(script_path)
 local_filename = ddir + fileHW
 with open(local_filename, 'wb') as f_output:
     ftp.retrbinary(f"RETR {fileHW}", f_output.write)
