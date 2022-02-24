@@ -311,7 +311,7 @@ group.visible = false;
 // Sizes
 const sizes = {
     width: window.innerWidth * 0.9,
-    height: window.innerHeight *0.75
+    height: window.innerHeight 
 }
 window.addEventListener('resize', () => {
     // Update sizes

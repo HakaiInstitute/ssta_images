@@ -211,8 +211,13 @@ h1 {
 
 .stack-leg{
   z-index: 9;
+  /* left:10%;
+  margin-top: 45%; */
   left:10%;
-  margin-top: 45%; /* for demo purpose  */
+  right:0;
+  bottom:100px;
+  margin:5px;
+  padding:5px;
 }
 
 .stack-text{
