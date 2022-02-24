@@ -311,7 +311,7 @@ group.visible = false;
 // Sizes
 const sizes = {
     width: window.innerWidth * 0.9,
-    height: window.innerHeight 
+    height: window.innerHeight - 100
 }
 window.addEventListener('resize', () => {
     // Update sizes
@@ -623,7 +623,7 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-          
+                // console.log(value);
                 if (value !== null && firstLoad !==0) {
                     console.log('animateImages run by datesToPlot',firstLoad);
                     firstLoad === 0 || firstLoad === 1 || firstLoad === 2 ? animateImages(0) : animateImages()
