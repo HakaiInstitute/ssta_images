@@ -2,8 +2,11 @@ name: Download and Make
 
 on:
   schedule:
-    - cron: "0 0 * * *" #runs at 00:00 UTC everyday
+    - cron: "0 20 * * *" #runs at 00:00 UTC everyday
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -18,14 +21,28 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      
 
-      - name: install requirements
-        working-directory: ./dataProcessing
-        run: |
-          conda install -c conda-forge --file requirements.txt
- 
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+      - name: Install dependencies
+        run: $CONDA/bin/conda env update --file environment.yaml --name base
 
       - name: execute py script
-        working-directory: ./dataProcessing
-        run: python3 downloadNC.py
+        run: |
+          dir
+          $CONDA/bin/python downloadNC.py
+          dir
+
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "action[bot]@github.com"
+          git config --local user.name "github-actions[bot]"
+          git add --all
+          git commit -m "Add changes" -a
+          echo "::set-output name=push::true"
+        shell: bash
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  
