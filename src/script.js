@@ -496,7 +496,7 @@ let firstLoad = 0,
     bouyData
 
 function animateImages(showSpin=1){
-    console.log('animatImages run');
+    // console.log('animatImages run');
     everyDayBetween = d3.timeDay.range(startDate, endDate)
     console.log(startDate, endDate);
 
@@ -535,26 +535,27 @@ function animateImages(showSpin=1){
 
 
         for (let i = 0; i < dateFiles.length; i++) {
-            // console.log('./textures/' + dateFiles[i]);
-            let img = loadImage('./textures/' + dateFiles[i])
-            // console.log(img)
+            let img = loadImage('./textures/' + dateFiles[i])            
             promises.push(img)
         }
-        // console.log(promises);
+        
         Promise.all(promises)
             .then(function(textures) {
-                // console.log(textures)
+               
                 if(showSpin != 0){spinner.stop()};
                 allText = textures
                 console.log('printy run here');
                 const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
+                console.log(currentDate === undefined);
+                if(currentDate !== undefined){
+                    const fileToUse = fileName + new Date(currentDate).toISOString().substring(0, 10).replaceAll("-", "") + ".png"              
+                    const ind = dateFiles.indexOf(fileToUse)                
+                    const textureToUse = allText[ind]
+    
+                    // this renders the first image loaded (the current date) after the brush is moved.
+                    printy(allText[ind])
+                }
 
-                const fileToUse = fileName + new Date(currentDate).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-                // console.log(fileToUse)
-                const ind = dateFiles.indexOf(fileToUse)
-                // console.log(ind,allText)
-                const textureToUse = allText[ind]
-                printy(allText[ind])
             })
 }
 
@@ -625,18 +626,16 @@ const main = runtime.module(buoyViz, name => {
 
 
 
-    if (name === "datesToPlot") {
+    if (name === "datesToPlot") { // an array of all the dates from limits brush
 
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(value);
+                
                 if (value !== null && firstLoad !==0) {
                     console.log('animateImages run by datesToPlot',firstLoad);
                     firstLoad === 0 || firstLoad === 1 || firstLoad === 2 ? animateImages(0) : animateImages()
                     firstLoad += 1
-                    // animateImages()
-
                 }
             },
             rejected(error) {
