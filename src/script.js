@@ -307,7 +307,7 @@ scene.add(group);
 // particles = new THREE.Points(particlesGeometry, particlesMaterial)
 // scene.add(allBouys)
 // scene.add(particles);
-group.visible = false;
+// group.visible = false;
 
 
 
@@ -394,11 +394,11 @@ controls.minPolarAngle = .7;
 controls.maxPolarAngle = .9;
 //  controls.enableRotate = false;
 // scene.add(group);
-controls.addEventListener("change", (event) => {
-    controls.object.position.z > 1 ?
-        (group.visible = false) :
-        (group.visible = true);
-});
+// controls.addEventListener("change", (event) => {
+//     controls.object.position.z > 1 ?
+//         (group.visible = false) :
+//         (group.visible = true);
+// });
 
 
 // Renderer
