@@ -291,3 +291,9 @@ h1 {
 .tooltip.show {
   opacity: 1;
 }
+
+.selection{
+  fill: white;
+  fill-opacity: .7;
+  stroke: none;
+  }
