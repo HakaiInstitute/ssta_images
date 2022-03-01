@@ -257,7 +257,14 @@ h1 {
   margin-top: 0%; /* for demo purpose  */
 }
 
-
+.buoyleg{
+  position: absolute;
+  /* top:10px; */
+  right:150px;
+  z-index: 9;
+  width: 200px;
+   /* margin-top: 10%; */
+}
 
 #tooltiper1{
   position: absolute;

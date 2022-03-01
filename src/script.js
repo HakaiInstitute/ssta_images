@@ -349,7 +349,7 @@ window.addEventListener('mousemove', (event) => {
 
 })
 
-let clickedSite;
+let clickedSite, buoyClicked;
 const colors = new Map([
     ["avg", "#5b6187"],
     ["thresh", "#FEDB67"],
@@ -719,8 +719,10 @@ window.addEventListener('click', (event) => {
         // console.log(currentIntersect.object.material.color);
         // d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
+        buoyClicked = buoys.find((d) => d.pk === currentIntersect.object.buoyId).long_name
         // console.log(clickedSite)
         main.redefine("clickedSite", clickedSite);
+        main.redefine("buoyClicked", buoyClicked);
     }
     
     
