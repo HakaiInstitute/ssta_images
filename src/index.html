@@ -31,12 +31,17 @@
       <div class="jumbotron jumbotron-fluid">
          <div class="container">
             <h1 class="display-4">Marine Heatwave Viewer</h1>
-            <p class="lead">Just as on land, marine temperatures can go through extreme periods. Extreme differences (or anomaly) from normal may occur any time of year, but when they are sufficiently different for a sustained period (five days or more) then heatwave conditions have been met. The more extreme the anomalous conditions, the more severe the heatwave category.</p>
+            <p class="lead">Just as on land, marine temperatures can go through extreme periods. Extreme differences (or anomaly) from normal may occur any time of year, but when they are sufficiently different for a sustained period (five days or more) then heatwave conditions have been met. The more extreme the anomalous conditions, the more severe the heatwave category.
+            <br>
+            <br>
+               Scientists use satellite imagery to produce daily SST anaomaly values of the ocean's surface at a high spatial resolution (5km). Buoys measure SST at a single location in time at a high temporal resoution (minutes to hours). Together, these measurements can be used to track the state of the ocean over time and warn us of forming marine heatwaves, which can have a profound affect on all marine life.
+
+            </p>
          </div>
       </div>
-      <div id = 'charts' class="container">
+      <div id = 'charts' >
 
-         <div class="d-flex justify-content-center">
+         <div id='container' class="d-flex justify-content-center">
             <!-- <div class="col"> -->
 
             <canvas class="webgl"></canvas>
