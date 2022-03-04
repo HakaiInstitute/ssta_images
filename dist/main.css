@@ -245,6 +245,26 @@ h1 {
   padding:5px;
 }
 
+.buoyleg{
+  position: absolute;
+  /* top:10px; */
+  right:12%;
+  bottom:100px;
+  z-index: 9;
+  width: 200px;
+   /* margin-top: 10%; */
+}
+
+.buoyleg1{
+  position: absolute;
+  /* top:10px; */
+  right:10%;
+  bottom:100px;
+  z-index: 9;
+  width: 200px;
+   /* margin-top: 10%; */
+}
+
 .stack-text{
   z-index: 9;
   /* left:10%;
@@ -273,23 +293,7 @@ h1 {
   margin-top: 0%; /* for demo purpose  */
 }
 
-.buoyleg{
-  position: absolute;
-  /* top:10px; */
-  right:300px;
-  z-index: 9;
-  width: 200px;
-   /* margin-top: 10%; */
-}
 
-.buoyleg1{
-  position: absolute;
-  /* top:10px; */
-  right:270px;
-  z-index: 9;
-  width: 200px;
-   /* margin-top: 10%; */
-}
 
 #tooltiper1{
   position: absolute;
