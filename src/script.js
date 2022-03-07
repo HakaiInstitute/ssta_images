@@ -85,7 +85,7 @@ let endDate = d3.utcDay()
 let startDate = null //d3.timeDay.offset(endDate, -10)
 const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -365).toISOString().substring(0, 10).replaceAll("-", "") +
     ".png"
-console.log(firstDayToLoad)
+console.log(endDate,firstDayToLoad)
 const texture = textureLoader.load('./textures/' + firstDayToLoad)
 // console.log(texture)
 const materialSSTA = new THREE.MeshBasicMaterial({
@@ -481,6 +481,7 @@ let allText = null
 
 // const startDate = d3.timeDay.offset(endDate, -90)
 let everyDayBetween = d3.timeDay.range(startDate, endDate)
+// console.log(everyDayBetween);
 let dateFiles
 // let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().substring(0, 10).replaceAll("-", "") +
     // ".png")
@@ -501,9 +502,9 @@ async function printy(text) {
 let firstLoad = 0,
     prefix = null,
     spinner = null,
-    bouyData
+    bouyData,dateFilesWeHave
 
-function animateImages(showSpin=1){
+async function animateImages(showSpin=1){
     // console.log('animatImages run');
     everyDayBetween = d3.timeDay.range(startDate, endDate)
     console.log(startDate, endDate);
@@ -511,8 +512,17 @@ function animateImages(showSpin=1){
     prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
     dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
         ".png")
+    console.log(dateFiles[0]);
 
-    console.log("dateFiles.length", dateFiles.length,showSpin)
+    const allFiles = await d3.csv('./names.csv')
+   
+           dateFilesWeHave = allFiles.filter((d) =>{
+
+            return dateFiles.includes(d.files)
+            }).map(d => d.files)
+  
+
+    // console.log("dateFiles.length", dateFiles.length,dateFilesWeHave)
 
         // try one ww to load them all 
         if(showSpin !=0){
@@ -526,15 +536,15 @@ function animateImages(showSpin=1){
         });
 
         function loadImage(file) {
-
+            // console.log(file)
             return new Promise(function(resolve, reject) {
                 return loader.load(file, function(imageBitmap) {
-                
                     resolve(new THREE.CanvasTexture(imageBitmap))
                     
                 }, undefined, function(e) {
                     console.error(e);
                     if(showSpin != 0){spinner.stop()};
+                    return []
                 })
             })
         }
@@ -542,14 +552,16 @@ function animateImages(showSpin=1){
         let promises = [];
 
 
-        for (let i = 0; i < dateFiles.length; i++) {
-            let img = loadImage('./textures/' + dateFiles[i])            
+        for (let i = 0; i < dateFilesWeHave.length; i++) {
+            // console.log(dateFiles[i]);
+            let img = loadImage('./textures/' + dateFilesWeHave[i])        
+            // console.log(dateFiles.length,i);    
             promises.push(img)
         }
         
         Promise.all(promises)
             .then(function(textures) {
-               
+               console.log(textures);
                 if(showSpin != 0){spinner.stop()};
                 allText = textures
                 console.log('printy run here');
@@ -557,7 +569,7 @@ function animateImages(showSpin=1){
                 console.log(currentDate === undefined);
                 if(currentDate !== undefined){
                     const fileToUse = fileName + new Date(currentDate).toISOString().substring(0, 10).replaceAll("-", "") + ".png"              
-                    const ind = dateFiles.indexOf(fileToUse)                
+                    const ind = dateFilesWeHave.indexOf(fileToUse)                
                     const textureToUse = allText[ind]
     
                     // this renders the first image loaded (the current date) after the brush is moved.
@@ -618,7 +630,7 @@ const main = runtime.module(buoyViz, name => {
             fulfilled(value) {
 
 
-                console.log('this is running!', category)
+                console.log('this is running!', category, value)
                 endDate = value[1]
                 startDate = value[0]
 
@@ -666,8 +678,8 @@ const main = runtime.module(buoyViz, name => {
                     const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
                     const fileToUse = fileName + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-                    // console.log(fileToUse)
-                    const ind = dateFiles.indexOf(fileToUse)
+                    // console.log(dateFilesWeHave, fileToUse)
+                    const ind = dateFilesWeHave.indexOf(fileToUse)
                     // console.log(ind,allText)
                     const textureToUse = allText[ind]
                     // console.log('run printy here')
