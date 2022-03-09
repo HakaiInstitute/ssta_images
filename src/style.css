@@ -182,8 +182,16 @@ h1 {
 #observablehq-leg-2162ef11{
   position: absolute;
 
-  width: 20%; 
-  opacity: 0.9;  /* for demo purpose  */
+  width: 200px; 
+  opacity: 0.9; 
+  z-index: 9;
+  /* left:10%;
+  margin-top: 45%; */
+  right:0px;
+  /* right:0; */
+  bottom:100px;
+  /* margin:5px;
+  padding:5px; */
 }
 
 #observablehq-eventText-bf0be2b8{
@@ -193,18 +201,21 @@ h1 {
 
 #observablehq-viewof-limits-5fc774d0{
   position: absolute;
-  width: 80%; 
+  /* width: 80%;  */
   opacity: 0.9; 
   z-index: 11;
  
   left:10%;
   right:0;
   bottom:50px;
-  margin:5px;
+  margin:auto;
   padding:5px;
 }
 
 #observablehq-viewof-colorView-5fc774d0{
+  z-index: 9;
+  left:10%;
+  margin-top: 66px; /* for demo purpose  */
   position: absolute;
   width: 80%; 
   opacity: 0.9; 
@@ -226,6 +237,9 @@ h1 {
 }
 
 #observablehq-curDate-890dd666{
+  z-index: 9;
+  left:10%;
+  margin-top:94px; /* for demo purpose  */
   position: absolute;
   width: 80%; 
   opacity: 0.9; 
@@ -235,34 +249,25 @@ h1 {
   margin-left: 55%; /* for demo purpose  */
 }
 
-.stack-leg{
-  z-index: 9;
-  /* left:10%;
-  margin-top: 45%; */
-  right:10%;
-  /* right:0; */
-  bottom:120px;
-  margin:5px;
-  padding:5px;
-}
+
 
 .buoyleg{
   position: absolute;
   /* top:10px; */
-  right:12%;
-  bottom:100px;
+  right:28px;
+  bottom:150px;
   z-index: 9;
-  width: 200px;
+  width: 40px;
    /* margin-top: 10%; */
 }
 
 .buoyleg1{
   position: absolute;
   /* top:10px; */
-  right:10%;
-  bottom:100px;
+  right:0px;
+  bottom:150px;
   z-index: 9;
-  width: 200px;
+  width: 50px;
    /* margin-top: 10%; */
 }
 
@@ -270,7 +275,7 @@ h1 {
   z-index: 9;
   /* left:10%;
   margin-top: 50%;  */
-  left:10%;
+  left:5px;
   right:0;
   bottom:100px;
   margin:5px;
@@ -279,30 +284,34 @@ h1 {
 
 
 
-.stack-cat{
-  z-index: 9;
-  left:10%;
-  margin-top: 0%; /* for demo purpose  */
-}
 
 #tooltiper{
   position: absolute;
-  width: 80%; 
+  width: 20px; 
   opacity: 0.9; 
   z-index: 9;
-  left:8%;
-  margin-top: 0%; /* for demo purpose  */
+  left:48px;
+  margin-top: 66px; /* for demo purpose  */
 }
 
+.logo{
+  position: absolute;
+  width: 170px; 
+  opacity: 0.9; 
+  z-index: 9;
+  left:0px;
+  margin-top: 1px; /* for demo purpose  */
+  /* transform: scale(.4); */
+}
 
 
 #tooltiper1{
   position: absolute;
-  width: 80%; 
+  width: 20px; 
   z-index: 9;
   /* left:10%;
   margin-top: 50%;  */
-  left:8%;
+  left:48px;
   right:0;
   bottom:50px;
   margin:5px;
@@ -311,11 +320,7 @@ h1 {
 
 
 
-.stack-date{
-  z-index: 9;
-  left:10%;
-  margin-top:34px; /* for demo purpose  */
-}
+
 
 .tooltip-inner {
   background-color: #777373;
