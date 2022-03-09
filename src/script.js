@@ -40,6 +40,8 @@ var opts = {
 };
 
 
+let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
+modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -561,7 +563,7 @@ async function animateImages(showSpin=1){
         
         Promise.all(promises)
             .then(function(textures) {
-               console.log(textures);
+            //    console.log(textures);
                 if(showSpin != 0){spinner.stop()};
                 allText = textures
                 console.log('printy run here');
@@ -596,6 +598,7 @@ const main = runtime.module(buoyViz, name => {
     if (name === "minFunc") return true;
     if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
     if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-097224fc"));
+    if (name === "style") return new Inspector(document.querySelector("#observablehq-style-f28a443b"));
 
     // if first load don't load again below
 
