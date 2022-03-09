@@ -41,7 +41,7 @@ var opts = {
 
 
 let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
-modal.show();
+// modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -49,7 +49,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-var target = document.getElementById('charts');
+var target = document.getElementById('container');
 
 
 // const runtime = new Runtime() 
@@ -320,8 +320,8 @@ scene.add(group);
 
 // Sizes
 const sizes = {
-    width: window.innerWidth * 0.9,
-    height: window.innerHeight * .95
+    width: window.innerWidth ,
+    height: window.innerHeight 
 }
 window.addEventListener('resize', () => {
     // Update sizes
@@ -424,6 +424,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 // const threshold = 0.05;
 // raycaster.params.Points.threshold = threshold;
 let currentIntersect = null
+let lastIntersect = null
 const objectsToTest = allBouys //[allBouys[1],allBouys[2],allBouys[3]]
 const tick = () => {
 
@@ -516,6 +517,8 @@ async function animateImages(showSpin=1){
         ".png")
     console.log(dateFiles[0]);
 
+   
+
     const allFiles = await d3.csv('./names.csv')
    
            dateFilesWeHave = allFiles.filter((d) =>{
@@ -597,11 +600,25 @@ const main = runtime.module(buoyViz, name => {
     if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
     if (name === "minFunc") return true;
     if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
-    if (name === "lineChart") return new Inspector(document.querySelector("#observablehq-lineChart-097224fc"));
+    if (name === "viewof lineChart") return new Inspector(document.querySelector("#observablehq-viewof-lineChart-0643eba3"));
     if (name === "style") return new Inspector(document.querySelector("#observablehq-style-f28a443b"));
 
     // if first load don't load again below
 
+
+    // if (name === "lineChart") {
+    //     console.log(clickedSite, buoyClicked);
+    //     return {
+    //         pending() {},
+    //         fulfilled(value) {
+    //             console.log(value);
+               
+    //         },
+    //         rejected(error) {
+    //             node.textContent = error.message;
+    //         }
+    //     }
+    // }
 
     // returns just the category selected
     // NEEDS to also trigger loading of all the images in limits.
@@ -627,17 +644,20 @@ const main = runtime.module(buoyViz, name => {
 
     // returns just the brush dates but also loads the images for the interval selected
     if (name === "limits") {
+        
         // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
         return {
             pending() {},
             fulfilled(value) {
-
+                console.log(clickedSite, buoyClicked);
 
                 console.log('this is running!', category, value)
                 endDate = value[1]
                 startDate = value[0]
+               
 
 
+                
 
             },
             rejected(error) {
@@ -702,8 +722,15 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(value);
+                console.log(value);
                 bouyData = value
+                if(clickedSite != null){
+                    console.log('fire me');
+                    // debugger
+                    currentIntersect = 99
+                    console.log(event);
+                    window.dispatchEvent(event);
+                }
             },
             rejected(error) {
                 node.textContent = error.message;
@@ -718,17 +745,25 @@ const main = runtime.module(buoyViz, name => {
     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
-d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
-window.addEventListener('click', (event) => {
-    // console.log(currentIntersect);
+d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","hidden")
+
+var event = new Event('click');
+ window.addEventListener('click', (event) => {
+     console.log('event fired',currentIntersect);
+    console.log(currentIntersect);
+    // debugger;
     if(currentIntersect === null){
+        // console.log(clickedSite, buoyClicked,bouyData);
+        // debugger
+        // main.redefine("clickedSite", clickedSite);
+        // main.redefine("buoyClicked", buoyClicked);
         // currentIntersect.object.material.color.set("yellow")
         // d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
-    } else {
-        d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
-          for (const object of objectsToTest) {
-        object.material.color.set("#eeff00")
-    }
+    } else if (currentIntersect === 99){
+        // debugger
+        console.log('here',lastIntersect);
+        
+        currentIntersect = lastIntersect
         currentIntersect.object.material.color.set("#04ff00")
         currentIntersect.object.material.needsUpdate = true;
         // console.log(currentIntersect.object.material.color);
@@ -736,6 +771,23 @@ window.addEventListener('click', (event) => {
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
         buoyClicked = buoys.find((d) => d.pk === currentIntersect.object.buoyId).long_name
         // console.log(clickedSite)
+        console.log(clickedSite, buoyClicked,bouyData);
+        main.redefine("clickedSite", clickedSite);
+        main.redefine("buoyClicked", buoyClicked);
+    }  else {
+        d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","visible")
+          for (const object of objectsToTest) {
+        object.material.color.set("#eeff00")
+    }
+    lastIntersect = currentIntersect
+        currentIntersect.object.material.color.set("#04ff00")
+        currentIntersect.object.material.needsUpdate = true;
+        // console.log(currentIntersect.object.material.color);
+        // d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
+        clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
+        buoyClicked = buoys.find((d) => d.pk === currentIntersect.object.buoyId).long_name
+        // console.log(clickedSite)
+        console.log(clickedSite, buoyClicked,bouyData);
         main.redefine("clickedSite", clickedSite);
         main.redefine("buoyClicked", buoyClicked);
     }
@@ -743,12 +795,17 @@ window.addEventListener('click', (event) => {
     
 })
 
-window.addEventListener('dblclick', (event) => {
-    d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
+ window.addEventListener('dblclick', (event) => {
+    d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","hidden")
     for (const object of objectsToTest) {
         object.material.color.set("#eeff00")
     }
+    clickedSite = null
+    buoyClicked = null
 })
+
+console.log(event);
+
 // let plotElement = document.querySelector("#observablehq-Plot")
 
 // window.addEventListener('click', (event) => {
