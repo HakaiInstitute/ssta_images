@@ -169,14 +169,16 @@ h1 {
   height:100%;
 }
 
-#observablehq-lineChart-097224fc{
+#observablehq-viewof-lineChart-0643eba3{
   position: absolute;
-
-  width: 40%;
+  z-index: 9;
+  right:0px;
+  /* margin-left: 55%;  */
+  width: 440px;
   /* height: 100px;             */
   /* top: 0;
   left: 0; */
-  opacity: 0.9;  /* for demo purpose  */
+  opacity: 0.9;  
 }
 
 #observablehq-leg-2162ef11{
@@ -187,7 +189,7 @@ h1 {
   z-index: 9;
   /* left:10%;
   margin-top: 45%; */
-  right:0px;
+  right:17px;
   /* right:0; */
   bottom:100px;
   /* margin:5px;
@@ -197,6 +199,15 @@ h1 {
 #observablehq-eventText-bf0be2b8{
   position: absolute;
   opacity: 0.9; 
+  z-index: 9;
+  width: 300px;
+  /* left:10%;
+  margin-top: 50%;  */
+  left:5px;
+  right:0;
+  bottom:100px;
+  margin:5px;
+  padding:5px;
 }
 
 #observablehq-viewof-limits-5fc774d0{
@@ -205,7 +216,7 @@ h1 {
   opacity: 0.9; 
   z-index: 11;
  
-  left:10%;
+  left:0%;
   right:0;
   bottom:50px;
   margin:auto;
@@ -244,17 +255,14 @@ h1 {
   width: 80%; 
   opacity: 0.9; 
 }
-.stack-top{
-  z-index: 9;
-  margin-left: 55%; /* for demo purpose  */
-}
+
 
 
 
 .buoyleg{
   position: absolute;
   /* top:10px; */
-  right:28px;
+  right:45px;
   bottom:150px;
   z-index: 9;
   width: 40px;
@@ -264,23 +272,14 @@ h1 {
 .buoyleg1{
   position: absolute;
   /* top:10px; */
-  right:0px;
+  right:17px;
   bottom:150px;
   z-index: 9;
   width: 50px;
    /* margin-top: 10%; */
 }
 
-.stack-text{
-  z-index: 9;
-  /* left:10%;
-  margin-top: 50%;  */
-  left:5px;
-  right:0;
-  bottom:100px;
-  margin:5px;
-  padding:5px;
-}
+
 
 
 
