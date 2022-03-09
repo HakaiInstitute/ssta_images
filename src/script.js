@@ -321,7 +321,7 @@ scene.add(group);
 // Sizes
 const sizes = {
     width: window.innerWidth * 0.9,
-    height: window.innerHeight - 250
+    height: window.innerHeight * .95
 }
 window.addEventListener('resize', () => {
     // Update sizes
