@@ -83,7 +83,7 @@ const sphereBG = new THREE.Mesh(geometry, material)
 
 // scene.add(sphere)
 //noaa-crw_mhw_v1.0.1_category_20150101
-let endDate = d3.utcDay()
+let endDate = d3.timeDay.offset(d3.utcDay(), -2)//d3.utcDay()
 let startDate = null //d3.timeDay.offset(endDate, -10)
 const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -365).toISOString().substring(0, 10).replaceAll("-", "") +
     ".png"
@@ -413,16 +413,7 @@ renderer.setSize(sizes.width, sizes.height)
 
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-// renderer.render(scene, camera)
 
-/**
- * Animate
- */
-//   const clock = new THREE.Clock()
-// let currentIntersect = null
-// let INTERSECTED;
-// const threshold = 0.05;
-// raycaster.params.Points.threshold = threshold;
 let currentIntersect = null
 let lastIntersect = null
 const objectsToTest = allBouys //[allBouys[1],allBouys[2],allBouys[3]]
@@ -603,22 +594,6 @@ const main = runtime.module(buoyViz, name => {
     if (name === "viewof lineChart") return new Inspector(document.querySelector("#observablehq-viewof-lineChart-0643eba3"));
     if (name === "style") return new Inspector(document.querySelector("#observablehq-style-f28a443b"));
 
-    // if first load don't load again below
-
-
-    // if (name === "lineChart") {
-    //     console.log(clickedSite, buoyClicked);
-    //     return {
-    //         pending() {},
-    //         fulfilled(value) {
-    //             console.log(value);
-               
-    //         },
-    //         rejected(error) {
-    //             node.textContent = error.message;
-    //         }
-    //     }
-    // }
 
     // returns just the category selected
     // NEEDS to also trigger loading of all the images in limits.
@@ -694,9 +669,10 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(value,firstLoad,allText) 
+                console.log(value,firstLoad,allText) 
+                currentDate = value
                 if (firstLoad > 2 && allText != null) {
-                     currentDate = value
+                     
 
                     const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
@@ -722,13 +698,13 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                console.log(value);
+                // console.log(value);
                 bouyData = value
                 if(clickedSite != null){
-                    console.log('fire me');
+                    // console.log('fire me');
                     // debugger
                     currentIntersect = 99
-                    console.log(event);
+                    // console.log(event);
                     window.dispatchEvent(event);
                 }
             },
@@ -753,15 +729,10 @@ var event = new Event('click');
     console.log(currentIntersect);
     // debugger;
     if(currentIntersect === null){
-        // console.log(clickedSite, buoyClicked,bouyData);
-        // debugger
-        // main.redefine("clickedSite", clickedSite);
-        // main.redefine("buoyClicked", buoyClicked);
-        // currentIntersect.object.material.color.set("yellow")
-        // d3.select("#observablehq-lineChart-097224fc").style("visibility","hidden")
+
     } else if (currentIntersect === 99){
         // debugger
-        console.log('here',lastIntersect);
+        // console.log('here',lastIntersect);
         
         currentIntersect = lastIntersect
         currentIntersect.object.material.color.set("#04ff00")
@@ -771,7 +742,7 @@ var event = new Event('click');
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
         buoyClicked = buoys.find((d) => d.pk === currentIntersect.object.buoyId).long_name
         // console.log(clickedSite)
-        console.log(clickedSite, buoyClicked,bouyData);
+        // console.log(clickedSite, buoyClicked,bouyData);
         main.redefine("clickedSite", clickedSite);
         main.redefine("buoyClicked", buoyClicked);
     }  else {
@@ -787,7 +758,7 @@ var event = new Event('click');
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
         buoyClicked = buoys.find((d) => d.pk === currentIntersect.object.buoyId).long_name
         // console.log(clickedSite)
-        console.log(clickedSite, buoyClicked,bouyData);
+        // console.log(clickedSite, buoyClicked,bouyData);
         main.redefine("clickedSite", clickedSite);
         main.redefine("buoyClicked", buoyClicked);
     }
@@ -804,22 +775,5 @@ var event = new Event('click');
     buoyClicked = null
 })
 
-console.log(event);
 
-// let plotElement = document.querySelector("#observablehq-Plot")
 
-// window.addEventListener('click', (event) => {
-//     clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
-// })
-//     console.log(currentIntersect.object.long_name)
-//     // mouse.x = event.clientX / sizes.width * 2 - 1
-//     // mouse.y = -(event.clientY / sizes.height * 2 - 1)
-  
-//     if (currentIntersect) {
-//         while (plotElement.firstChild) {
-//             plotElement.removeChild(plotElement.firstChild)
-//         }
-//         console.log('here')
-//         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
-//         plotElement.appendChild(Plot.plot({
-//             style: {
