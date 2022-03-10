@@ -721,7 +721,16 @@ const main = runtime.module(buoyViz, name => {
     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
-d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","hidden")
+var button = document.createElement('button');
+button.setAttribute("class","close")
+button.innerHTML = 'X';
+button.onclick = function() {
+  this.parentNode.style.visibility = 'hidden';
+};
+document.getElementById('close-me').appendChild(button);
+
+d3.select("#close-me").style("visibility","hidden")
+
 
 var event = new Event('click');
  window.addEventListener('click', (event) => {
@@ -746,7 +755,7 @@ var event = new Event('click');
         main.redefine("clickedSite", clickedSite);
         main.redefine("buoyClicked", buoyClicked);
     }  else {
-        d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","visible")
+        d3.select("#close-me").style("visibility","visible")
           for (const object of objectsToTest) {
         object.material.color.set("#eeff00")
     }
@@ -766,14 +775,14 @@ var event = new Event('click');
     
 })
 
- window.addEventListener('dblclick', (event) => {
-    d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","hidden")
-    for (const object of objectsToTest) {
-        object.material.color.set("#eeff00")
-    }
-    clickedSite = null
-    buoyClicked = null
-})
+//  window.addEventListener('dblclick', (event) => {
+//     d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","hidden")
+//     for (const object of objectsToTest) {
+//         object.material.color.set("#eeff00")
+//     }
+//     clickedSite = null
+//     buoyClicked = null
+// })
 
 
 
