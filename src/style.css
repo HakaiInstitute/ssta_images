@@ -240,7 +240,7 @@ h1 {
   margin-top: 45%; */
   right:17px;
   /* right:0; */
-  bottom:100px;
+  bottom:110px;
   /* margin:5px;
   padding:5px; */
 }
@@ -254,7 +254,7 @@ h1 {
   margin-top: 50%;  */
   left:16px;
   right:0;
-  bottom:100px;
+  bottom:110px;
   margin:5px;
   padding:5px;
 }
@@ -267,7 +267,7 @@ h1 {
  
   left:0%;
   right:0;
-  bottom:50px;
+  bottom:60px;
   margin:auto;
   padding:5px;
 }
@@ -291,7 +291,7 @@ h1 {
  
   left:10%;
   right:0;
-  bottom:0px;
+  bottom:10px;
   margin:5px;
   padding:5px;
 }
@@ -312,7 +312,7 @@ h1 {
   position: absolute;
   /* top:10px; */
   right:45px;
-  bottom:150px;
+  bottom:160px;
   z-index: 9;
   width: 40px;
    /* margin-top: 10%; */
@@ -323,23 +323,32 @@ h1 {
   position: absolute;
   /* top:10px; */
   left:70px;
-  bottom:115px;
+  bottom:125px;
   z-index: 9;
   width: 220px;
    /* margin-top: 10%; */
 }
+
+.info{
+  position: absolute;
+  /* top:10px; */
+  /* left:70px; */
+  bottom:0px;
+  right: 2px;
+  /* margin:auto; */
+  z-index: 9;
+  /* width: 220px; */
+}
+
 .buoyleg1{
   position: absolute;
   /* top:10px; */
   right:17px;
-  bottom:150px;
+  bottom:160px;
   z-index: 9;
   width: 50px;
    /* margin-top: 10%; */
 }
-
-
-
 
 
 
@@ -371,7 +380,7 @@ h1 {
   margin-top: 50%;  */
   left:0px;
   right:0;
-  bottom:105px;
+  bottom:115px;
   margin:5px;
   padding:5px;
 }
