@@ -260,7 +260,7 @@ let allBouys = []
 const particlesGeometry = new THREE.SphereGeometry(0.006, 16, 16) //new THREE.BufferGeometry();
 for (let i = 0; i < count; i++) {
     const particlesMaterial = new THREE.MeshBasicMaterial({
-        color: 'yellow'
+        color: '#007490'
     }) //new THREE.PointsMaterial();
 
 
@@ -624,9 +624,9 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                console.log(clickedSite, buoyClicked);
+                // console.log(clickedSite, buoyClicked);
 
-                console.log('this is running!', category, value)
+                // console.log('this is running!', category, value)
                 endDate = value[1]
                 startDate = value[0]
                
@@ -669,7 +669,7 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(value,firstLoad,allText) 
+                // console.log(new Date(value)) 
                 currentDate = value
                 if (firstLoad > 2 && allText != null) {
                      
@@ -677,7 +677,7 @@ const main = runtime.module(buoyViz, name => {
                     const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
                     const fileToUse = fileName + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-                    // console.log(dateFilesWeHave, fileToUse)
+                    // console.log(dateFilesWeHave,"file to use: " ,fileToUse)
                     const ind = dateFilesWeHave.indexOf(fileToUse)
                     // console.log(ind,allText)
                     const textureToUse = allText[ind]
@@ -726,6 +726,9 @@ button.setAttribute("class","close")
 button.innerHTML = 'X';
 button.onclick = function() {
   this.parentNode.style.visibility = 'hidden';
+      for (const object of objectsToTest) {
+        object.material.color.set("#007490")
+    }
 };
 document.getElementById('close-me').appendChild(button);
 
@@ -734,8 +737,8 @@ d3.select("#close-me").style("visibility","hidden")
 
 var event = new Event('click');
  window.addEventListener('click', (event) => {
-     console.log('event fired',currentIntersect);
-    console.log(currentIntersect);
+    //  console.log('event fired',currentIntersect);
+    // console.log(currentIntersect);
     // debugger;
     if(currentIntersect === null){
 
@@ -757,7 +760,7 @@ var event = new Event('click');
     }  else {
         d3.select("#close-me").style("visibility","visible")
           for (const object of objectsToTest) {
-        object.material.color.set("#eeff00")
+        object.material.color.set("#007490")
     }
     lastIntersect = currentIntersect
         currentIntersect.object.material.color.set("#04ff00")
