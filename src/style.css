@@ -252,7 +252,7 @@ h1 {
   width: 300px;
   /* left:10%;
   margin-top: 50%;  */
-  left:5px;
+  left:16px;
   right:0;
   bottom:100px;
   margin:5px;
@@ -318,6 +318,16 @@ h1 {
    /* margin-top: 10%; */
 }
 
+
+.MHWText{
+  position: absolute;
+  /* top:10px; */
+  left:70px;
+  bottom:115px;
+  z-index: 9;
+  width: 220px;
+   /* margin-top: 10%; */
+}
 .buoyleg1{
   position: absolute;
   /* top:10px; */
@@ -338,7 +348,7 @@ h1 {
   width: 20px; 
   opacity: 0.9; 
   z-index: 9;
-  left:48px;
+  left:71px;
   margin-top: 66px; /* for demo purpose  */
 }
 
@@ -359,9 +369,9 @@ h1 {
   z-index: 9;
   /* left:10%;
   margin-top: 50%;  */
-  left:48px;
+  left:0px;
   right:0;
-  bottom:50px;
+  bottom:105px;
   margin:5px;
   padding:5px;
 }
