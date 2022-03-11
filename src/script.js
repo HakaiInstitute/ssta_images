@@ -257,7 +257,7 @@ const positions = new Float32Array(count * 3);
 let allBouys = []
 
 
-const particlesGeometry = new THREE.SphereGeometry(0.006, 16, 16) //new THREE.BufferGeometry();
+const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16) //new THREE.BufferGeometry();
 for (let i = 0; i < count; i++) {
     const particlesMaterial = new THREE.MeshBasicMaterial({
         color: '#007490'
