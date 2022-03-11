@@ -41,7 +41,7 @@ var opts = {
 
 
 let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
-// modal.show();
+modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -562,7 +562,7 @@ async function animateImages(showSpin=1){
                 allText = textures
                 console.log('printy run here');
                 const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
-                console.log(currentDate === undefined);
+                // console.log(currentDate === undefined);
                 if(currentDate !== undefined){
                     const fileToUse = fileName + new Date(currentDate).toISOString().substring(0, 10).replaceAll("-", "") + ".png"              
                     const ind = dateFilesWeHave.indexOf(fileToUse)                
@@ -576,7 +576,7 @@ async function animateImages(showSpin=1){
 }
 
 const library = new Library();
-let currentDate;
+let currentDate, firstDay, lastDay;
 // Instantiate the notebook.
 const runtime = self.runtime = new Runtime(library);
 const main = runtime.module(buoyViz, name => {
@@ -620,19 +620,16 @@ const main = runtime.module(buoyViz, name => {
     // returns just the brush dates but also loads the images for the interval selected
     if (name === "limits") {
         
-        // const node = document.querySelector("#observablehq-viewof-time1-273ac292");
+      
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(clickedSite, buoyClicked);
-
-                // console.log('this is running!', category, value)
+                // console.log(value[0], startDate);
+                // console.log(value[0] === startDate);
+                if(value[0] !== startDate){
                 endDate = value[1]
                 startDate = value[0]
-               
-
-
-                
+            }
 
             },
             rejected(error) {
@@ -649,12 +646,19 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                
-                if (value !== null && firstLoad !==0) {
-                    console.log('animateImages run by datesToPlot',firstLoad);
-                    firstLoad === 0 || firstLoad === 1 || firstLoad === 2 ? animateImages(0) : animateImages()
-                    firstLoad += 1
+                if(firstDay !== value[0]){
+                    console.log('run animation');
+                    if (value !== null && firstLoad !==0) {
+                        // console.log('animateImages run by datesToPlot',firstLoad);
+                        firstLoad <= 2 ? animateImages(0) : animateImages()
+                        firstLoad += 1
+                    }
                 }
+                firstDay = value[0]
+                lastDay = value[value.length-1]
+                // console.log('fire datesToPlot', new Date(value[0]), new Date(value[value.length-1]));
+                // console.log(firstDay === value[0],lastDay === value[value.length-1]);
+
             },
             rejected(error) {
                 node.textContent = error.message;
