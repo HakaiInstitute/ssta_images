@@ -646,14 +646,18 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                if(firstDay !== value[0]){
-                    console.log('run animation');
+
+                console.log(value.length, firstLoad);
+                console.log(firstDay, value[0]);
+                // if(firstDay !== value[0]){
+                    console.log('run animation',value.length
+                    , firstLoad);
                     if (value !== null && firstLoad !==0) {
-                        // console.log('animateImages run by datesToPlot',firstLoad);
+                        console.log('animateImages run by datesToPlot',firstLoad);
                         firstLoad <= 2 ? animateImages(0) : animateImages()
                         firstLoad += 1
                     }
-                }
+                // }
                 firstDay = value[0]
                 lastDay = value[value.length-1]
                 // console.log('fire datesToPlot', new Date(value[0]), new Date(value[value.length-1]));
@@ -673,7 +677,8 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(new Date(value)) 
+                console.log(new Date(value)) 
+                // console.log(firstLoad, allText);
                 currentDate = value
                 if (firstLoad > 2 && allText != null) {
                      
