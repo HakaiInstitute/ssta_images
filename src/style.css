@@ -255,7 +255,7 @@ h1 {
   width: 300px;
   /* left:10%;
   margin-top: 50%;  */
-  left:16px;
+  left:0px;
   right:0;
   bottom:110px;
   margin:5px;
@@ -277,8 +277,8 @@ h1 {
 
 #observablehq-viewof-colorView-5fc774d0{
   z-index: 9;
-  left:10%;
-  margin-top: 66px; /* for demo purpose  */
+  left:2px;
+  margin-top: 40px; /* for demo purpose  */
   position: absolute;
   width: 80%; 
   opacity: 0.9; 
@@ -301,10 +301,10 @@ h1 {
 
 #observablehq-curDate-890dd666{
   z-index: 9;
-  left:10%;
-  margin-top:94px; /* for demo purpose  */
+  left:2px;
+  margin-top:0px; /* for demo purpose  */
   position: absolute;
-  width: 80%; 
+  /* width: 80%;  */
   opacity: 0.9; 
 }
 
@@ -325,7 +325,7 @@ h1 {
 .MHWText{
   position: absolute;
   /* top:10px; */
-  left:70px;
+  left:50px;
   bottom:125px;
   z-index: 9;
   width: 220px;
@@ -357,16 +357,16 @@ h1 {
   width: 20px; 
   opacity: 0.9; 
   z-index: 9;
-  left:71px;
-  margin-top: 66px; /* for demo purpose  */
+  left:203px;
+  margin-top: 41px; /* for demo purpose  */
 }
 
 .logo{
   position: absolute;
-  width: 170px; 
+  width: 114px; 
   opacity: 0.9; 
   z-index: 9;
-  left:0px;
+  left:240px;
   margin-top: 1px; /* for demo purpose  */
   /* transform: scale(.4); */
 }
@@ -378,7 +378,7 @@ h1 {
   z-index: 9;
   /* left:10%;
   margin-top: 50%;  */
-  left:0px;
+  left:240px;
   right:0;
   bottom:115px;
   margin:5px;
