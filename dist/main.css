@@ -359,7 +359,7 @@ h1 {
   position: absolute;
   width: 20px; 
   opacity: 0.9; 
-  z-index: 9;
+  z-index: 20;
   left:203px;
   margin-top: 41px; /* for demo purpose  */
 }
@@ -378,7 +378,7 @@ h1 {
 #tooltiper1{
   position: absolute;
   width: 20px; 
-  z-index: 9;
+  z-index: 20;
   /* left:10%;
   margin-top: 50%;  */
   left:240px;
