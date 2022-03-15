@@ -1,95 +1,113 @@
 // https://observablehq.com/@mbrownshoes/stylized-scrubber@303
-export default function define(runtime, observer) {
-  const main = runtime.module();
-  main.variable(observer()).define(["md"], function(md){return(
+function _1(md){return(
 md`# Stylized Scrubber
 
 
 This reusable input is intended to drive animations while providing the reader interactive control on demand: the animation pauses when the user interacts with the slider, but can be resumed by clicking the play button. For examples, see [Bar Chart Race](/@mbostock/bar-chart-race-with-scrubber), [The Wealth & Health of Nations](/@mbostock/the-wealth-health-of-nations), [Solar Path](/@mbostock/solar-path), or [Animated Treemap](/@d3/animated-treemap).`
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _2(md){return(
 md`To use in your notebook:
 
 ~~~js
 import {Scrubber} from "@mbostock/scrubber"
 ~~~
 `
-)});
-  main.variable(observer("viewof i")).define("viewof i", ["Scrubber","numbers"], function(Scrubber,numbers){return(
+)}
+
+function _i(Scrubber,numbers){return(
 Scrubber(numbers)
-)});
-  main.variable(observer("i")).define("i", ["Generators", "viewof i"], (G, _) => G.input(_));
-  main.variable(observer("numbers")).define("numbers", function(){return(
+)}
+
+function _numbers(){return(
 Array.from({length: 256}, (_, i) => i)
-)});
-  main.variable(observer()).define(["md","i"], function(md,i){return(
+)}
+
+function _5(md,i){return(
 md`The current value of *i* is ${i}.`
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _6(md){return(
 md`Given an array of *values* representing the discrete frames of the animation, such as an array of numbers or dates, Scrubber returns a [view-compatible input](/@observablehq/introduction-to-views). (It uses the [disposal promise](/@mbostock/disposal) to stop the animation automatically on invalidation.)`
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _7(md){return(
 md`## Options
 
 Scrubber has several options which you can pass as the second argument.`
-)});
-  main.variable(observer("autoplay")).define("autoplay", ["md"], function(md){return(
+)}
+
+function _autoplay(md){return(
 md`The *autoplay* option, which defaults to true, specifies whether the animation plays automatically. Set it to false to require the reader to click on the play button.`
-)});
-  main.variable(observer()).define(["Scrubber","numbers"], function(Scrubber,numbers){return(
+)}
+
+function _9(Scrubber,numbers){return(
 Scrubber(numbers, {autoplay: false})
-)});
-  main.variable(observer("loop")).define("loop", ["md"], function(md){return(
+)}
+
+function _loop(md){return(
 md`The *loop* option, which defaults to true, specifies whether the animation should automatically restart from the beginning after the end is reached. Set it to false to require the reader to click the play button to restart the animation after it ends.`
-)});
-  main.variable(observer()).define(["Scrubber","numbers"], function(Scrubber,numbers){return(
+)}
+
+function _11(Scrubber,numbers){return(
 Scrubber(numbers, {loop: false})
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _12(md){return(
 md`The *alternate* option, which defaults to false, specifies whether the animation should reverse direction when it reaches the end, rather than repeat from the start.`
-)});
-  main.variable(observer()).define(["Scrubber","numbers"], function(Scrubber,numbers){return(
+)}
+
+function _13(Scrubber,numbers){return(
 Scrubber(numbers, {loop: false, alternate: true})
-)});
-  main.variable(observer("delay")).define("delay", ["md"], function(md){return(
+)}
+
+function _delay(md){return(
 md`The *delay* option, which defaults to null, specifies how long to wait between frames in milliseconds. A null value means to use [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), which typically means sixty times per second (about 17ms). Non-null delays use [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval).`
-)});
-  main.variable(observer()).define(["Scrubber"], function(Scrubber){return(
+)}
+
+function _15(Scrubber){return(
 Scrubber(["red", "green", "blue"], {delay: 1000})
-)});
-  main.variable(observer("loopDelay")).define("loopDelay", ["md"], function(md){return(
+)}
+
+function _loopDelay(md){return(
 md`The *loopDelay* option, which defaults to 0, specifies how long to wait before looping in milliseconds. This can be paired with the *initial* option to show the ending value before the animation starts anew from the beginning.`
-)});
-  main.variable(observer()).define(["Scrubber","numbers"], function(Scrubber,numbers){return(
+)}
+
+function _17(Scrubber,numbers){return(
 Scrubber(numbers, {initial: numbers.length - 1, loopDelay: 1000})
-)});
-  main.variable(observer("format")).define("format", ["md"], function(md){return(
+)}
+
+function _format(md){return(
 md`The *format* option, which defaults to the identity function, specifies how to display the currently-selected value. The *format* function is passed the current value, the current (zero-based) index, and the values array.`
-)});
-  main.variable(observer("dates")).define("dates", function(){return(
+)}
+
+function _dates(){return(
 Array.from({length: 365}, (_, i) => {
   const date = new Date(2019, 0, 1);
   date.setDate(i + 1);
   return date;
 })
-)});
-  main.variable(observer("viewof date")).define("viewof date", ["Scrubber","dates"], function(Scrubber,dates){return(
+)}
+
+function _date(Scrubber,dates){return(
 Scrubber(dates, {
   autoplay: false,
   loop: false,
   format: (date) => date.toLocaleString("en", { month: "long", day: "numeric" })
 })
-)});
-  main.variable(observer("date")).define("date", ["Generators", "viewof date"], (G, _) => G.input(_));
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _21(md){return(
 md`If you have suggestions for other options you’d like to see, please let me know!`
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _22(md){return(
 md`---
 
 ## Implementation`
-)});
-  main.variable(observer("style")).define("style", ["html"], function(html){return(
+)}
+
+function _style(html){return(
 html`
 <style>
   .button {
@@ -113,8 +131,9 @@ html`
 }
   </style>
 `
-)});
-  main.variable(observer("Scrubber")).define("Scrubber", ["html","Inputs"], function(html,Inputs){return(
+)}
+
+function _Scrubber(html,Inputs){return(
 function Scrubber(
   values,
   {
@@ -203,6 +222,35 @@ function Scrubber(
   Inputs.disposal(form).then(stop);
   return form;
 }
-)});
+)}
+
+export default function define(runtime, observer) {
+  const main = runtime.module();
+  main.variable(observer()).define(["md"], _1);
+  main.variable(observer()).define(["md"], _2);
+  main.variable(observer("viewof i")).define("viewof i", ["Scrubber","numbers"], _i);
+  main.variable(observer("i")).define("i", ["Generators", "viewof i"], (G, _) => G.input(_));
+  main.variable(observer("numbers")).define("numbers", _numbers);
+  main.variable(observer()).define(["md","i"], _5);
+  main.variable(observer()).define(["md"], _6);
+  main.variable(observer()).define(["md"], _7);
+  main.variable(observer("autoplay")).define("autoplay", ["md"], _autoplay);
+  main.variable(observer()).define(["Scrubber","numbers"], _9);
+  main.variable(observer("loop")).define("loop", ["md"], _loop);
+  main.variable(observer()).define(["Scrubber","numbers"], _11);
+  main.variable(observer()).define(["md"], _12);
+  main.variable(observer()).define(["Scrubber","numbers"], _13);
+  main.variable(observer("delay")).define("delay", ["md"], _delay);
+  main.variable(observer()).define(["Scrubber"], _15);
+  main.variable(observer("loopDelay")).define("loopDelay", ["md"], _loopDelay);
+  main.variable(observer()).define(["Scrubber","numbers"], _17);
+  main.variable(observer("format")).define("format", ["md"], _format);
+  main.variable(observer("dates")).define("dates", _dates);
+  main.variable(observer("viewof date")).define("viewof date", ["Scrubber","dates"], _date);
+  main.variable(observer("date")).define("date", ["Generators", "viewof date"], (G, _) => G.input(_));
+  main.variable(observer()).define(["md"], _21);
+  main.variable(observer()).define(["md"], _22);
+  main.variable(observer("style")).define("style", ["html"], _style);
+  main.variable(observer("Scrubber")).define("Scrubber", ["html","Inputs"], _Scrubber);
   return main;
 }

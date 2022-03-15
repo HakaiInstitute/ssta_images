@@ -1,14 +1,11 @@
 // https://observablehq.com/@mbrownshoes/how-i-start-maps-in-d3@1710
-export default function define(runtime, observer) {
-  const main = runtime.module();
-  const fileAttachments = new Map([["BC_Midres_latlngTOPO.json",new URL("./files/7ba550b22fdb22cba9fed3326a51f513cf291d8ea63f9db45879b66641f3935ce23bb2fa199e89c9fca8abcc84e39c72ed6a9e2ade12d479badfd9ce5e1b9044",import.meta.url)]]);
-  main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
-  main.variable(observer()).define(["md"], function(md){return(
+function _1(md){return(
 md`# How I start maps in D3
 
 `
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _2(md){return(
 md`
 ## Starting with a geojson file ...
 
@@ -19,20 +16,25 @@ The file used in the example that follows was already in WGS 84 so no conversion
 Then, export the file as topojson for easy plotting in D3. Converting to [topojson](https://github.com/topojson/topojson) also significantly reduced the files size. If the file is large you can also simplify in mapshaper to further reduce the size. 
 
 `
-)});
-  main.variable(observer("BC_Midres")).define("BC_Midres", ["FileAttachment"], function(FileAttachment){return(
+)}
+
+function _BC_Midres(FileAttachment){return(
 FileAttachment("BC_Midres_latlngTOPO.json").json()
-)});
-  main.variable(observer("topojson")).define("topojson", ["require"], function(require){return(
+)}
+
+function _topojson(require){return(
 require('topojson')
-)});
-  main.variable(observer("d3")).define("d3", ["require"], function(require){return(
+)}
+
+function _d3(require){return(
 require("d3@5", "d3-array@2")
-)});
-  main.variable(observer()).define(["topojson","BC_Midres"], function(topojson,BC_Midres){return(
+)}
+
+function _6(topojson,BC_Midres){return(
 topojson.feature(BC_Midres, BC_Midres.objects.BC_Midres_latlng).features
-)});
-  main.variable(observer("stations")).define("stations", function(){return(
+)}
+
+function _stations(){return(
 [
   { station: "C46004", lat: 50.94, lon: -135.87 },
   { station: "C46036", lat: 48.3, lon: -133.86 },
@@ -53,13 +55,15 @@ topojson.feature(BC_Midres, BC_Midres.objects.BC_Midres_latlng).features
   { station: "C46207", lat: 50.88, lon: -129.91 },
   { station: "C46208", lat: 52.51, lon: -132.69 }
 ]
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _8(md){return(
 md`
 ### Da map
 `
-)});
-  main.variable(observer("exampleMap")).define("exampleMap", ["d3","width","topojson","BC_Midres","stations"], function(d3,width,topojson,BC_Midres,stations)
+)}
+
+function _exampleMap(d3,width,topojson,BC_Midres,stations)
 {
   const height = 500;
   const svg = d3.create("svg").attr("viewBox", [0, 0, width, height]);
@@ -104,17 +108,21 @@ md`
 
   return svg.node();
 }
-);
-  main.variable(observer()).define(["p","stations"], function(p,stations){return(
+
+
+function _10(p,stations){return(
 p([stations[0].lon, stations[0].lat])
-)});
-  main.variable(observer()).define(["stations"], function(stations){return(
+)}
+
+function _11(stations){return(
 stations[0]
-)});
-  main.variable(observer("p")).define("p", ["d3"], function(d3){return(
+)}
+
+function _p(d3){return(
 d3.geoAlbers().rotate([126, -10])
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _13(md){return(
 md`
 <br>
 
@@ -125,6 +133,24 @@ md`
 
 
 `
-)});
+)}
+
+export default function define(runtime, observer) {
+  const main = runtime.module();
+  const fileAttachments = new Map([["BC_Midres_latlngTOPO.json",new URL("./files/7ba550b22fdb22cba9fed3326a51f513cf291d8ea63f9db45879b66641f3935ce23bb2fa199e89c9fca8abcc84e39c72ed6a9e2ade12d479badfd9ce5e1b9044",import.meta.url)]]);
+  main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
+  main.variable(observer()).define(["md"], _1);
+  main.variable(observer()).define(["md"], _2);
+  main.variable(observer("BC_Midres")).define("BC_Midres", ["FileAttachment"], _BC_Midres);
+  main.variable(observer("topojson")).define("topojson", ["require"], _topojson);
+  main.variable(observer("d3")).define("d3", ["require"], _d3);
+  main.variable(observer()).define(["topojson","BC_Midres"], _6);
+  main.variable(observer("stations")).define("stations", _stations);
+  main.variable(observer()).define(["md"], _8);
+  main.variable(observer("exampleMap")).define("exampleMap", ["d3","width","topojson","BC_Midres","stations"], _exampleMap);
+  main.variable(observer()).define(["p","stations"], _10);
+  main.variable(observer()).define(["stations"], _11);
+  main.variable(observer("p")).define("p", ["d3"], _p);
+  main.variable(observer()).define(["md"], _13);
   return main;
 }

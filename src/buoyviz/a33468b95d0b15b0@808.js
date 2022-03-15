@@ -1,7 +1,5 @@
 // https://observablehq.com/@d3/color-legend@808
-export default function define(runtime, observer) {
-  const main = runtime.module();
-  main.variable(observer()).define(["md"], function(md){return(
+function _1(md){return(
 md`# Color Legend
 
 A simple legend for a [color scale](/@d3/color-schemes). Supports [continuous](/@d3/continuous-scales), [sequential](/@d3/sequential-scales), [diverging](/@d3/diverging-scales), [quantize, quantile, threshold](/@d3/quantile-quantize-and-threshold-scales) and [ordinal](/@d3/d3-scaleordinal) scales. To use:
@@ -11,88 +9,104 @@ import {Legend, Swatches} from "@d3/color-legend"
 ~~~
 
 Then call the legend function as shown below. (For ordinal scales, also consider the swatches function.)`
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _2(Legend,d3){return(
 Legend(d3.scaleSequential([0, 100], d3.interpolateViridis), {
   title: "Temperature (°F)"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _3(Legend,d3){return(
 Legend(d3.scaleSequentialSqrt([0, 1], d3.interpolateTurbo), {
   title: "Speed (kts)"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _4(Legend,d3){return(
 Legend(d3.scaleDiverging([-0.1, 0, 0.1], d3.interpolatePiYG), {
   title: "Daily change",
   tickFormat: "+%"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _5(Legend,d3){return(
 Legend(d3.scaleDivergingSqrt([-0.1, 0, 0.1], d3.interpolateRdBu), {
   title: "Daily change",
   tickFormat: "+%"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _6(Legend,d3){return(
 Legend(d3.scaleSequentialLog([1, 100], d3.interpolateBlues), {
   title: "Energy (joules)",
   ticks: 10
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _7(Legend,d3){return(
 Legend(d3.scaleSequentialQuantile(d3.range(100).map(() => Math.random() ** 2), d3.interpolateBlues), {
   title: "Quantile",
   tickFormat: ".2f"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _8(Legend,d3){return(
 Legend(d3.scaleSqrt([-100, 0, 100], ["blue", "white", "red"]), {
   title: "Temperature (°C)"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _9(Legend,d3){return(
 Legend(d3.scaleQuantize([1, 10], d3.schemePurples[9]), {
   title: "Unemployment rate (%)"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _10(Legend,d3){return(
 Legend(d3.scaleQuantile(d3.range(1000).map(d3.randomNormal(100, 20)), d3.schemeSpectral[9]), {
   title: "Height (cm)",
   tickFormat: ".0f"
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _11(Legend,d3){return(
 Legend(d3.scaleThreshold([2.5, 3.1, 3.5, 3.9, 6, 7, 8, 9.5], d3.schemeRdBu[9]), {
   title: "Unemployment rate (%)",
   tickSize: 0
 })
-)});
-  main.variable(observer()).define(["Legend","d3"], function(Legend,d3){return(
+)}
+
+function _12(Legend,d3){return(
 Legend(d3.scaleOrdinal(["<10", "10-19", "20-29", "30-39", "40-49", "50-59", "60-69", "70-79", "≥80"], d3.schemeSpectral[10]), {
   title: "Age (years)",
   tickSize: 0
 })
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _13(md){return(
 md`But wait, there’s more!
 
 How about swatches for ordinal color scales? Both variable-width swatches and [column layout](https://developer.mozilla.org/en-US/docs/Web/CSS/columns) are supported.`
-)});
-  main.variable(observer()).define(["Swatches","d3"], function(Swatches,d3){return(
+)}
+
+function _14(Swatches,d3){return(
 Swatches(d3.scaleOrdinal(["blueberries", "oranges", "apples"], d3.schemeCategory10))
-)});
-  main.variable(observer()).define(["Swatches","d3"], function(Swatches,d3){return(
+)}
+
+function _15(Swatches,d3){return(
 Swatches(d3.scaleOrdinal(["Wholesale and Retail Trade", "Manufacturing", "Leisure and hospitality", "Business services", "Construction", "Education and Health", "Government", "Finance", "Self-employed", "Other"], d3.schemeTableau10), {
   columns: "180px"
 })
-)});
-  main.variable(observer()).define(["md"], function(md){return(
+)}
+
+function _16(md){return(
 md`---
 
 ## Implementation`
-)});
-  main.variable(observer("Legend")).define("Legend", ["d3"], function(d3){return(
+)}
+
+function _Legend(d3){return(
 function Legend(color, {
   title,
   tickSize = 6,
@@ -239,13 +253,15 @@ function Legend(color, {
 
   return svg.node();
 }
-)});
-  main.variable(observer("legend")).define("legend", ["Legend"], function(Legend){return(
+)}
+
+function _legend(Legend){return(
 function legend({color, ...options}) {
   return Legend(color, options);
 }
-)});
-  main.variable(observer("Swatches")).define("Swatches", ["d3","htl"], function(d3,htl){return(
+)}
+
+function _Swatches(d3,htl){return(
 function Swatches(color, {
   columns = null,
   format,
@@ -319,11 +335,35 @@ function Swatches(color, {
   </style>
   <div>${domain.map(value => htl.html`<span class="${id}" style="--color: ${color(value)}">${format(value)}</span>`)}</div>`;
 }
-)});
-  main.variable(observer("swatches")).define("swatches", ["Swatches"], function(Swatches){return(
+)}
+
+function _swatches(Swatches){return(
 function swatches({color, ...options}) {
   return Swatches(color, options);
 }
-)});
+)}
+
+export default function define(runtime, observer) {
+  const main = runtime.module();
+  main.variable(observer()).define(["md"], _1);
+  main.variable(observer()).define(["Legend","d3"], _2);
+  main.variable(observer()).define(["Legend","d3"], _3);
+  main.variable(observer()).define(["Legend","d3"], _4);
+  main.variable(observer()).define(["Legend","d3"], _5);
+  main.variable(observer()).define(["Legend","d3"], _6);
+  main.variable(observer()).define(["Legend","d3"], _7);
+  main.variable(observer()).define(["Legend","d3"], _8);
+  main.variable(observer()).define(["Legend","d3"], _9);
+  main.variable(observer()).define(["Legend","d3"], _10);
+  main.variable(observer()).define(["Legend","d3"], _11);
+  main.variable(observer()).define(["Legend","d3"], _12);
+  main.variable(observer()).define(["md"], _13);
+  main.variable(observer()).define(["Swatches","d3"], _14);
+  main.variable(observer()).define(["Swatches","d3"], _15);
+  main.variable(observer()).define(["md"], _16);
+  main.variable(observer("Legend")).define("Legend", ["d3"], _Legend);
+  main.variable(observer("legend")).define("legend", ["Legend"], _legend);
+  main.variable(observer("Swatches")).define("Swatches", ["d3","htl"], _Swatches);
+  main.variable(observer("swatches")).define("swatches", ["Swatches"], _swatches);
   return main;
 }

@@ -618,13 +618,11 @@ const main = runtime.module(buoyViz, name => {
     }
 
     // returns just the brush dates but also loads the images for the interval selected
-    if (name === "limits") {
-        
-      
+    if (name === "limitsDelayed") {
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(value[0], startDate);
+                console.log(value[0], startDate);
                 // console.log(value[0] === startDate);
                 if(value[0] !== startDate){
                 endDate = value[1]
