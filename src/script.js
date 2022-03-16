@@ -41,7 +41,7 @@ var opts = {
 
 
 let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
-// modal.show();
+modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -654,7 +654,7 @@ const main = runtime.module(buoyViz, name => {
                     , firstLoad);
                     if (value !== null  ) { //&& firstLoad !==0
                         console.log('animateImages run by datesToPlot',firstLoad);
-                        firstLoad <= 2 ? animateImages(0) : animateImages()
+                        firstLoad < 2 ? animateImages(0) : animateImages()
                         firstLoad += 1
                     }
                 }
