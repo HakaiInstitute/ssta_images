@@ -530,6 +530,8 @@ async function animateImages(showSpin=1){
             imageOrientation: 'flipY',
             premultiplyAlpha: 'none'
         });
+        THREE.Cache.enabled = true
+
 
         function loadImage(file) {
             // console.log(file)
