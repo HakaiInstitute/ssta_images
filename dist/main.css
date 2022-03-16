@@ -225,7 +225,7 @@ h1 {
   position: absolute;
   z-index: 9;
   right:0px;
-  padding: 15px;
+  padding: 1px;
   /* margin-left: 55%;  */
   width: 450px;
   /* height: 100px;             */
@@ -278,7 +278,7 @@ h1 {
 #observablehq-viewof-colorView-5fc774d0{
   z-index: 9;
   left:2px;
-  margin-top: 42px; /* for demo purpose  */
+  margin-top: 45px; /* for demo purpose  */
   position: absolute;
   width: 80%; 
   opacity: 0.9; 
