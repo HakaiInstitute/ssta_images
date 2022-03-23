@@ -71,7 +71,7 @@ earthTexture.anisotropy = 16;
 
 // Scene
 const scene = new THREE.Scene()
-// scene.background = new THREE.Color("white");
+// scene.background = new THREE.Color("#606060");
 // scene.add(light);
 // Object
 const geometry = new THREE.SphereGeometry(1, 64, 32)
@@ -595,6 +595,7 @@ const main = runtime.module(buoyViz, name => {
     if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
     if (name === "viewof lineChart") return new Inspector(document.querySelector("#observablehq-viewof-lineChart-0643eba3"));
     if (name === "style") return new Inspector(document.querySelector("#observablehq-style-f28a443b"));
+    if (name === "currentPostion") return new Inspector(document.querySelector("#observablehq-currentPostion-6be0c0e5"));
 
 
     // returns just the category selected

@@ -6,7 +6,7 @@
   padding: 0;
 } */
 
-body {background-color: #000000;}
+body {background-color: #606060;}
 
 #selectBoxes {
     background-color: #e0f5ee;
@@ -272,6 +272,19 @@ h1 {
   left:0%;
   right:0;
   bottom:60px;
+  margin:auto;
+  padding:5px;
+}
+
+#observablehq-currentPostion-6be0c0e5{
+  position: absolute;
+  /* width: 80%;  */
+  /* opacity: 0.9;  */
+  z-index: 21;
+ 
+  left:0%;
+  right:0;
+  bottom:95px;
   margin:auto;
   padding:5px;
 }
