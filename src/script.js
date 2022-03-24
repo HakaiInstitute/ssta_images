@@ -41,7 +41,7 @@ var opts = {
 
 
 let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
-modal.show();
+// modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -592,10 +592,11 @@ const main = runtime.module(buoyViz, name => {
     if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
     if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
     if (name === "minFunc") return true;
+    if (name === "ns") return true;
     if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
     if (name === "viewof lineChart") return new Inspector(document.querySelector("#observablehq-viewof-lineChart-0643eba3"));
     if (name === "style") return new Inspector(document.querySelector("#observablehq-style-f28a443b"));
-    if (name === "currentPostion") return new Inspector(document.querySelector("#observablehq-currentPostion-6be0c0e5"));
+    if (name === "viewof currentPostion") return new Inspector(document.querySelector("#observablehq-viewof-currentPostion-522621e5"));
 
 
     // returns just the category selected

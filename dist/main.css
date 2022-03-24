@@ -244,7 +244,7 @@ h1 {
   margin-top: 45%; */
   right:17px;
   /* right:0; */
-  bottom:114px;
+  bottom:120px;
   /* margin:5px;
   padding:5px; */
 }
@@ -276,7 +276,7 @@ h1 {
   padding:5px;
 }
 
-#observablehq-currentPostion-6be0c0e5{
+#observablehq-viewof-currentPostion-522621e5{
   position: absolute;
   /* width: 80%;  */
   /* opacity: 0.9;  */
@@ -306,7 +306,7 @@ h1 {
   opacity: 0.9; 
   z-index: 9;
  
-  left:5%;
+  left:0;
   right:0;
   bottom:1px;
   margin:5px;
@@ -329,7 +329,7 @@ h1 {
   position: absolute;
   /* top:10px; */
   right:45px;
-  bottom:160px;
+  bottom:170px;
   z-index: 9;
   width: 40px;
   font-size: 16px;
@@ -360,7 +360,7 @@ h1 {
   position: absolute;
   /* top:10px; */
   right:17px;
-  bottom:160px;
+  bottom:170px;
   z-index: 9;
   width: 50px;
   font-size: 16px;
