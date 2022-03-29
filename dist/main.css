@@ -23,10 +23,10 @@ body {background-color: #606060;}
   display: none;
 }
 
-.brushFilter {
+/* .brushFilter {
 background-color: black;
 color: "#e0f5ee"
-}
+} */
 
 .axisWhite line{
 stroke: #e0f5ee;
@@ -244,7 +244,7 @@ h1 {
   margin-top: 45%; */
   right:17px;
   /* right:0; */
-  bottom:120px;
+  bottom:140px;
   /* margin:5px;
   padding:5px; */
 }
@@ -263,15 +263,28 @@ h1 {
   padding:5px;
 }
 
-#observablehq-viewof-limits-5fc774d0{
+#observablehq-viewof-focus-5e37f0ea{
   position: absolute;
   /* width: 80%;  */
-  opacity: 0.9; 
+  opacity: 0.95; 
   z-index: 11;
  
-  left:0%;
+  left:30px;
   right:0;
-  bottom:60px;
+  bottom:15px;
+  margin:auto;
+  /* padding:5px; */
+}
+
+#observablehq-chart-5e37f0ea{
+  position: absolute;
+  /* width: 80%;  */
+  opacity: 0.95; 
+  z-index: 11;
+ 
+  left:30px;
+  right:0;
+  bottom:70px;
   margin:auto;
   padding:5px;
 }
@@ -308,9 +321,9 @@ h1 {
  
   left:0;
   right:0;
-  bottom:1px;
-  margin:5px;
-  padding:5px;
+  bottom:94px;
+  /* margin:5px; */
+  /* padding:5px; */
 }
 
 #observablehq-curDate-890dd666{
@@ -329,7 +342,7 @@ h1 {
   position: absolute;
   /* top:10px; */
   right:45px;
-  bottom:170px;
+  bottom:190px;
   z-index: 9;
   width: 40px;
   font-size: 16px;
@@ -360,7 +373,7 @@ h1 {
   position: absolute;
   /* top:10px; */
   right:17px;
-  bottom:170px;
+  bottom:190px;
   z-index: 9;
   width: 50px;
   font-size: 16px;
