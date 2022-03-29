@@ -583,14 +583,17 @@ let currentDate, firstDay, lastDay;
 const runtime = self.runtime = new Runtime(library);
 const main = runtime.module(buoyViz, name => {
     // console.log(buoyViz)
-    if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
+    // if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
 
     if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
     if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
     if (name === "curDate") return new Inspector(document.querySelector("#observablehq-curDate-890dd666"));
     if (name === "leg") return new Inspector(document.querySelector("#observablehq-leg-2162ef11"));
     if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
-    if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
+    // if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
+    if (name === "chart") return new Inspector(document.querySelector("#observablehq-chart-5e37f0ea"));
+    if (name === "viewof focus") return new Inspector(document.querySelector("#observablehq-viewof-focus-5e37f0ea"));
+
     if (name === "minFunc") return true;
     if (name === "ns") return true;
     if (name === "viewof datesToPlot") return new Inspector(document.querySelector("#observablehq-viewof-datesToPlot-c8a213a1"));
