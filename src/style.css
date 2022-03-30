@@ -328,7 +328,8 @@ h1 {
 
 #observablehq-curDate-890dd666{
   z-index: 9;
-  left:2px;
+  left:140px;
+  bottom:200px;
   margin-top:0px; /* for demo purpose  */
   position: absolute;
   /* width: 80%;  */
@@ -396,7 +397,7 @@ h1 {
   width: 114px; 
   opacity: 0.9; 
   z-index: 9;
-  left:240px;
+  left:2px;
   margin-top: 1px; /* for demo purpose  */
   /* transform: scale(.4); */
 }
