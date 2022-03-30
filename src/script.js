@@ -593,6 +593,7 @@ const main = runtime.module(buoyViz, name => {
     // if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
     if (name === "chart") return new Inspector(document.querySelector("#observablehq-chart-5e37f0ea"));
     if (name === "viewof focus") return new Inspector(document.querySelector("#observablehq-viewof-focus-5e37f0ea"));
+    if (name === "buttonStyle") return new Inspector(document.querySelector("#observablehq-buttonStyle-af1d3cc0"));
 
     if (name === "minFunc") return true;
     if (name === "ns") return true;
