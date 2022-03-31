@@ -81,6 +81,7 @@ const material = new THREE.MeshBasicMaterial({
 });
 const sphereBG = new THREE.Mesh(geometry, material)
 
+const scaleVector = new THREE.Vector3();
 // scene.add(sphere)
 //noaa-crw_mhw_v1.0.1_category_20150101
 let endDate = d3.timeDay.offset(d3.utcDay(), -2)//d3.utcDay()
@@ -259,10 +260,13 @@ let allBouys = []
 
 const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16) //new THREE.BufferGeometry();
 for (let i = 0; i < count; i++) {
-    const particlesMaterial = new THREE.MeshBasicMaterial({
+    const particlesMaterial = new THREE.MeshStandardMaterial({
         color: '#007490'
     }) //new THREE.PointsMaterial();
-
+    // particlesMaterial.metalness = 0.4
+    // particlesMaterial.roughness = 0.65
+    // particlesMaterial.shininess = 1
+    // particlesMaterial.specular = new THREE.Color(0x1188ff)
 
     let positions = new Float32Array(3);
     // const i3 = i * 3;
@@ -289,6 +293,7 @@ for (let i = 0; i < count; i++) {
     particles.position.z = positionOnGlobe.z
     particles.buoyId = buoys[i].pk
     particles.long_name = buoys[i].long_name
+    particlesMaterial.sizeAttenuation = true
     allBouys.push(particles)
     // scene.add(particles)
 
@@ -297,7 +302,9 @@ const group = new THREE.Group();
 console.log(allBouys)
 group.add(allBouys[0], allBouys[1], allBouys[2], allBouys[3], allBouys[4], allBouys[5], allBouys[6], allBouys[7], allBouys[8], allBouys[9], allBouys[10], allBouys[11], allBouys[12])
 scene.add(group);
-
+var light = new THREE.PointLight(0xFFFFFF);
+light.position.set(-10, 10, 20);
+scene.add(light);
 // particlesMaterial.depthWrite = false;
 //    particles = new THREE.Points(particlesGeometry, particlesMaterial);
 // const particlesMaterial = new THREE.PointsMaterial()
@@ -335,6 +342,9 @@ window.addEventListener('resize', () => {
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+   
+
 })
 
 const mouse = new THREE.Vector2()
@@ -459,6 +469,15 @@ const tick = () => {
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
+    var scaleFactor = 1;
+    allBouys.forEach( buoy => {
+
+    var sprite = buoy;
+    // console.log(sprite.scale);
+    var scale = scaleVector.subVectors(buoy.position, camera.position).length() / scaleFactor;
+    sprite.scale.set(scale, scale, scale);
+    
+    })
 }
 
 tick()
