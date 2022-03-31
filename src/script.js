@@ -261,10 +261,12 @@ let allBouys = []
 const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16) //new THREE.BufferGeometry();
 for (let i = 0; i < count; i++) {
     const particlesMaterial = new THREE.MeshStandardMaterial({
-        color: '#007490'
+        color: '#007490',
+        emissive: "#303030"
     }) //new THREE.PointsMaterial();
-    // particlesMaterial.metalness = 0.4
-    // particlesMaterial.roughness = 0.65
+    particlesMaterial.metalness = 0
+    particlesMaterial.roughness = 1
+    // particlesMaterial.emissive = "#303030"
     // particlesMaterial.shininess = 1
     // particlesMaterial.specular = new THREE.Color(0x1188ff)
 
@@ -302,8 +304,8 @@ const group = new THREE.Group();
 console.log(allBouys)
 group.add(allBouys[0], allBouys[1], allBouys[2], allBouys[3], allBouys[4], allBouys[5], allBouys[6], allBouys[7], allBouys[8], allBouys[9], allBouys[10], allBouys[11], allBouys[12])
 scene.add(group);
-var light = new THREE.PointLight(0xFFFFFF);
-light.position.set(-10, 10, 20);
+var light = new THREE.DirectionalLight(0xFFFFFF);
+light.position.set(-100, 100, 20);
 scene.add(light);
 // particlesMaterial.depthWrite = false;
 //    particles = new THREE.Points(particlesGeometry, particlesMaterial);
