@@ -383,8 +383,8 @@ const colors = new Map([
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 2
-// camera.position.set(-1.5, 1.6, 3);
-// camera.lookAt(new THREE.Vector3(0, 0, 0));
+// camera.position.set(-1.5, 1.6, 2);
+// camera.lookAt(new THREE.Vector3(-30, 30, 0));
 
 scene.add(camera)
 
@@ -401,11 +401,13 @@ const controls = new OrbitControls(camera, canvas)
 controls.minDistance = 1.3
 controls.maxDistance = 2.3
 controls.enableDamping = true
-controls.enablePan = false;
+
 controls.minAzimuthAngle = -1 //left rotate
 controls.maxAzimuthAngle = -0.85; // right
 controls.minPolarAngle = .7;
 controls.maxPolarAngle = .9;
+controls.enablePan = false;
+// controls.enableRotate  = false
 //  controls.enableRotate = false;
 // scene.add(group);
 // controls.addEventListener("change", (event) => {
@@ -429,6 +431,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 let currentIntersect = null
 let lastIntersect = null
 const objectsToTest = allBouys //[allBouys[1],allBouys[2],allBouys[3]]
+var vec3 = new THREE.Vector3();
 const tick = () => {
 
 
@@ -462,9 +465,13 @@ const tick = () => {
 
     }
 
-   
+    // vec3.subVectors(camera.position, allBouys[1].position);
+
     // Update controls
-    controls.update()
+    // controls.object.position.copy(allBouys[1].position).add(vec3);
+    // controls.target.copy(allBouys[1].position);
+    controls.update();
+    // controls.update()
 
     // Render
     renderer.render(scene, camera)
