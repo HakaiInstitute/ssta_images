@@ -266,7 +266,6 @@ for (let i = 0; i < count; i++) {
     }) //new THREE.PointsMaterial();
     particlesMaterial.metalness = 0
     particlesMaterial.roughness = 1
-    // particlesMaterial.emissive = "#303030"
     // particlesMaterial.shininess = 1
     // particlesMaterial.specular = new THREE.Color(0x1188ff)
 
@@ -280,14 +279,7 @@ for (let i = 0; i < count; i++) {
         1,
         0.001
     );
-    // positions[0] = positionOnGlobe.x;
-    // positions[1] = positionOnGlobe.y;
-    // positions[2] = positionOnGlobe.z;
-    // console.log(positions)
-    // particlesGeometry.setAttribute(
-    //     "position",
-    //     new THREE.BufferAttribute(positions, 3)
-    // );
+  
 
     let particles = new THREE.Mesh(particlesGeometry, particlesMaterial)
     particles.position.x = positionOnGlobe.x
@@ -534,7 +526,7 @@ async function animateImages(showSpin=1){
     prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
     dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
         ".png")
-    console.log(dateFiles[0]);
+    // console.log(dateFiles[0]);
 
    
 
@@ -546,7 +538,6 @@ async function animateImages(showSpin=1){
             }).map(d => d.files)
   
 
-    // console.log("dateFiles.length", dateFiles.length,dateFilesWeHave)
 
         // try one ww to load them all 
         if(showSpin !=0){
@@ -558,7 +549,7 @@ async function animateImages(showSpin=1){
             imageOrientation: 'flipY',
             premultiplyAlpha: 'none'
         });
-        // THREE.Cache.enabled = true
+        THREE.Cache.enabled = true
 
 
         function loadImage(file) {
