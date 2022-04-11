@@ -463,6 +463,11 @@ h1 {
   /* input[type="range"][name="i"] {
     width: 80% !important;
   } */
-  
+  .modal-content {
+    width: 600px;
+color: white;
+      background-color: rgb(88, 88, 88);
+
+  }
 
 /*# sourceMappingURL=main.css.map*/

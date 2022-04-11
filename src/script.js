@@ -41,7 +41,7 @@ var opts = {
 
 
 let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
-// modal.show();
+modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -399,6 +399,7 @@ controls.maxAzimuthAngle = -0.85; // right
 controls.minPolarAngle = .7;
 controls.maxPolarAngle = .9;
 controls.enablePan = false;
+controls.zoomSpeed = 0.5
 // controls.enableRotate  = false
 //  controls.enableRotate = false;
 // scene.add(group);
