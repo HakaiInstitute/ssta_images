@@ -519,9 +519,13 @@ let firstLoad = 0,
     bouyData,dateFilesWeHave
 
 async function animateImages(showSpin=1){
+    d3.select("#close-me").style("visibility","hidden")
+    for (const object of objectsToTest) {
+        object.material.color.set("#007490")
+    }
     // console.log('animatImages run');
     everyDayBetween = d3.timeDay.range(startDate, endDate)
-    console.log(startDate, endDate);
+    // console.log(startDate, endDate);
 
     prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
     dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
@@ -541,7 +545,7 @@ async function animateImages(showSpin=1){
 
         // try one ww to load them all 
         if(showSpin !=0){
-        console.log('run spinner');
+        // console.log('run spinner');
             var spinner = new Spinner(opts).spin(target);
         }
 
@@ -560,7 +564,9 @@ async function animateImages(showSpin=1){
                     
                 }, undefined, function(e) {
                     console.error(e);
-                    if(showSpin != 0){spinner.stop()};
+                    if(showSpin != 0){spinner.stop()
+                        d3.select("#close-me").style("visibility","visible")
+                    };
                     return []
                 })
             })
@@ -579,21 +585,25 @@ async function animateImages(showSpin=1){
         Promise.all(promises)
             .then(function(textures) {
             //    console.log(textures);
-                if(showSpin != 0){spinner.stop()};
+                if(showSpin != 0){spinner.stop()
+                    // d3.select("#close-me").style("visibility","visible")
+                };
                 allText = textures
-                console.log('printy run here');
+                // console.log('printy run here');
                 const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
                 // console.log(currentDate === undefined);
+                
                 if(currentDate !== undefined){
                     const fileToUse = fileName + new Date(currentDate).toISOString().substring(0, 10).replaceAll("-", "") + ".png"              
                     const ind = dateFilesWeHave.indexOf(fileToUse)                
                     const textureToUse = allText[ind]
-    
+                    // d3.select("#close-me").style("visibility","visible")
                     // this renders the first image loaded (the current date) after the brush is moved.
                     printy(allText[ind])
                 }
 
             })
+            
 }
 
 const library = new Library();
@@ -603,6 +613,7 @@ const runtime = self.runtime = new Runtime(library);
 const main = runtime.module(buoyViz, name => {
     // console.log(buoyViz)
     // if (name === "eventText") return new Inspector(document.querySelector("#observablehq-eventText-bf0be2b8"));
+    if (name === "viewof focus") return new Inspector(document.querySelector("#observablehq-viewof-focus-5e37f0ea"));
 
     if (name === "globe") return new Inspector(document.querySelector("#observablehq-globe-273ac292"));
     if (name === "viewof time1") return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"));
@@ -611,7 +622,6 @@ const main = runtime.module(buoyViz, name => {
     if (name === "viewof colorView") return new Inspector(document.querySelector("#observablehq-viewof-colorView-5fc774d0"));
     // if (name === "viewof limits") return new Inspector(document.querySelector("#observablehq-viewof-limits-5fc774d0"));
     if (name === "chart") return new Inspector(document.querySelector("#observablehq-chart-5e37f0ea"));
-    if (name === "viewof focus") return new Inspector(document.querySelector("#observablehq-viewof-focus-5e37f0ea"));
     if (name === "buttonStyle") return new Inspector(document.querySelector("#observablehq-buttonStyle-af1d3cc0"));
     if (name === "legTitle") return new Inspector(document.querySelector("#observablehq-legTitle-538b3b28"));
 
@@ -633,7 +643,7 @@ const main = runtime.module(buoyViz, name => {
                 category = value
                 console.log(value, firstLoad)
                 if(firstLoad != 0){
-                    console.log("colorView runs animateImages");
+                    // console.log("colorView runs animateImages");
                     animateImages()
                 }
                 // firstLoad === 0 ? animateImages(0) : animateImages()
@@ -650,7 +660,7 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                console.log(value[0], startDate);
+                // console.log(value[0], startDate);
                 // console.log(value[0] === startDate);
                 if(value[0] !== startDate){
                 endDate = value[1]
@@ -673,13 +683,13 @@ const main = runtime.module(buoyViz, name => {
             pending() {},
             fulfilled(value) {
 
-                console.log(value.length, firstLoad);
-                console.log(firstDay, value[0]);
+                // console.log(value.length, firstLoad);
+                // console.log(firstDay, value[0]);
                 if(firstDay !== value[0]){
-                    console.log('run animation',value.length
-                    , firstLoad);
+                    // console.log('run animation',value.length
+                    // , firstLoad);
                     if (value !== null  ) { //&& firstLoad !==0
-                        console.log('animateImages run by datesToPlot',firstLoad);
+                        // console.log('animateImages run by datesToPlot',firstLoad);
                         firstLoad < 2 ? animateImages(0) : animateImages()
                         firstLoad += 1
                     }
