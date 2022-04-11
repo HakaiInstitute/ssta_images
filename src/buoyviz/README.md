@@ -1,6 +1,6 @@
 # Marine heatwave charts and brush/player
 
-https://observablehq.com/d/0b936d79280ee3bd@5435
+https://observablehq.com/d/0b936d79280ee3bd@5591
 
 View this notebook in your browser by running a web server in this folder. For
 example:

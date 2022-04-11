@@ -41,7 +41,7 @@ var opts = {
 
 
 let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
-modal.show();
+// modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -549,7 +549,7 @@ async function animateImages(showSpin=1){
             imageOrientation: 'flipY',
             premultiplyAlpha: 'none'
         });
-        THREE.Cache.enabled = true
+        // THREE.Cache.enabled = true
 
 
         function loadImage(file) {
@@ -613,6 +613,7 @@ const main = runtime.module(buoyViz, name => {
     if (name === "chart") return new Inspector(document.querySelector("#observablehq-chart-5e37f0ea"));
     if (name === "viewof focus") return new Inspector(document.querySelector("#observablehq-viewof-focus-5e37f0ea"));
     if (name === "buttonStyle") return new Inspector(document.querySelector("#observablehq-buttonStyle-af1d3cc0"));
+    if (name === "legTitle") return new Inspector(document.querySelector("#observablehq-legTitle-538b3b28"));
 
     if (name === "minFunc") return true;
     if (name === "ns") return true;
