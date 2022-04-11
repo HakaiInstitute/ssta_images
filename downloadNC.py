@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import cmocean.cm as cm
 import numpy as np
 import cartopy.crs as ccrs
-
+import os
 # import cartopy.feature as cfeature
 # import cartopy.io.img_tiles as cimgt
 import glob
@@ -16,7 +16,7 @@ import glob
 # ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/
 today = datetime.datetime.utcnow().date()
 
-yesterday = today - datetime.timedelta(days=4)
+yesterday = today - datetime.timedelta(days=11)
 yesterday = yesterday.strftime("%Y%m%d")
 ddir='./static/textures/'
 
@@ -116,9 +116,10 @@ with xr.open_dataset(local_filename) as data:
 #         ax.imshow(img,extent=img_extent)
     ax.set_extent([-180, 180, -90, 90])
     
-    # print(fileAnomaly[:-3]+'.png')
+    print(fileAnomaly[:-3]+'.png')
     fig.savefig(ddir+fileAnomaly[:-3]+'.png',transparent=True, dpi=200,bbox_inches='tight', pad_inches = 0)
 #         plt.close("all")
+    os.remove(ddir+fileAnomaly)
     data.close()
     fig.clf()
     plt.close()
@@ -195,6 +196,7 @@ with xr.open_dataset(local_filename) as data:
 
     fig.savefig(ddir+fileHW[:-3]+'.png',transparent=True, dpi=300,bbox_inches='tight', pad_inches = 0)
 #         plt.close("all")
+    os.remove(ddir+fileHW)
     data.close()
     fig.clf()
     plt.close()
