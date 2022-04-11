@@ -16,7 +16,7 @@ import glob
 # ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/
 today = datetime.datetime.utcnow().date()
 
-yesterday = today - datetime.timedelta(days=1)
+yesterday = today - datetime.timedelta(days=4)
 yesterday = yesterday.strftime("%Y%m%d")
 ddir='./static/textures/'
 
@@ -116,8 +116,8 @@ with xr.open_dataset(local_filename) as data:
 #         ax.imshow(img,extent=img_extent)
     ax.set_extent([-180, 180, -90, 90])
     
-
-    fig.savefig(fileAnomaly[:-3]+'.png',transparent=True, dpi=200,bbox_inches='tight', pad_inches = 0)
+    # print(fileAnomaly[:-3]+'.png')
+    fig.savefig(ddir+fileAnomaly[:-3]+'.png',transparent=True, dpi=200,bbox_inches='tight', pad_inches = 0)
 #         plt.close("all")
     data.close()
     fig.clf()
@@ -193,7 +193,7 @@ with xr.open_dataset(local_filename) as data:
     ax.set_extent([-180, 180, -90, 90])
 
 
-    fig.savefig(fileHW[:-3]+'.png',transparent=True, dpi=300,bbox_inches='tight', pad_inches = 0)
+    fig.savefig(ddir+fileHW[:-3]+'.png',transparent=True, dpi=300,bbox_inches='tight', pad_inches = 0)
 #         plt.close("all")
     data.close()
     fig.clf()
