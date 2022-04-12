@@ -41,7 +41,7 @@ var opts = {
 
 
 let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal')) // Returns a Bootstrap modal instance
-modal.show();
+// modal.show();
 
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -450,6 +450,7 @@ const tick = () => {
 
         }
         currentIntersect = intersects[0]
+        // console.log(currentIntersect)
     } else {
         if (currentIntersect) {
 
@@ -524,7 +525,7 @@ async function animateImages(showSpin=1){
     for (const object of objectsToTest) {
         object.material.color.set("#007490")
     }
-    // console.log('animatImages run');
+    console.log('animatImages run');
     everyDayBetween = d3.timeDay.range(startDate, endDate)
     // console.log(startDate, endDate);
 
@@ -661,11 +662,15 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(value[0], startDate);
-                // console.log(value[0] === startDate);
+              
                 if(value[0] !== startDate){
                 endDate = value[1]
                 startDate = value[0]
+
+                // this makes sure all buoys are reset to unclicked when the brush is moved.
+                clickedSite = null
+               
+
             }
 
             },
@@ -767,7 +772,9 @@ const main = runtime.module(buoyViz, name => {
     // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
-var button = document.createElement('button');
+
+// button to close chart
+const button = document.createElement('button');
 button.setAttribute("class","close")
 button.innerHTML = 'X';
 button.onclick = function() {
@@ -778,29 +785,27 @@ button.onclick = function() {
 };
 document.getElementById('close-me').appendChild(button);
 
+
+// hide on start since no buoys have been clicked
 d3.select("#close-me").style("visibility","hidden")
 
 
-var event = new Event('click');
+const event = new Event('click');
  window.addEventListener('click', (event) => {
-    //  console.log('event fired',currentIntersect);
-    // console.log(currentIntersect);
-    // debugger;
+  
     if(currentIntersect === null){
 
     } else if (currentIntersect === 99){
-        // debugger
-        // console.log('here',lastIntersect);
+        console.log(currentIntersect)
+        
         
         currentIntersect = lastIntersect
         currentIntersect.object.material.color.set("#04ff00")
         currentIntersect.object.material.needsUpdate = true;
-        // console.log(currentIntersect.object.material.color);
-        // d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
+       
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
         buoyClicked = buoys.find((d) => d.pk === currentIntersect.object.buoyId).long_name
-        // console.log(clickedSite)
-        // console.log(clickedSite, buoyClicked,bouyData);
+       
         main.redefine("clickedSite", clickedSite);
         main.redefine("buoyClicked", buoyClicked);
     }  else {
@@ -811,12 +816,10 @@ var event = new Event('click');
     lastIntersect = currentIntersect
         currentIntersect.object.material.color.set("#04ff00")
         currentIntersect.object.material.needsUpdate = true;
-        // console.log(currentIntersect.object.material.color);
-        // d3.select("#observablehq-lineChart-097224fc").style("visibility","visible")
+      
         clickedSite = bouyData.filter(d => d.station === currentIntersect.object.buoyId)
         buoyClicked = buoys.find((d) => d.pk === currentIntersect.object.buoyId).long_name
-        // console.log(clickedSite)
-        // console.log(clickedSite, buoyClicked,bouyData);
+     
         main.redefine("clickedSite", clickedSite);
         main.redefine("buoyClicked", buoyClicked);
     }
@@ -824,14 +827,7 @@ var event = new Event('click');
     
 })
 
-//  window.addEventListener('dblclick', (event) => {
-//     d3.select("#observablehq-viewof-lineChart-0643eba3").style("visibility","hidden")
-//     for (const object of objectsToTest) {
-//         object.material.color.set("#eeff00")
-//     }
-//     clickedSite = null
-//     buoyClicked = null
-// })
+
 
 
 
