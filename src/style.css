@@ -484,6 +484,7 @@ h1 {
   .modal-body {
     background-image: url(https://images.theconversation.com/files/223729/original/file-20180619-126566-1jxjod2.jpg);
     background-size:     cover; 
+    text-align: justify;
   }
   .modal-header{
     background-color: #007490;
