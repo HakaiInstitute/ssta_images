@@ -32,7 +32,7 @@ with open(local_filename, 'wb') as f_output:
     # ftp.retrbinary('RETR '+ filename, f_output.write)
 # ftp.retrbinary(f"RETR {fileAnomaly}", open(rf"{fileAnomaly}", "wb").write)
 ftp.close()
-
+ 
 
 get_latlong = True
 res = 1
