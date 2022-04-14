@@ -44,6 +44,6 @@ csv.parseFile('./static/data/monthOfDailyData.csv', { headers: true })
   })
   .on('end', () => {
     const colors = normalizedAnomalyCalc(dataArr)
-    console.log(colors[1])
+    // console.log(colors[1])
   // > 4187
   })

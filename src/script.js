@@ -78,8 +78,7 @@ earthTexture.anisotropy = 16;
 
 // Scene
 const scene = new THREE.Scene()
-// scene.background = new THREE.Color("#606060");
-// scene.add(light);
+
 // Object
 const geometry = new THREE.SphereGeometry(1, 64, 32)
 const material = new THREE.MeshBasicMaterial({
@@ -121,8 +120,7 @@ function latLongToVector3(lat, lon, radius, heigth) {
     return new THREE.Vector3(x, y, z);
   }
 
-// the geometry that will contain all our cubes
-//   const totalGeom = new THREE.BufferGeometry();
+
 
 // add colors relative to the density. Not done here.
 const particleTexture = textureLoader.load('./textures/1.png')
@@ -273,8 +271,7 @@ for (let i = 0; i < count; i++) {
     }) //new THREE.PointsMaterial();
     particlesMaterial.metalness = 0
     particlesMaterial.roughness = 1
-    // particlesMaterial.shininess = 1
-    // particlesMaterial.specular = new THREE.Color(0x1188ff)
+ 
 
     let positions = new Float32Array(3);
     // const i3 = i * 3;
@@ -306,25 +303,7 @@ scene.add(group);
 var light = new THREE.DirectionalLight(0xFFFFFF);
 light.position.set(-100, 100, 20);
 scene.add(light);
-// particlesMaterial.depthWrite = false;
-//    particles = new THREE.Points(particlesGeometry, particlesMaterial);
-// const particlesMaterial = new THREE.PointsMaterial()
-// particlesMaterial.map = particleTexture
-// particlesMaterial.size = 0.05
-// particlesMaterial.sizeAttenuation = true
-// particlesMaterial.color = new THREE.Color('#ff88cc')
 
-// particles = new THREE.Points(particlesGeometry, particlesMaterial)
-// scene.add(allBouys)
-// scene.add(particles);
-// group.visible = false;
-
-
-
-// });
-
-
-// scene.position.y = 0.5
 
 // Sizes
 const sizes = {
@@ -352,9 +331,7 @@ const mouse = new THREE.Vector2()
 
 window.addEventListener('mousemove', (event) => {
     var rect = renderer.domElement.getBoundingClientRect();
-    // console.log(rect)
-    // mouse.x = event.clientX / sizes.width * 2 - 1
-    // mouse.y = -(event.clientY / sizes.height * 2 - 1)
+  
     mouse.x = ((event.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1;
 
 
@@ -372,7 +349,6 @@ const colors = new Map([
     ["Strong", "#f26722"],
     ["Severe", "#cd3728"],
     ["Extreme", "#7E1416"],
-
     ["seas", "pink"]
 ])
 
@@ -382,15 +358,12 @@ const colors = new Map([
 // Camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 2
-// camera.position.set(-1.5, 1.6, 2);
-// camera.lookAt(new THREE.Vector3(-30, 30, 0));
+
 
 scene.add(camera)
 
 
 
-
-// window.addEventListener("click", onDocumentMouseMove, false);
 var selectedObject = null;
 
 
@@ -407,14 +380,6 @@ controls.minPolarAngle = .7;
 controls.maxPolarAngle = .9;
 controls.enablePan = false;
 controls.zoomSpeed = 0.5
-// controls.enableRotate  = false
-//  controls.enableRotate = false;
-// scene.add(group);
-// controls.addEventListener("change", (event) => {
-//     controls.object.position.z > 1 ?
-//         (group.visible = false) :
-//         (group.visible = true);
-// });
 
 
 // Renderer
@@ -436,21 +401,9 @@ const tick = () => {
 
 
     raycaster.setFromCamera(mouse, camera);
-    // const objectsTo = allBouys.push(sphereBG)
-    // console.log(objectsTo)
-
-   
-    //    console.log(objectsToTest)
+  
     const intersects = raycaster.intersectObjects(objectsToTest)
-    //    console.log(intersects.length)
-
-    // for (const object of objectsToTest) {
-    //     object.material.color.set("#eeff00")
-    // }
-
-    // for (const intersect of intersects) {
-    //     intersect.object.material.color.set("#0000ff")
-    // }
+ 
 
     if (intersects.length) {
         if (currentIntersect === null) {
@@ -466,11 +419,7 @@ const tick = () => {
 
     }
 
-    // vec3.subVectors(camera.position, allBouys[1].position);
 
-    // Update controls
-    // controls.object.position.copy(allBouys[1].position).add(vec3);
-    // controls.target.copy(allBouys[1].position);
     controls.update();
     // controls.update()
 
@@ -504,12 +453,7 @@ let allText = null
 
 // const startDate = d3.timeDay.offset(endDate, -90)
 let everyDayBetween = d3.timeDay.range(startDate, endDate)
-// console.log(everyDayBetween);
 let dateFiles
-// let dateFiles = everyDayBetween.map((d) => "ct5km_ssta_v3.1_" + d.toISOString().substring(0, 10).replaceAll("-", "") +
-    // ".png")
-
-
 
 
 // runs the animation
@@ -534,12 +478,10 @@ async function animateImages(showSpin=1){
     }
     console.log('animatImages run');
     everyDayBetween = d3.timeDay.range(startDate, endDate)
-    // console.log(startDate, endDate);
 
     prefix = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
     dateFiles = everyDayBetween.map((d) => prefix + d.toISOString().substring(0, 10).replaceAll("-", "") +
         ".png")
-    // console.log(dateFiles[0]);
 
    
 
@@ -595,19 +537,15 @@ async function animateImages(showSpin=1){
             .then(function(textures) {
             //    console.log(textures);
                 if(showSpin != 0){spinner.stop()
-                    // d3.select("#close-me").style("visibility","visible")
                 };
                 allText = textures
-                // console.log('printy run here');
                 const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
-                // console.log(currentDate === undefined);
                 
                 if(currentDate !== undefined){
                     const fileToUse = fileName + new Date(currentDate).toISOString().substring(0, 10).replaceAll("-", "") + ".png"              
                     const ind = dateFilesWeHave.indexOf(fileToUse)                
                     const textureToUse = allText[ind]
-                    // d3.select("#close-me").style("visibility","visible")
-                    // this renders the first image loaded (the current date) after the brush is moved.
+
                     printy(allText[ind])
                 }
 
@@ -696,21 +634,16 @@ const main = runtime.module(buoyViz, name => {
             pending() {},
             fulfilled(value) {
 
-                // console.log(value.length, firstLoad);
-                // console.log(firstDay, value[0]);
                 if(firstDay !== value[0]){
-                    // console.log('run animation',value.length
-                    // , firstLoad);
+
                     if (value !== null  ) { //&& firstLoad !==0
-                        // console.log('animateImages run by datesToPlot',firstLoad);
                         firstLoad < 2 ? animateImages(0) : animateImages()
                         firstLoad += 1
                     }
                 }
                 firstDay = value[0]
                 lastDay = value[value.length-1]
-                // console.log('fire datesToPlot', new Date(value[0]), new Date(value[value.length-1]));
-                // console.log(firstDay === value[0],lastDay === value[value.length-1]);
+
 
             },
             rejected(error) {
@@ -726,8 +659,7 @@ const main = runtime.module(buoyViz, name => {
         return {
             pending() {},
             fulfilled(value) {
-                // console.log(new Date(value)) 
-                // console.log(firstLoad, allText);
+
                 currentDate = value
                 if (firstLoad > 2 && allText != null) {
                      
@@ -735,17 +667,13 @@ const main = runtime.module(buoyViz, name => {
                     const fileName = category === 'Anomaly' ? "ct5km_ssta_v3.1_" : "noaa-crw_mhw_v1.0.1_category_"
 
                     const fileToUse = fileName + new Date(value).toISOString().substring(0, 10).replaceAll("-", "") + ".png"
-                    // console.log(dateFilesWeHave,"file to use: " ,fileToUse)
                     const ind = dateFilesWeHave.indexOf(fileToUse)
-                    // console.log(ind,allText)
                     const textureToUse = allText[ind]
-                    // console.log('run printy here')
                     printy(textureToUse)
                 } else {
                     
                     firstLoad += 1
                 }
-                // return new Inspector(document.querySelector("#observablehq-viewof-time1-273ac292"))
             },
             rejected(error) {
                 node.textContent = error.message;
@@ -759,10 +687,9 @@ const main = runtime.module(buoyViz, name => {
                 // console.log(value);
                 bouyData = value
                 if(clickedSite != null){
-                    // console.log('fire me');
-                    // debugger
+                 
                     currentIntersect = 99
-                    // console.log(event);
+               
                     window.dispatchEvent(event);
                 }
             },
@@ -776,7 +703,6 @@ const main = runtime.module(buoyViz, name => {
 
     if (name === "ind") return true;
 
-    // if (name === "viewof map") return new Inspector(document.querySelector("#observablehq-viewof-map-273ac292"));
     return ["update", "HWsForDate", "hex", "hexbyLocation", "selected", "hexgeo", "updateMapbox"].includes(name);
 });
 
