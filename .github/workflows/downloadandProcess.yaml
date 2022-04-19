@@ -39,11 +39,13 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add --all
           git commit -m "Add changes" -a
-          echo "::set-output name=push::true"
+          echo "::set-output name=push::true force:true"
         shell: bash
       - name: Push changes
         if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
         with:
+          persist-credentials: false
+          fetch-depth: 0
           github_token: ${{ secrets.GITHUB_TOKEN }}  
           branch: "gh-pages"
