@@ -16,7 +16,7 @@ import glob
 # ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/
 today = datetime.datetime.utcnow().date()
 
-yesterday = today - datetime.timedelta(days=11)
+yesterday = today - datetime.timedelta(days=1)
 yesterday = yesterday.strftime("%Y%m%d")
 ddir='./static/textures/'
 
