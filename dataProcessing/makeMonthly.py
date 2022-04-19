@@ -45,7 +45,7 @@ def last_4chars(x):
 # files = sorted(nc_files, key = last_4chars)  
 # for file in files[0:1]:
 #     print(file)
-file = 'ssta_monthly/ct5km_ssta-mean_v3.1_202203.nc'
+file = 'dataProcessing/ssta_monthly/ct5km_ssta-mean_v3.1_202203.nc'
 key = file[-9:-3]
 a.setdefault(key, [])
 
