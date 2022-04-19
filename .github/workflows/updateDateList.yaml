@@ -1,0 +1,14 @@
+name: 'Update date list'
+description: 'Say "Thank You" to new pull requests'
+author: '[Your Name]'
+
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+  TENOR_TOKEN:
+    description: 'Tenor API token'
+    required: true
+
+runs:
+  main: 'makeFileList.js'
