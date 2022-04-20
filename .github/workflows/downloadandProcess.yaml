@@ -32,6 +32,11 @@ jobs:
           $CONDA/bin/python downloadNC.py
           dir
 
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+      - run: npm install
+      - run: npm run build --if-present
+
       - name: Commit files
         id: commit
         run: |
@@ -42,9 +47,3 @@ jobs:
           echo "::set-output name=push::true force:true"
           git push
         shell: bash
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-      - run: npm install
-      - run: npm run build --if-present
-
