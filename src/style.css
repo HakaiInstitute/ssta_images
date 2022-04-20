@@ -533,7 +533,7 @@ h1 {
     /* opacity: 0.6; */
   }
   .modal-body {
-    background-image: url(https://images.theconversation.com/files/223729/original/file-20180619-126566-1jxjod2.jpg);
+    background-image: url(https://hakaiinstitute.github.io/ssta_images/fish.jpg);
     background-size:     cover; 
     text-align: justify;
   }
@@ -550,7 +550,7 @@ h1 {
   }
 
   .lead {
-    background-color: rgba(0, 116, 144,.6);
+    background-color: rgba(0, 116, 144,.8);
     /* opacity: 0.5; */
   }
 
