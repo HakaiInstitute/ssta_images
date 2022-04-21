@@ -16,6 +16,7 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
+          ref: gh-pages
           python-version: ${{ matrix.python-version }}
 
         # $CONDA is an environment variable pointing to the root of the miniconda directory
