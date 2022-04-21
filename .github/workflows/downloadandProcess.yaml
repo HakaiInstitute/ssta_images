@@ -3,8 +3,8 @@ name: Download and Make
 on:
   schedule:
     - cron: "0 20 * * *" #runs at 00:00 UTC everyday
+  workflow_dispatch:
 
-  workflow_dispatch
 
 jobs:
   build:
@@ -19,6 +19,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+          ref: gh-pages
 
         # $CONDA is an environment variable pointing to the root of the miniconda directory
       - name: Install dependencies
