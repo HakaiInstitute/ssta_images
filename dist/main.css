@@ -428,7 +428,13 @@ h1 {
     font-size: 16px;
      /* margin-top: 10%; */
   }
-
+  #close-me{
+    width: 470px;
+    opacity: 1;  
+  }
+  #observablehq-viewof-lineChart-0643eba3{
+    opacity: 1;
+  }
 
 }
 
