@@ -163,11 +163,11 @@ h1 {
   white-space: pre-wrap;
 }
 
-#charts {
+/* #charts {
   position: relative;
   width: 100%;
   height:100%;
-}
+} */
 
 #observablehq-viewof-lineChart-0643eba3{
   position: absolute;
@@ -428,7 +428,13 @@ h1 {
     font-size: 16px;
      /* margin-top: 10%; */
   }
-
+  #close-me{
+    width: 470px;
+    opacity: 1;  
+  }
+  #observablehq-viewof-lineChart-0643eba3{
+    opacity: 1;
+  }
 
 }
 
@@ -551,6 +557,7 @@ h1 {
 
   .lead {
     background-color: rgba(0, 116, 144,.8);
+    padding: 10px;
     /* opacity: 0.5; */
   }
 
