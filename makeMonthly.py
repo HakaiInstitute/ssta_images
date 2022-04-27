@@ -1,9 +1,11 @@
+from ftplib import FTP
 import datetime
+from dateutil.relativedelta import relativedelta
 import xarray as xr
 import matplotlib.pyplot as plt
-import cmocean.cm as cm
+# import cmocean.cm as cm
 import numpy as np
-import cartopy.crs as ccrs
+# import cartopy.crs as ccrs
 import json 
 
 res = 1
@@ -26,8 +28,26 @@ mmmin_lat = 52
 
 # northern lats
 # mmin_lat = 70
+
+# download latest month
+today = datetime.datetime.utcnow().date()
+last_month = today - relativedelta(months=1)
+last_month = last_month.strftime("%Y%m")
+
+ddir='./static/textures/'
+ftp = FTP("ftp.star.nesdis.noaa.gov")
+ftp.login()
+ftp.cwd("pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/monthly/2022")
+fileAnomaly = "ct5km_ssta-mean_v3.1_{}.nc".format(last_month)
+
+local_filename = ddir + fileAnomaly
+with open(local_filename, 'wb') as f_output:
+    ftp.retrbinary(f"RETR {fileAnomaly}", f_output.write)
+
+ftp.close()
+
 a = {}
-def write_json(new_data, filename='monthly.json'):
+def write_json(new_data, filename='./src/monthly.json'):
     with open(filename,'r+') as file:
           # First we load existing data into a dict.
         file_data = json.load(file)
@@ -36,20 +56,19 @@ def write_json(new_data, filename='monthly.json'):
         # Sets file's current position at offset.
         file.seek(0)
         # convert back to json.
+
         json.dump(file_data, file, indent = 4)
         
 # sort files
-def last_4chars(x):
-    return(x[-10:])
-
 # files = sorted(nc_files, key = last_4chars)  
 # for file in files[0:1]:
 #     print(file)
-file = 'dataProcessing/ssta_monthly/ct5km_ssta-mean_v3.1_202203.nc'
-key = file[-9:-3]
+# local_filename = 'dataProcessing/ssta_monthly/ct5km_ssta-mean_v3.1_202012.nc'
+# key = file[-9:-3]
+# a.setdefault(key, [])
+key = local_filename[-9:-3]
 a.setdefault(key, [])
-
-with xr.open_dataset(file) as data:
+with xr.open_dataset(local_filename) as data:
     print(data.sea_surface_temperature_anomaly)
     dataDub = data
     dataDub2 = data
