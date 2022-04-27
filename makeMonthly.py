@@ -1,3 +1,4 @@
+# the json file this adds to is loaded directly from github to observable
 from ftplib import FTP
 import datetime
 from dateutil.relativedelta import relativedelta

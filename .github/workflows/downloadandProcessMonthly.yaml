@@ -1,4 +1,4 @@
-name: Download and Make
+name: Download and Make Monthly
 
 on:
   schedule:
