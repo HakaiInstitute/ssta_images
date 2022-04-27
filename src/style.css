@@ -41,7 +41,7 @@ fill-opacity: 1;
 stroke: none;
 }
 
-h1 {
+h1, h2, h4 {
   color: #e0f5ee;
 
 }
@@ -471,7 +471,15 @@ h1 {
 }
 
 
+#mainTitle{
+  top:10px;
+  position: absolute;
+}
 
+#mainByLine{
+  position: absolute;
+  top:45px;
+}
 
 #tooltiper{
   position: absolute;
