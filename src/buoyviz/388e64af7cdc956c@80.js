@@ -34,7 +34,13 @@ md`<a title="Plot" style="display: inline-flex; align-items: center; font: 600 1
 
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["aapl.csv",new URL("./files/3ccff97fd2d93da734e76829b2b066eafdaac6a1fafdec0faf6ebc443271cfc109d29e80dd217468fcb2aff1e6bffdc73f356cc48feb657f35378e6abbbb63b9",import.meta.url)],["goog.csv",new URL("./files/3ca44f93993f84575ab5461b4097d37b814438266e8cfe8774f70882f49bb289143c190963a158e8dc886989433af1161798ba76f2f4b36d17cc7150cba94477",import.meta.url)],["amzn.csv",new URL("./files/51ef8c06edd5d139385ad9477c0a42cbf0152f5a4facf30a52d5eaa3ce4debecf1114c4a51199e734274e4411ec8149ffdd0d094cd334095cf8f2a004fc90d44",import.meta.url)],["ibm.csv",new URL("./files/c56b9e232d72bf1df96ca3eeca37e29e811adb72f49d943659a0006c015e74d2c429186d9dca251060784f364eb2a16fd39584695d523588bdcb87e4d9eac650",import.meta.url)]]);
+  function toString() { return this.url; }
+  const fileAttachments = new Map([
+    ["aapl.csv", {url: new URL("./files/3ccff97fd2d93da734e76829b2b066eafdaac6a1fafdec0faf6ebc443271cfc109d29e80dd217468fcb2aff1e6bffdc73f356cc48feb657f35378e6abbbb63b9", import.meta.url), mimeType: "text/csv", toString}],
+    ["goog.csv", {url: new URL("./files/3ca44f93993f84575ab5461b4097d37b814438266e8cfe8774f70882f49bb289143c190963a158e8dc886989433af1161798ba76f2f4b36d17cc7150cba94477", import.meta.url), mimeType: "text/csv", toString}],
+    ["amzn.csv", {url: new URL("./files/51ef8c06edd5d139385ad9477c0a42cbf0152f5a4facf30a52d5eaa3ce4debecf1114c4a51199e734274e4411ec8149ffdd0d094cd334095cf8f2a004fc90d44", import.meta.url), mimeType: "text/csv", toString}],
+    ["ibm.csv", {url: new URL("./files/c56b9e232d72bf1df96ca3eeca37e29e811adb72f49d943659a0006c015e74d2c429186d9dca251060784f364eb2a16fd39584695d523588bdcb87e4d9eac650", import.meta.url), mimeType: "text/csv", toString}]
+  ]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], _1);
   main.variable(observer("stocks")).define("stocks", ["FileAttachment"], _stocks);

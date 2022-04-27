@@ -1,5 +1,5 @@
 from ftplib import FTP
-from pathlib import Path
+# from pathlib import Path
 import datetime
 import xarray as xr
 import matplotlib.pyplot as plt
@@ -9,8 +9,7 @@ import cartopy.crs as ccrs
 import os
 # import cartopy.feature as cfeature
 # import cartopy.io.img_tiles as cimgt
-import glob
-
+import json 
 ## Get the data from ftp sites
 
 # ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/
@@ -126,8 +125,7 @@ with xr.open_dataset(local_filename) as data:
 
 # ftp.retrbinary(f'RETR {fileAnomaly}', open(str(Path(r'/Users/mathewbrown/Projects/mhw_images/ssta/dataProcessing') / fileAnomaly), 'wb').write)
 
-# MHW Category
-# ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/
+############# MHW Category #################
 
 
 ftp = FTP("ftp.star.nesdis.noaa.gov")
@@ -144,9 +142,10 @@ ftp.close()
 
 
 import matplotlib.colors
-
+a = {}
 with xr.open_dataset(local_filename) as data:
-
+    key = local_filename[-9:-3]
+    a.setdefault(key, [])
     dataDub = data
     dataDub2 = data
     mask_lon = (data.lon >= min_lon) & (data.lon <= max_lon) #| ((data.lon >= mmin_lon) & (data.lon <= mmax_lon))
@@ -200,7 +199,80 @@ with xr.open_dataset(local_filename) as data:
     data.close()
     fig.clf()
     plt.close()
-    
+
+######### cal values for time series plot ############
+
+# img_extent = (-180, 180, -90, 90)
+
+# min_lon = -170
+# max_lon = -110
+
+# min_lat = 30
+
+# max_lat = 52
+
+
+
+# # antimeridian fix
+# mmin_lon = -157
+# mmax_lon = 180
+# mmax_lat = 60
+# mmmin_lat = 52
+
+# def write_json(new_data, filename='./src/monthlyMHW.json'):
+#     with open(filename,'r+') as file:
+#           # First we load existing data into a dict.
+#         file_data = json.load(file)
+#         # Join new_data with file_data inside emp_details
+#         file_data.update(new_data)
+#         # Sets file's current position at offset.
+#         file.seek(0)
+#         # convert back to json.
+#         json.dump(file_data, file, indent = 4)
+
+# # sort files
+# def last_4chars(x):
+#     return(x[-10:])
+
+
+# with xr.open_dataset(local_filename) as data:
+
+#     key = file[-11:-3]
+#     a.setdefault(key, [])
+
+#     dataDub = data
+#     dataDub2 = data
+#     mask_lon = (data.lon >= min_lon) & (data.lon <= max_lon)  #| ((data.lon >= mmin_lon) & (data.lon <= mmax_lon))
+#     mask_lat = (data.lat >= min_lat) & (data.lat <= max_lat) 
+#     mask_lon1 = (dataDub.lon >= mmin_lon) & (dataDub.lon <= max_lon)
+#     mask_lat1 = (dataDub.lat >= mmmin_lat) & (dataDub.lat <= mmax_lat)
+
+#     data = data.where(mask_lon & mask_lat, drop=True)
+# #             print(data)
+
+#     data1 = dataDub.where(mask_lon1 & mask_lat1 , drop=True)
+
+#     temp = np.ma.masked_outside(data.heatwave_category.values[0,::res,::res],-1,5)
+#     temp1 = np.ma.masked_outside(data1.heatwave_category.values[0,::res,::res],-1,5)
+#     totalTemp = np.concatenate((temp, temp1), axis=None)
+# #             print(np.count_nonzero(data.heatwave_category == 0)) # blue
+# #             print(np.count_nonzero(data.heatwave_category == 1))
+# #             print(np.count_nonzero(data.heatwave_category == 2))
+# #             print(np.count_nonzero(data.heatwave_category == 3))
+# #             print(np.count_nonzero(data.heatwave_category == 4))
+#     t0 = np.count_nonzero(data.heatwave_category == 0) + np.count_nonzero(data1.heatwave_category == 0)
+#     t1 = np.count_nonzero(data.heatwave_category == 1) + np.count_nonzero(data1.heatwave_category == 1)
+#     t2 = np.count_nonzero(data.heatwave_category == 2) + np.count_nonzero(data1.heatwave_category == 2)
+#     t3 = np.count_nonzero(data.heatwave_category == 3) + np.count_nonzero(data1.heatwave_category == 3)
+#     t4 = np.count_nonzero(data.heatwave_category == 4) + np.count_nonzero(data1.heatwave_category == 4)
+
+#     a[key].append(t0)
+#     a[key].append(t1)
+#     a[key].append(t2)
+#     a[key].append(t3)
+#     a[key].append(t4)
+#     write_json(a)
+os.remove(ddir+fileHW)    
 ## Create the images
 # import xarray as xr
 # import matplotlib.pyplot as plt

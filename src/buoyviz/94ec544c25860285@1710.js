@@ -137,7 +137,10 @@ md`
 
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["BC_Midres_latlngTOPO.json",new URL("./files/7ba550b22fdb22cba9fed3326a51f513cf291d8ea63f9db45879b66641f3935ce23bb2fa199e89c9fca8abcc84e39c72ed6a9e2ade12d479badfd9ce5e1b9044",import.meta.url)]]);
+  function toString() { return this.url; }
+  const fileAttachments = new Map([
+    ["BC_Midres_latlngTOPO.json", {url: new URL("./files/7ba550b22fdb22cba9fed3326a51f513cf291d8ea63f9db45879b66641f3935ce23bb2fa199e89c9fca8abcc84e39c72ed6a9e2ade12d479badfd9ce5e1b9044", import.meta.url), mimeType: "application/json", toString}]
+  ]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], _1);
   main.variable(observer()).define(["md"], _2);

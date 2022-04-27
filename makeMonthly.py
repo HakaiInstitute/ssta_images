@@ -91,3 +91,5 @@ with xr.open_dataset(local_filename) as data:
     Ta = (totalTemp[~np.isnan(totalTemp)].mean())
     a[key].append(float(Ta))
     write_json(a)
+
+
