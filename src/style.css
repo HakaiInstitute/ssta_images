@@ -474,11 +474,13 @@ h1, h2, h5 {
 #mainTitle{
   top:10px;
   position: absolute;
+  text-shadow: 1px 1px 2px black;
 }
 
 #mainByLine{
   position: absolute;
   top:45px;
+  text-shadow: 1px 1px 2px black;
 }
 
 #tooltiper{
