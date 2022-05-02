@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 # import cartopy.crs as ccrs
 import json 
+import os
 
 res = 1
 img_extent = (-180, 180, -90, 90)
@@ -91,5 +92,6 @@ with xr.open_dataset(local_filename) as data:
     Ta = (totalTemp[~np.isnan(totalTemp)].mean())
     a[key].append(float(Ta))
     write_json(a)
+    os.remove(local_filename)
 
 
