@@ -1,4 +1,5 @@
 files,
+.DS_Store,
 1.png,
 2k_earth_daymap.jpg,
 8k_earth_daymap.jpg,
@@ -6797,5 +6798,4 @@ noaa-crw_mhw_v1.0.1_category_20220419.png,
 noaa-crw_mhw_v1.0.1_category_20220420.png,
 noaa-crw_mhw_v1.0.1_category_20220421.png,
 noaa-crw_mhw_v1.0.1_category_20220423.png,
-noaa-crw_mhw_v1.0.1_category_20220424.png,
-noaa-crw_mhw_v1.0.1_category_20220428.nc
+noaa-crw_mhw_v1.0.1_category_20220424.png
