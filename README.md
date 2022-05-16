@@ -36,6 +36,6 @@ curl -o bs.tgz "https://api.observablehq.com/d/0b936d79280ee3bd.tgz?v=3"
 tar -C src/buoyviz -xvzf bs.tgz
 
 ## Data
-The buoy data is loaded using an api in the observable notebook. 
+The buoy data is loaded directly in the observable notebook via api. 
 
-The images are created in a github action which downloads and processes netcdf files from NOAA. The data is updated daily so the action runs daily to include yesterday's data. It is not uncommon for the NOAA data not to be updated for a few days, especially the MHW category data. Currently the python script only looks for yesterday's files but it could be improved to look for any recent days where there wasn't data available. 
+The images are created in a github action which downloads and processes netcdf files from NOAA. The dxata is updated daily so the action runs daily to include yesterday's data. It is not uncommon for the NOAA data not to be updated for a few days, especially the MHW category data. Currently the python script only looks for yesterday's files but it could be improved to look for any recent days where there wasn't data available. 
