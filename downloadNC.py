@@ -30,8 +30,11 @@ try:
         yesterday = yesterday.strftime("%Y%m%d")
         fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
         local_filename = ddir + fileAnomaly
-        with open(local_filename, 'wb') as f_output:
-            ftp.retrbinary(f"RETR {fileAnomaly}", f_output.write)
+        try:
+            with open(local_filename, 'wb') as f_output:
+                ftp.retrbinary(f"RETR {fileAnomaly}", f_output.write)
+        except:
+            print("data not available")
             # ftp.retrbinary('RETR '+ filename, f_output.write)
         # ftp.retrbinary(f"RETR {fileAnomaly}", open(rf"{fileAnomaly}", "wb").write)
     ftp.close()
