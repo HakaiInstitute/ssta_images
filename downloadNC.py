@@ -25,7 +25,7 @@ try:
     # script_path = Path(__file__).parent
     # print(script_path)
     
-    for d in range(1,9):
+    for d in range(1,8):
         yesterday = today - datetime.timedelta(days=d)
         yesterday = yesterday.strftime("%Y%m%d")
         fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
@@ -67,7 +67,7 @@ try:
 
     # files = sorted(nc_files, key = last_4chars)  
     # for file in files[0:2]:
-    for d in range(1,9):
+    for d in range(1,8):
         yesterday = today - datetime.timedelta(days=d)
         yesterday = yesterday.strftime("%Y%m%d")
         fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
@@ -143,74 +143,93 @@ try:
     ftp = FTP("ftp.star.nesdis.noaa.gov")
     ftp.login()
     ftp.cwd("pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/2022")
-    fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
+    # fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
     # script_path = Path(__file__).parent
     # print(script_path)
     local_filename = ddir + fileHW
-    with open(local_filename, 'wb') as f_output:
-        ftp.retrbinary(f"RETR {fileHW}", f_output.write)
+    
+    for d in range(1,8):
+        yesterday = today - datetime.timedelta(days=d)
+        yesterday = yesterday.strftime("%Y%m%d")
+        fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
+        local_filename = ddir + fileHW
+        try:
+            with open(local_filename, 'wb') as f_output:
+                ftp.retrbinary(f"RETR {fileHW}", f_output.write)
+        except:
+            print("data not available")
+            ftp.close()
+
+
+    # with open(local_filename, 'wb') as f_output:
+    #     ftp.retrbinary(f"RETR {fileHW}", f_output.write)
     # ftp.retrbinary(f"RETR {fileHW}", open(rf"{fileHW}", "wb").write)
-    ftp.close()
+    
 
 
     import matplotlib.colors
     a = {}
-    with xr.open_dataset(local_filename) as data:
-        key = local_filename[-9:-3]
-        a.setdefault(key, [])
-        dataDub = data
-        dataDub2 = data
-        mask_lon = (data.lon >= min_lon) & (data.lon <= max_lon) #| ((data.lon >= mmin_lon) & (data.lon <= mmax_lon))
-        mask_lat = (data.lat >= min_lat) & (data.lat <= max_lat)
-        mask_lon1 = (dataDub.lon >= mmin_lon) & (dataDub.lon <= mmax_lon)
-        mask_lat1 = (dataDub2.lat >= mmin_lat) & (dataDub2.lat <= max_lat)
+    for d in range(1,8):
+        yesterday = today - datetime.timedelta(days=d)
+        yesterday = yesterday.strftime("%Y%m%d")
+        fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
+        local_filename = ddir + fileAnomaly
+        with xr.open_dataset(local_filename) as data:
+            key = local_filename[-9:-3]
+            a.setdefault(key, [])
+            dataDub = data
+            dataDub2 = data
+            mask_lon = (data.lon >= min_lon) & (data.lon <= max_lon) #| ((data.lon >= mmin_lon) & (data.lon <= mmax_lon))
+            mask_lat = (data.lat >= min_lat) & (data.lat <= max_lat)
+            mask_lon1 = (dataDub.lon >= mmin_lon) & (dataDub.lon <= mmax_lon)
+            mask_lat1 = (dataDub2.lat >= mmin_lat) & (dataDub2.lat <= max_lat)
 
-        data = data.where(mask_lon & mask_lat, drop=True)
+            data = data.where(mask_lon & mask_lat, drop=True)
 
-        data1 = dataDub.where(mask_lon1 & mask_lat, drop=True)
+            data1 = dataDub.where(mask_lon1 & mask_lat, drop=True)
 
-        data2 = dataDub2.where(mask_lat1, drop=True)
+            data2 = dataDub2.where(mask_lat1, drop=True)
 
-        temp = np.ma.masked_outside(data.heatwave_category.values[0,::res,::res],-1,5)
-        temp1 = np.ma.masked_outside(data1.heatwave_category.values[0,::res,::res],-1,5)
-        temp2 = np.ma.masked_outside(data2.heatwave_category.values[0,::res,::res],-1,5)
-        tempV = data.variables['heatwave_category'][:,:,:]
-
-
-        lon = np.ma.masked_outside(data.lon.values[::res],  -180, 180)
-        lat = np.ma.masked_outside(data.lat.values[::res],  -90, 90)
-        lon1 = np.ma.masked_outside(data1.lon.values[::res],  -180, 180)
-        lat1 = np.ma.masked_outside(data1.lat.values[::res],  -90, 90)
-        lon2 = np.ma.masked_outside(data2.lon.values[::res],  -180, 180)
-        lat2 = np.ma.masked_outside(data2.lat.values[::res],  -90, 90)
-
-            
-        fig = plt    
-        ax = fig.axes(projection=ccrs.PlateCarree())
+            temp = np.ma.masked_outside(data.heatwave_category.values[0,::res,::res],-1,5)
+            temp1 = np.ma.masked_outside(data1.heatwave_category.values[0,::res,::res],-1,5)
+            temp2 = np.ma.masked_outside(data2.heatwave_category.values[0,::res,::res],-1,5)
+            tempV = data.variables['heatwave_category'][:,:,:]
 
 
-        fig.axis('off')
-        fig.margins(0,0)
-        fig.gca().xaxis.set_major_locator(plt.NullLocator())
-        fig.gca().yaxis.set_major_locator(plt.NullLocator())
-        fig.tick_params(axis='both', left='False', top='False', right='False', bottom='False', labelleft='False', labeltop='False', labelright='False', labelbottom='False')
-        # ax.stock_img()
-        norm=plt.Normalize(-2,5)
-        cmap = matplotlib.colors.ListedColormap(["white","lightblue","#FEDB67", "#f26722", "#cd3728", "#7E1416"])
+            lon = np.ma.masked_outside(data.lon.values[::res],  -180, 180)
+            lat = np.ma.masked_outside(data.lat.values[::res],  -90, 90)
+            lon1 = np.ma.masked_outside(data1.lon.values[::res],  -180, 180)
+            lat1 = np.ma.masked_outside(data1.lat.values[::res],  -90, 90)
+            lon2 = np.ma.masked_outside(data2.lon.values[::res],  -180, 180)
+            lat2 = np.ma.masked_outside(data2.lat.values[::res],  -90, 90)
+
+                
+            fig = plt    
+            ax = fig.axes(projection=ccrs.PlateCarree())
 
 
-        fig.pcolormesh(lon, lat, temp, vmin=-2, vmax=5,cmap=cmap)
-        fig.pcolormesh(lon1, lat1, temp1, vmin=-2, vmax=5,cmap=cmap)
-        fig.pcolormesh(lon2, lat2, temp2, vmin=-2, vmax=5,cmap=cmap)
-        ax.set_extent([-180, 180, -90, 90])
+            fig.axis('off')
+            fig.margins(0,0)
+            fig.gca().xaxis.set_major_locator(plt.NullLocator())
+            fig.gca().yaxis.set_major_locator(plt.NullLocator())
+            fig.tick_params(axis='both', left='False', top='False', right='False', bottom='False', labelleft='False', labeltop='False', labelright='False', labelbottom='False')
+            # ax.stock_img()
+            norm=plt.Normalize(-2,5)
+            cmap = matplotlib.colors.ListedColormap(["white","lightblue","#FEDB67", "#f26722", "#cd3728", "#7E1416"])
 
 
-        fig.savefig(ddir+fileHW[:-3]+'.png',transparent=True, dpi=300,bbox_inches='tight', pad_inches = 0)
-    #         plt.close("all")
-        os.remove(ddir+fileHW)
-        data.close()
-        fig.clf()
-        plt.close()
+            fig.pcolormesh(lon, lat, temp, vmin=-2, vmax=5,cmap=cmap)
+            fig.pcolormesh(lon1, lat1, temp1, vmin=-2, vmax=5,cmap=cmap)
+            fig.pcolormesh(lon2, lat2, temp2, vmin=-2, vmax=5,cmap=cmap)
+            ax.set_extent([-180, 180, -90, 90])
+
+            print(fileHW[:-3]+'.png')
+            fig.savefig(ddir+fileHW[:-3]+'.png',transparent=True, dpi=300,bbox_inches='tight', pad_inches = 0)
+        #         plt.close("all")
+            os.remove(ddir+fileHW)
+            data.close()
+            fig.clf()
+            plt.close()
 except:
     print("MHW data not available")
 ######### cal values for time series plot ############
