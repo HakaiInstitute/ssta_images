@@ -2,7 +2,7 @@ name: Download and Make Monthly
 
 on:
   schedule:
-    - cron: "0 0 10 * *" #runs at 00:00 UTC everyday
+    - cron: "0 0 4 * *" #runs at 00:00 UTC everyday
 
 
 jobs:
