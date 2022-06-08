@@ -1,0 +1,42 @@
+name: Download and Make Monthly
+
+on:
+  schedule:
+    - cron: "0 0 4 * *" #runs at 00:00 UTC everyday
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+      - name: Install dependencies
+        run: $CONDA/bin/conda env update --file environmentMonthly.yaml --name base
+
+      - name: execute py script
+        run: |
+          $CONDA/bin/python makeMonthly.py
+
+
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "action[bot]@github.com"
+          git config --local user.name "github-actions[bot]"
+          git add --all
+          git commit -m "Add changes" -a
+          echo "::set-output name=push::true force:true"
+          git push
