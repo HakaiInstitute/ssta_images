@@ -1,3 +1,6 @@
+# to run locally  conda activate  /Users/mathew.brown/miniforge3/envs/work
+
+
 from ftplib import FTP
 # from pathlib import Path
 import datetime

@@ -572,6 +572,8 @@ const main = runtime.module(buoyViz, name => {
     if (name === "chart") return new Inspector(document.querySelector("#observablehq-chart-5e37f0ea"));
     if (name === "buttonStyle") return new Inspector(document.querySelector("#observablehq-buttonStyle-af1d3cc0"));
     if (name === "legTitle") return new Inspector(document.querySelector("#observablehq-legTitle-538b3b28"));
+    if (name === "addGreybar") return true;
+    if (name === "dataToPlot") return true;
 
     if (name === "minFunc") return true;
     if (name === "ns") return true;
