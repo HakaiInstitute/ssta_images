@@ -72,7 +72,7 @@ try:
 
     # files = sorted(nc_files, key = last_4chars)  
     # for file in files[0:2]:
-    for d in range(1,5):
+    for d in range(1,25):
         yesterday = today - datetime.timedelta(days=d)
         yesterday = yesterday.strftime("%Y%m%d")
         fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
@@ -175,7 +175,7 @@ ftp.close()
 
 import matplotlib.colors
 a = {}
-for d in range(2,25):
+for d in range(2,9):
     yesterday = today - datetime.timedelta(days=d)
     yesterday = yesterday.strftime("%Y%m%d")
     fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
