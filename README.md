@@ -18,11 +18,11 @@ npm run build
 ## To deploy
 
 test site
-- to deploy to the staging repo [repo][https://github.com/HakaiInstitute/ssta_images_staging) from the gh-pages branch.
+- to deploy to the staging repo [repo](https://github.com/HakaiInstitute/ssta_images_staging) from the gh-pages branch.
 
 git push staging
 
-To deploy to development
+To deploy to production (from gh-pages branch)
 
 git push
 
@@ -38,4 +38,4 @@ tar -C src/buoyviz -xvzf bs.tgz
 ## Data
 The buoy data is loaded directly in the observable notebook via api. 
 
-The images are created in a github action which downloads and processes netcdf files from NOAA. The dxata is updated daily so the action runs daily to include yesterday's data. It is not uncommon for the NOAA data not to be updated for a few days, especially the MHW category data. Currently the python script only looks for yesterday's files but it could be improved to look for any recent days where there wasn't data available. 
+The images are created in a github action which downloads and processes netcdf files from NOAA. The dxadatata is updated daily so the action runs daily to include yesterday's data. It is not uncommon for the NOAA data not to be updated for a few days, especially the MHW category data. Currently the python script only looks for yesterday's files but it could be improved to look for any recent days where there wasn't data available. 
