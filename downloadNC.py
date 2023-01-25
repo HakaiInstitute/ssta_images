@@ -29,7 +29,7 @@ try:
     # script_path = Path(__file__).parent
     # print(script_path)
     
-    for d in range(1,5):
+    for d in range(1,25):
         yesterday = today - datetime.timedelta(days=d)
         yesterday = yesterday.strftime("%Y%m%d")
         fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
