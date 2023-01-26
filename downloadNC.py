@@ -29,7 +29,7 @@ try:
     # script_path = Path(__file__).parent
     # print(script_path)
     
-    for d in range(1,25):
+    for d in range(1,9):
         yesterday = today - datetime.timedelta(days=d)
         yesterday = yesterday.strftime("%Y%m%d")
         fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
@@ -72,7 +72,7 @@ try:
 
     # files = sorted(nc_files, key = last_4chars)  
     # for file in files[0:2]:
-    for d in range(1,25):
+    for d in range(1,9):
         yesterday = today - datetime.timedelta(days=d)
         yesterday = yesterday.strftime("%Y%m%d")
         fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
@@ -147,13 +147,13 @@ except:
 # try:
 ftp = FTP("ftp.star.nesdis.noaa.gov")
 ftp.login()
-ftp.cwd("pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/2023")
+ftp.cwd("pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/2022")
 # fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
 # script_path = Path(__file__).parent
 # print(script_path)
 # local_filename = ddir + fileHW
 
-for d in range(2,25):
+for d in range(2,9):
     yesterday = today - datetime.timedelta(days=d)
     yesterday = yesterday.strftime("%Y%m%d")
     fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
