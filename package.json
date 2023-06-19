@@ -3,7 +3,7 @@
     "repository": "https://github.com/HakaiInstitute/ssta",
     "license": "UNLICENSED",
     "scripts": {
-        "build": "node ./src/makeFileList.js && webpack --config ./bundler/webpack.prod.js",
+        "build": "NODE_OPTIONS=--openssl-legacy-provider node ./src/makeFileList.js && webpack --config ./bundler/webpack.prod.js",
         "dev": "webpack serve --config ./bundler/webpack.dev.js",
         "lint": "eslint --ext .js --ignore-path .gitignore ."
     },
