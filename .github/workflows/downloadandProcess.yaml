@@ -4,10 +4,6 @@ on:
   schedule:
     - cron: "0 20 * * *" #runs at 00:00 UTC everyday
   workflow_dispatch:
-  push:
-    branches:
-      - gh-pages
-
 
 jobs:
   build:
@@ -25,7 +21,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-
         # $CONDA is an environment variable pointing to the root of the miniconda directory
       - name: Install dependencies
         run: $CONDA/bin/conda env update --file environment.yaml --name base
@@ -39,7 +34,10 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
       - run: npm install
-      - run: npm run build --if-present
+      - name: "Run Node script with NODE_OPTIONS to allow deprecated SSL"
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
+        run: npm run build --if-present
 
       - name: Commit files
         id: commit
