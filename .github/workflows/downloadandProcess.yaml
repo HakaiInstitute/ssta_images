@@ -5,7 +5,6 @@ on:
     - cron: "0 20 * * *" #runs at 00:00 UTC everyday
   workflow_dispatch:
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +34,10 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
       - run: npm install
-      - run: npm run build --if-present
+      - name: "Run Node script with NODE_OPTIONS to allow deprecated SSL"
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
+        run: npm run build --if-present
 
       - name: Commit files
         id: commit
