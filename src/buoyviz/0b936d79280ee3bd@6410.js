@@ -16,6 +16,8 @@ This notebook includes
 - charts for the buoys
 
 ### Change log
+aug 14 2023
+- start player on the most recent date with data
 June 22 2022
 - replaced the player notebook with scrubber, as font awesome used in the player was not playing well with webpack.
 
@@ -158,30 +160,15 @@ Inputs.radio(["Anomaly", "Heatwaves"], {
 })
 )}
 
-function _newNum(){return(
-0
+function _newNum(datesToPlot){return(
+datesToPlot[datesToPlot.length - 1]
 )}
 
 function _13(brushedData){return(
 brushedData
 )}
 
-function _addGreybar(data,brusedAllDates)
-{
-  if (
-    data[data.length - 1].date <
-    new Date(brusedAllDates[brusedAllDates.length - 1])
-  ) {
-    data.push({
-      date: new Date(brusedAllDates[brusedAllDates.length - 1]),
-      value: -99
-    });
-  }
-  return data;
-}
-
-
-function _16(brusedAllDates){return(
+function _15(brusedAllDates){return(
 brusedAllDates[brusedAllDates.length - 1]
 )}
 
@@ -224,7 +211,6 @@ function _chart(colorView,focusHeight,d3,width,margin,xMHW,stack,brushedDataMHW,
       // rects in the same layer will all have the same color, so we can put it on the group
       // we can use the key on the layer's array to set the color
       .style("fill", (d, i) => {
-        console.log(d);
         return d.date > new Date("2022-08-01") ? "grey" : colors.get(d.key);
       });
 
@@ -438,7 +424,7 @@ function _drag(d3,x,focus,endPlayDate,datesToPlot,$0,$1)
 }
 
 
-function _21(monthlyGrouped){return(
+function _20(monthlyGrouped){return(
 monthlyGrouped[115]
 )}
 
@@ -488,7 +474,6 @@ function _focus(colorView,d3,width,focusHeight,dateExtent,margin,xAxis,stack,mon
       // rects in the same layer will all have the same color, so we can put it on the group
       // we can use the key on the layer's array to set the color
       .style("fill", (d, i) => {
-        console.log(d.key);
         return colors.get(d.key);
       });
     // .attr("d", area(x, y.copy().range([focusHeight - margin.bottom, 4])));
@@ -657,15 +642,15 @@ function _leg(colorView,Plot)
 }
 
 
-function _26(Inputs,alldays){return(
+function _25(Inputs,alldays){return(
 Inputs.table(alldays)
 )}
 
-function _27(clickedSite){return(
+function _26(clickedSite){return(
 clickedSite
 )}
 
-function _28(clickedSite,limitsDelayed){return(
+function _27(clickedSite,limitsDelayed){return(
 new Date(clickedSite[0].date) < new Date(limitsDelayed[1])
 )}
 
@@ -692,35 +677,35 @@ function _alldays(d3,focus,clickedSite,siteClicked)
 }
 
 
-function _30(alldays){return(
+function _29(alldays){return(
 alldays
 )}
 
-function _31(alldays){return(
+function _30(alldays){return(
 console.log(new Date(alldays[0]))
 )}
 
-function _32(clickedSite){return(
+function _31(clickedSite){return(
 console.log(clickedSite[0].date)
 )}
 
-function _33(clickedSite,alldays){return(
+function _32(clickedSite,alldays){return(
 +clickedSite[0].date === +new Date(alldays[0])
 )}
 
-function _34(alldays){return(
+function _33(alldays){return(
 alldays.length
 )}
 
-function _35(alldays){return(
+function _34(alldays){return(
 alldays
 )}
 
-function _36(clickedSite,alldays){return(
+function _35(clickedSite,alldays){return(
 clickedSite.find((d) => +d.date === +new Date(alldays[0]))
 )}
 
-function _37(tempToShow){return(
+function _36(tempToShow){return(
 tempToShow === undefined
 )}
 
@@ -953,7 +938,7 @@ async function _limitsDelayedMHW(Promises,focus)
 }
 
 
-function _47(md){return(
+function _46(md){return(
 md`## bar charts`
 )}
 
@@ -1007,7 +992,7 @@ monthlyGrouped.filter(
 )
 )}
 
-function _55(monthlyGrouped){return(
+function _54(monthlyGrouped){return(
 monthlyGrouped
 )}
 
@@ -1092,6 +1077,38 @@ function _arc(d3)
 }
 
 
+function _64(data){return(
+new Date(data[data.length - 1].date).toISOString().substring(0, 7) <
+  new Date().toISOString().substring(0, 7)
+)}
+
+function _65(data){return(
+new Date(data[data.length - 1].date.toISOString().substring(0, 7) + "-01")
+)}
+
+function _66(){return(
+new Date(new Date().toISOString().substring(0, 7) + "-01")
+)}
+
+function _67(data){return(
+data[data.length - 1].date
+)}
+
+function _dataToPlot(data)
+{
+  if (
+    new Date(data[data.length - 1].date).toISOString().substring(0, 7) <
+    new Date().toISOString().substring(0, 7)
+  ) {
+    data.push({
+      date: new Date(new Date().toISOString().substring(0, 7) + "-01"),
+      value: -99
+    });
+  }
+  return data;
+}
+
+
 function _data(dataSsta)
 {
   const out = [];
@@ -1101,6 +1118,7 @@ function _data(dataSsta)
       value: dataSsta[d][0]
     });
   });
+
   return out;
 }
 
@@ -1125,15 +1143,18 @@ function _datesCopy(dates){return(
 [...dates]
 )}
 
-function _dateExtent(){return(
-[new Date("2013-01-01"), new Date()]
+function _dateExtent(d3){return(
+[
+  new Date("2013-01-01"),
+  new Date(d3.timeDay.offset(d3.utcDay(), -3))
+]
 )}
 
-function _71(buoys,siteClickeds){return(
+function _75(buoys,siteClickeds){return(
 buoys.find((d) => d.long_name === siteClickeds).pk
 )}
 
-function _72(siteClickeds){return(
+function _76(siteClickeds){return(
 siteClickeds
 )}
 
@@ -1147,11 +1168,11 @@ Inputs.select(
 )
 )}
 
-function _74(clickedSite){return(
+function _78(clickedSite){return(
 clickedSite
 )}
 
-function _75(time1){return(
+function _79(time1){return(
 new Date(time1).toISOString().substring(0, 10)
 )}
 
@@ -1212,7 +1233,7 @@ function _buoyClicked(buoys,siteClicked){return(
 buoys.find((d) => d.pk === siteClicked).long_name
 )}
 
-function _83(buoyDailyData){return(
+function _87(buoyDailyData){return(
 buoyDailyData[buoyDailyData.length - 1]
 )}
 
@@ -1519,7 +1540,7 @@ function _allmonths(mhwBarData){return(
 [...new Set(mhwBarData.map((d) => d.date.slice(0, 7)))]
 )}
 
-function _105(monthlyTots){return(
+function _109(monthlyTots){return(
 monthlyTots.filter((d) => d.date === "2013-01")
 )}
 
@@ -1588,15 +1609,15 @@ function _monthlyGrouped(groups,cats)
 }
 
 
-function _108(monthlyGrouped){return(
+function _112(monthlyGrouped){return(
 monthlyGrouped[115]
 )}
 
-function _109(monthlyGrouped){return(
+function _113(monthlyGrouped){return(
 monthlyGrouped[115].date
 )}
 
-function _110(){return(
+function _114(){return(
 new Date().toISOString().substring(0, 7)
 )}
 
@@ -1640,11 +1661,11 @@ fetch(
 })
 )}
 
-function _115(dataSsta){return(
+function _119(dataSsta){return(
 dataSsta["202203"]
 )}
 
-function _116(dataSsta){return(
+function _120(dataSsta){return(
 dataSsta["202207"]
 )}
 
@@ -1681,15 +1702,14 @@ export default function define(runtime, observer) {
   main.variable(observer()).define(["md"], _10);
   main.variable(observer("viewof colorView")).define("viewof colorView", ["Inputs","html"], _colorView);
   main.variable(observer("colorView")).define("colorView", ["Generators", "viewof colorView"], (G, _) => G.input(_));
-  main.define("initial newNum", _newNum);
+  main.define("initial newNum", ["datesToPlot"], _newNum);
   main.variable(observer("mutable newNum")).define("mutable newNum", ["Mutable", "initial newNum"], (M, _) => new M(_));
   main.variable(observer("newNum")).define("newNum", ["mutable newNum"], _ => _.generator);
   main.variable(observer()).define(["brushedData"], _13);
-  main.variable(observer("addGreybar")).define("addGreybar", ["data","brusedAllDates"], _addGreybar);
-  main.variable(observer()).define(["brusedAllDates"], _16);
+  main.variable(observer()).define(["brusedAllDates"], _15);
   main.variable(observer("chart")).define("chart", ["colorView","focusHeight","d3","width","margin","xMHW","stack","brushedDataMHW","colors","x1MHW","endPlayDate","x","time1","drag","brusedAllDates","brushedData","sstaColors"], _chart);
   main.variable(observer("drag")).define("drag", ["d3","x","focus","endPlayDate","datesToPlot","mutable newNum","viewof time1"], _drag);
-  main.variable(observer()).define(["monthlyGrouped"], _21);
+  main.variable(observer()).define(["monthlyGrouped"], _20);
   main.define("initial debug1", _debug1);
   main.variable(observer("mutable debug1")).define("mutable debug1", ["Mutable", "initial debug1"], (M, _) => new M(_));
   main.variable(observer("debug1")).define("debug1", ["mutable debug1"], _ => _.generator);
@@ -1697,18 +1717,18 @@ export default function define(runtime, observer) {
   main.variable(observer("focus")).define("focus", ["Generators", "viewof focus"], (G, _) => G.input(_));
   main.variable(observer("legTitle")).define("legTitle", ["md","colorView"], _legTitle);
   main.variable(observer("leg")).define("leg", ["colorView","Plot"], _leg);
-  main.variable(observer()).define(["Inputs","alldays"], _26);
-  main.variable(observer()).define(["clickedSite"], _27);
-  main.variable(observer()).define(["clickedSite","limitsDelayed"], _28);
+  main.variable(observer()).define(["Inputs","alldays"], _25);
+  main.variable(observer()).define(["clickedSite"], _26);
+  main.variable(observer()).define(["clickedSite","limitsDelayed"], _27);
   main.variable(observer("alldays")).define("alldays", ["d3","focus","clickedSite","siteClicked"], _alldays);
+  main.variable(observer()).define(["alldays"], _29);
   main.variable(observer()).define(["alldays"], _30);
-  main.variable(observer()).define(["alldays"], _31);
-  main.variable(observer()).define(["clickedSite"], _32);
-  main.variable(observer()).define(["clickedSite","alldays"], _33);
+  main.variable(observer()).define(["clickedSite"], _31);
+  main.variable(observer()).define(["clickedSite","alldays"], _32);
+  main.variable(observer()).define(["alldays"], _33);
   main.variable(observer()).define(["alldays"], _34);
-  main.variable(observer()).define(["alldays"], _35);
-  main.variable(observer()).define(["clickedSite","alldays"], _36);
-  main.variable(observer()).define(["tempToShow"], _37);
+  main.variable(observer()).define(["clickedSite","alldays"], _35);
+  main.variable(observer()).define(["tempToShow"], _36);
   main.variable(observer("viewof lineChart")).define("viewof lineChart", ["alldays","tempToShow","Plot","limitsDelayed","yMaxDomainToUse","time1","d3","dateForLabel","yValueForLabel","buoyClicked","colors","dateForLabelVal","currentValue","colorView","md"], _lineChart);
   main.variable(observer("lineChart")).define("lineChart", ["Generators", "viewof lineChart"], (G, _) => G.input(_));
   main.define("initial siteClicked", _siteClicked);
@@ -1719,7 +1739,7 @@ export default function define(runtime, observer) {
   main.variable(observer("start")).define("start", ["d3","today"], _start);
   main.variable(observer("limitsDelayed")).define("limitsDelayed", ["Promises","focus"], _limitsDelayed);
   main.variable(observer("limitsDelayedMHW")).define("limitsDelayedMHW", ["Promises","focus"], _limitsDelayedMHW);
-  main.variable(observer()).define(["md"], _47);
+  main.variable(observer()).define(["md"], _46);
   main.variable(observer("focusHeight")).define("focusHeight", _focusHeight);
   main.variable(observer("margin")).define("margin", _margin);
   main.variable(observer("x1")).define("x1", ["d3","margin","width","alldates"], _x1);
@@ -1727,7 +1747,7 @@ export default function define(runtime, observer) {
   main.variable(observer("xAxis")).define("xAxis", ["margin","d3","width"], _xAxis);
   main.variable(observer("y")).define("y", ["d3","focusHeight","margin"], _y);
   main.variable(observer("brushedDataMHW")).define("brushedDataMHW", ["monthlyGrouped","focus"], _brushedDataMHW);
-  main.variable(observer()).define(["monthlyGrouped"], _55);
+  main.variable(observer()).define(["monthlyGrouped"], _54);
   main.variable(observer("brusedAllDates")).define("brusedAllDates", ["d3","focus"], _brusedAllDates);
   main.variable(observer("brusedAllDatesMHW")).define("brusedAllDatesMHW", ["d3","focus"], _brusedAllDatesMHW);
   main.variable(observer("x")).define("x", ["d3","focus","margin","width"], _x);
@@ -1737,18 +1757,23 @@ export default function define(runtime, observer) {
   main.variable(observer("sstaColors")).define("sstaColors", ["d3"], _sstaColors);
   main.variable(observer("brushHandle")).define("brushHandle", ["arc"], _brushHandle);
   main.variable(observer("arc")).define("arc", ["d3"], _arc);
+  main.variable(observer()).define(["data"], _64);
+  main.variable(observer()).define(["data"], _65);
+  main.variable(observer()).define(_66);
+  main.variable(observer()).define(["data"], _67);
+  main.variable(observer("dataToPlot")).define("dataToPlot", ["data"], _dataToPlot);
   main.variable(observer("data")).define("data", ["dataSsta"], _data);
   main.variable(observer("ns")).define("ns", ["Inputs"], _ns);
   main.variable(observer("datesToPlot")).define("datesToPlot", ["datesCopy","limitsDelayed"], _datesToPlot);
   main.variable(observer("dates")).define("dates", ["d3","dateExtent"], _dates);
   main.variable(observer("datesCopy")).define("datesCopy", ["dates"], _datesCopy);
-  main.variable(observer("dateExtent")).define("dateExtent", _dateExtent);
-  main.variable(observer()).define(["buoys","siteClickeds"], _71);
-  main.variable(observer()).define(["siteClickeds"], _72);
+  main.variable(observer("dateExtent")).define("dateExtent", ["d3"], _dateExtent);
+  main.variable(observer()).define(["buoys","siteClickeds"], _75);
+  main.variable(observer()).define(["siteClickeds"], _76);
   main.variable(observer("viewof siteClickeds")).define("viewof siteClickeds", ["Inputs","buoys"], _siteClickeds);
   main.variable(observer("siteClickeds")).define("siteClickeds", ["Generators", "viewof siteClickeds"], (G, _) => G.input(_));
-  main.variable(observer()).define(["clickedSite"], _74);
-  main.variable(observer()).define(["time1"], _75);
+  main.variable(observer()).define(["clickedSite"], _78);
+  main.variable(observer()).define(["time1"], _79);
   main.variable(observer("tempToShow")).define("tempToShow", ["clickedSite","time1"], _tempToShow);
   main.variable(observer("currentValue")).define("currentValue", ["clickedSite","tempToShow"], _currentValue);
   main.variable(observer("yMaxDomainToUse")).define("yMaxDomainToUse", ["clickedSite","d3"], _yMaxDomainToUse);
@@ -1756,7 +1781,7 @@ export default function define(runtime, observer) {
   main.variable(observer("dateForLabel")).define("dateForLabel", ["clickedSite","d3","limitsDelayed"], _dateForLabel);
   main.variable(observer("dateForLabelVal")).define("dateForLabelVal", ["clickedSite","d3","limitsDelayed"], _dateForLabelVal);
   main.variable(observer("buoyClicked")).define("buoyClicked", ["buoys","siteClicked"], _buoyClicked);
-  main.variable(observer()).define(["buoyDailyData"], _83);
+  main.variable(observer()).define(["buoyDailyData"], _87);
   main.variable(observer("clickedSite")).define("clickedSite", ["buoyDailyData","siteClicked"], _clickedSite);
   main.variable(observer("colors")).define("colors", _colors);
   main.variable(observer("buoys")).define("buoys", _buoys);
@@ -1775,18 +1800,18 @@ export default function define(runtime, observer) {
   main.variable(observer("hwEvent")).define("hwEvent", _hwEvent);
   main.variable(observer("alldates")).define("alldates", ["d3","dateExtent"], _alldates);
   main.variable(observer("allmonths")).define("allmonths", ["mhwBarData"], _allmonths);
-  main.variable(observer()).define(["monthlyTots"], _105);
+  main.variable(observer()).define(["monthlyTots"], _109);
   main.variable(observer("monthlyTots")).define("monthlyTots", ["allmonths","cats","d3","mhwBarData"], _monthlyTots);
   main.variable(observer("monthlyGrouped")).define("monthlyGrouped", ["groups","cats"], _monthlyGrouped);
-  main.variable(observer()).define(["monthlyGrouped"], _108);
-  main.variable(observer()).define(["monthlyGrouped"], _109);
-  main.variable(observer()).define(_110);
+  main.variable(observer()).define(["monthlyGrouped"], _112);
+  main.variable(observer()).define(["monthlyGrouped"], _113);
+  main.variable(observer()).define(_114);
   main.variable(observer("cats")).define("cats", _cats);
   main.variable(observer("groups")).define("groups", ["d3","monthlyTots"], _groups);
   main.variable(observer("mhwBarData")).define("mhwBarData", ["tt"], _mhwBarData);
   main.variable(observer("tt")).define("tt", _tt);
-  main.variable(observer()).define(["dataSsta"], _115);
-  main.variable(observer()).define(["dataSsta"], _116);
+  main.variable(observer()).define(["dataSsta"], _119);
+  main.variable(observer()).define(["dataSsta"], _120);
   main.variable(observer("dataSsta")).define("dataSsta", _dataSsta);
   main.variable(observer("dataSstaOld")).define("dataSstaOld", ["FileAttachment"], _dataSstaOld);
   const child1 = runtime.module(define1);
