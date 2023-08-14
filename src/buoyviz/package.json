@@ -1,7 +1,7 @@
 {
   "name": "0b936d79280ee3bd",
-  "main": "0b936d79280ee3bd@6372.js",
-  "version": "6372.0.0",
+  "main": "0b936d79280ee3bd@6407.js",
+  "version": "6407.0.0",
   "homepage": "https://observablehq.com/d/0b936d79280ee3bd",
   "author": {
     "name": "Mathew Brown",
@@ -9,6 +9,6 @@
   },
   "type": "module",
   "peerDependencies": {
-    "@observablehq/runtime": "4"
+    "@observablehq/runtime": "4 - 5"
   }
 }
