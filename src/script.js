@@ -90,10 +90,10 @@ const sphereBG = new THREE.Mesh(geometry, material)
 const scaleVector = new THREE.Vector3();
 // scene.add(sphere)
 //noaa-crw_mhw_v1.0.1_category_20150101
-let endDate = d3.timeDay.offset(d3.utcDay(), -2)//d3.utcDay()
+let endDate = d3.timeDay.offset(d3.utcDay(), -3)//d3.utcDay()
 let startDate = null //d3.timeDay.offset(endDate, -10)
 
-const firstDayToLoad = "ct5km_ssta_v3.1_" + d3.timeDay.offset(endDate, -365).toISOString().substring(0, 10).replaceAll("-", "") +
+const firstDayToLoad = "ct5km_ssta_v3.1_" + endDate.toISOString().substring(0, 10).replaceAll("-", "") +
     ".png"
 
 const texture = textureLoader.load('./textures/' + firstDayToLoad)
