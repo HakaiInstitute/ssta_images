@@ -131,7 +131,7 @@ try:
         #         ax.imshow(img,extent=img_extent)
             ax.set_extent([-180, 180, -90, 90])
             
-            # print(fileAnomaly[:-3]+'.png')
+            print(fileAnomaly[:-3]+'.png')
             fig.savefig(ddir+fileAnomaly[:-3]+'.png',transparent=True, dpi=200,bbox_inches='tight', pad_inches = 0)
         #         plt.close("all")
             os.remove(ddir+fileAnomaly)
