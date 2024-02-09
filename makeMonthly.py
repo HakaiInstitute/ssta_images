@@ -39,7 +39,7 @@ last_month = last_month.strftime("%Y%m")
 ddir='./static/textures/'
 ftp = FTP("ftp.star.nesdis.noaa.gov")
 ftp.login()
-ftp.cwd("pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/monthly/2023")
+ftp.cwd("pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/monthly/2024")
 fileAnomaly = "ct5km_ssta-mean_v3.1_{}.nc".format(last_month)
 
 local_filename = ddir + fileAnomaly

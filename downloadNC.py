@@ -24,7 +24,7 @@ ddir='./static/textures/'
 try:
     ftp = FTP("ftp.star.nesdis.noaa.gov")
     ftp.login()
-    ftp.cwd("pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/2023")
+    ftp.cwd("pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/2024")
     
     # script_path = Path(__file__).parent
     # print(script_path)
@@ -147,7 +147,7 @@ except:
 # try:
 ftp = FTP("ftp.star.nesdis.noaa.gov")
 ftp.login()
-ftp.cwd("pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/2023")
+ftp.cwd("pub/sod/mecb/crw/data/marine_heatwave/v1.0.1/category/nc/2024")
 # fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
 # script_path = Path(__file__).parent
 # print(script_path)
