@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Update Conda
+        run: $CONDA/bin/conda install conda=4.3.11    
+
         # $CONDA is an environment variable pointing to the root of the miniconda directory
       - name: Install dependencies
         run: $CONDA/bin/conda env update --file environment.yaml --name base
