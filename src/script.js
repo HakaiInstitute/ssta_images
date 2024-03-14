@@ -259,48 +259,11 @@ const buoys =[
 const count = buoys.length;
 console.log(count)
 const positions = new Float32Array(count * 3);
-// d3.json("./buoys.json").then(function(buoys) {
-// console.log(data[0]);
+
 let allBouys = []
 
 
-const particlesGeometry = new THREE.SphereGeometry(0.01, 16, 16) //new THREE.BufferGeometry();
-for (let i = 0; i < count; i++) {
-    const particlesMaterial = new THREE.MeshStandardMaterial({
-        color: '#007490',
-        emissive: "#303030"
-    }) //new THREE.PointsMaterial();
-    particlesMaterial.metalness = 0
-    particlesMaterial.roughness = 1
- 
 
-    let positions = new Float32Array(3);
-    // const i3 = i * 3;
-
-    // Convert from lat long to position on earth
-    let positionOnGlobe = latLongToVector3(
-        buoys[i].lat,
-        buoys[i].lon,
-        1,
-        0.001
-    );
-  
-
-    let particles = new THREE.Mesh(particlesGeometry, particlesMaterial)
-    particles.position.x = positionOnGlobe.x
-    particles.position.y = positionOnGlobe.y
-    particles.position.z = positionOnGlobe.z
-    particles.buoyId = buoys[i].pk
-    particles.long_name = buoys[i].long_name
-    particlesMaterial.sizeAttenuation = true
-    allBouys.push(particles)
-    // scene.add(particles)
-
-}
-const group = new THREE.Group();
-console.log(allBouys)
-group.add(allBouys[0], allBouys[1], allBouys[2], allBouys[3], allBouys[4], allBouys[5], allBouys[6], allBouys[7], allBouys[8], allBouys[9], allBouys[10], allBouys[11], allBouys[12])
-scene.add(group);
 var light = new THREE.DirectionalLight(0xFFFFFF);
 light.position.set(-100, 100, 20);
 scene.add(light);
