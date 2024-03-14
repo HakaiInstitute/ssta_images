@@ -15,23 +15,27 @@ npm run dev
 npm run build
 ```
 
-## Deploy to Hakai Goose Server
+## To deploy
 
-NOTE: This command has 2 requirements to work:
+test site
+- to deploy to the staging repo [repo](https://github.com/HakaiInstitute/ssta_images_staging) from the gh-pages branch.
 
-1. Rsync to be installed (if macOS or linux this already exists)
+git push staging
 
-2. SSH access to goose.hakai.org and the following in your SSH config file
+To deploy to production (from gh-pages branch)
 
-```.ssh/config
-Host goose
-    HostName goose.hakai.org
-    User hakai
-    Port 22
-    IdentityFile <the-path-to-your-ssh-key-goes-here>
-    IdentitiesOnly yes
-```
+git push
 
-```shell
-rsync -avzh --progress --stats ./dist/ goose:/data/www/ssta/
-```
+## Visualizations
+Most of the visualization elements, as well as the date player are in his observable [notebook](https://observablehq.com/d/0b936d79280ee3bd).
+
+When updates are made to the notebook they can be embedded in the site using these commands
+
+curl -o bs.tgz "https://api.observablehq.com/d/0b936d79280ee3bd.tgz?v=3"
+
+tar -C src/buoyviz -xvzf bs.tgz
+
+## Data
+The buoy data is loaded directly in the observable notebook via api. 
+
+The images are created in a github action which downloads and processes netcdf files from NOAA. The dxadatata is updated daily so the action runs daily to include yesterday's data. It is not uncommon for the NOAA data not to be updated for a few days, especially the MHW category data. Currently the python script only looks for yesterday's files but it could be improved to look for any recent days where there wasn't data available. 
