@@ -33,7 +33,7 @@ mmmin_lat = 52
 
 # download latest month
 today = datetime.datetime.utcnow().date()
-last_month = today - relativedelta(months=4)
+last_month = today - relativedelta(months=1)
 last_month = last_month.strftime("%Y%m")
 
 ddir='./static/textures/'
