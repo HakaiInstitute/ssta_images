@@ -1,0 +1,1113 @@
+{
+    "id": "0b936d79280ee3bd",
+    "slug": null,
+    "trashed": false,
+    "description": "",
+    "likes": 0,
+    "publish_level": "live",
+    "forks": 1,
+    "fork_of": null,
+    "has_importers": false,
+    "update_time": "2023-08-14T20:49:52.640Z",
+    "first_public_version": 6378,
+    "paused_version": 6410,
+    "publish_time": "2023-02-22T17:44:45.107Z",
+    "publish_version": 6417,
+    "latest_version": 6417,
+    "thumbnail": "064378a14567eb8e80da1a70ceee96c678a3393961a4a65e1d7ab83da071e5a1",
+    "default_thumbnail": "ab386d1dc8109c9aac7e8ed1a9bfdaacd01948685b1b47ff3431d44610453a0f",
+    "roles": [],
+    "sharing": null,
+    "owner": {
+        "id": "5f3658f85b1bd5ab",
+        "avatar_url": "https://avatars.observableusercontent.com/avatar/8d851e9b2c3656a745ef857c9e2881c47c470e8b59db24ca69b232a2554196fc",
+        "login": "mbrownshoes",
+        "name": "Mathew Brown",
+        "bio": "\n",
+        "home_url": "",
+        "type": "team",
+        "tier": "starter_2024"
+    },
+    "creator": {
+        "id": "a9239813cf88562c",
+        "avatar_url": "https://avatars.observableusercontent.com/avatar/8d851e9b2c3656a745ef857c9e2881c47c470e8b59db24ca69b232a2554196fc",
+        "login": "mbrownshoes",
+        "name": "Mathew Brown",
+        "bio": "\n",
+        "home_url": "",
+        "tier": "public"
+    },
+    "authors": [
+        {
+            "id": "a9239813cf88562c",
+            "avatar_url": "https://avatars.observableusercontent.com/avatar/8d851e9b2c3656a745ef857c9e2881c47c470e8b59db24ca69b232a2554196fc",
+            "name": "Mathew Brown",
+            "login": "mbrownshoes",
+            "bio": "\n",
+            "home_url": "",
+            "tier": "public",
+            "approved": true,
+            "description": ""
+        }
+    ],
+    "collections": [],
+    "files": [
+        {
+            "id": "c4804cd494f0b96ac2d3b47dc33a672726905b0b035715b118da85af025b1b3bdfaca838961ca5e2847c4d71dd58f384bd53f4b3205dbdd64ff6d909a7c46815",
+            "url": "https://static.observableusercontent.com/files/c4804cd494f0b96ac2d3b47dc33a672726905b0b035715b118da85af025b1b3bdfaca838961ca5e2847c4d71dd58f384bd53f4b3205dbdd64ff6d909a7c46815",
+            "download_url": "https://static.observableusercontent.com/files/c4804cd494f0b96ac2d3b47dc33a672726905b0b035715b118da85af025b1b3bdfaca838961ca5e2847c4d71dd58f384bd53f4b3205dbdd64ff6d909a7c46815?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27monthly%25405.json",
+            "name": "monthly@5.json",
+            "create_time": "2022-03-30T18:41:43.567Z",
+            "mime_type": "application/json",
+            "status": "public",
+            "size": 5530,
+            "content_encoding": "gzip",
+            "private_bucket_id": null
+        },
+        {
+            "id": "4f15d9ec1bd1193a40e6cccc638b5ebbef045d555e511f1e5b1b631be853554576b6519c5cbbb167076801ccadcfb6c355a2ccc8f3cdbedc96be1debbb74c2e2",
+            "url": "https://static.observableusercontent.com/files/4f15d9ec1bd1193a40e6cccc638b5ebbef045d555e511f1e5b1b631be853554576b6519c5cbbb167076801ccadcfb6c355a2ccc8f3cdbedc96be1debbb74c2e2",
+            "download_url": "https://static.observableusercontent.com/files/4f15d9ec1bd1193a40e6cccc638b5ebbef045d555e511f1e5b1b631be853554576b6519c5cbbb167076801ccadcfb6c355a2ccc8f3cdbedc96be1debbb74c2e2?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27monthlyMHW.json",
+            "name": "monthlyMHW.json",
+            "create_time": "2022-04-04T16:06:43.727Z",
+            "mime_type": "application/json",
+            "status": "public",
+            "size": 319841,
+            "content_encoding": "gzip",
+            "private_bucket_id": null
+        },
+        {
+            "id": "5e3e0411da06ec473246aaab6facbf037141d17d812ac0c9f699cd031fe4ab605753bd4b440a707657921398b8557f7f96b52d093dd145ebab3d12076e032462",
+            "url": "https://static.observableusercontent.com/files/5e3e0411da06ec473246aaab6facbf037141d17d812ac0c9f699cd031fe4ab605753bd4b440a707657921398b8557f7f96b52d093dd145ebab3d12076e032462",
+            "download_url": "https://static.observableusercontent.com/files/5e3e0411da06ec473246aaab6facbf037141d17d812ac0c9f699cd031fe4ab605753bd4b440a707657921398b8557f7f96b52d093dd145ebab3d12076e032462?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27monthly%25406.json",
+            "name": "monthly@6.json",
+            "create_time": "2022-04-11T19:41:09.639Z",
+            "mime_type": "application/json",
+            "status": "public",
+            "size": 5580,
+            "content_encoding": "gzip",
+            "private_bucket_id": null
+        },
+        {
+            "id": "a3fbadf29709e974764d626a8843acf9134d9d813173218a60e5bbdf612fc8f873cb8fc46bf03b10d42dff7e66f3861625456633c0b887fee99eb6c0c0ac42d9",
+            "url": "https://static.observableusercontent.com/files/a3fbadf29709e974764d626a8843acf9134d9d813173218a60e5bbdf612fc8f873cb8fc46bf03b10d42dff7e66f3861625456633c0b887fee99eb6c0c0ac42d9",
+            "download_url": "https://static.observableusercontent.com/files/a3fbadf29709e974764d626a8843acf9134d9d813173218a60e5bbdf612fc8f873cb8fc46bf03b10d42dff7e66f3861625456633c0b887fee99eb6c0c0ac42d9?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27monthly%25407.json",
+            "name": "monthly@7.json",
+            "create_time": "2022-04-11T19:45:54.615Z",
+            "mime_type": "application/json",
+            "status": "public",
+            "size": 5613,
+            "content_encoding": "gzip",
+            "private_bucket_id": null
+        },
+        {
+            "id": "4ddb55c620ff13535fa12218798e1510c0f1db6a6e897ffa6e652a22eaf74ee822f2d46311a4d888d73baa482e4b6e4fafa603c2c82635435770e6ba7fcdae87",
+            "url": "https://static.observableusercontent.com/files/4ddb55c620ff13535fa12218798e1510c0f1db6a6e897ffa6e652a22eaf74ee822f2d46311a4d888d73baa482e4b6e4fafa603c2c82635435770e6ba7fcdae87",
+            "download_url": "https://static.observableusercontent.com/files/4ddb55c620ff13535fa12218798e1510c0f1db6a6e897ffa6e652a22eaf74ee822f2d46311a4d888d73baa482e4b6e4fafa603c2c82635435770e6ba7fcdae87?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27monthlyMHW%25404.json",
+            "name": "monthlyMHW@4.json",
+            "create_time": "2022-06-20T19:32:13.756Z",
+            "mime_type": "application/json",
+            "status": "public",
+            "size": 325558,
+            "content_encoding": "gzip",
+            "private_bucket_id": null
+        }
+    ],
+    "comments": [],
+    "commenting_lock": null,
+    "suggestion_from": null,
+    "suggestions_to": [],
+    "version": 6410,
+    "title": "Marine heatwave charts and brush/player",
+    "license": null,
+    "copyright": "",
+    "nodes": [
+        {
+            "id": 0,
+            "value": "md`# Marine heatwave charts and brush/player\n\nused to embed as a module in https://cioospacific.ca/applied-data/marine-heat-monitor/\n\ncurl -o bs.tgz \"https://api.observablehq.com/d/0b936d79280ee3bd.tgz?v=3\"\n\ntar -C src/buoyviz -xvzf bs.tgz\n\nThis notebook includes\n- loading the buoy data via api\n- data brush chart (loads from github)\n- scrubber for playing the animation in the website\n- charts for the buoys\n\n### Change log\naug 14 2023\n- start player on the most recent date with data\nJune 22 2022\n- replaced the player notebook with scrubber, as font awesome used in the player was not playing well with webpack.\n\n\n`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5370,
+            "value": "curDate = md`# ${timeFormat(new Date(time1))}`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5832,
+            "value": "md`date to stop playing. Ideally this should be a only a couple days in the past since data is usually updated each day`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6099,
+            "value": "d3.timeDay.offset(d3.utcDay(), -2)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5829,
+            "value": "endPlayDate = d3.timeDay.offset(d3.utcDay(), -2) //new Date(\"2022-06-01\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5875,
+            "value": "style = html`\n<style>\n\n  /* match the scrubber's width to our race chart */\n   // input[type=\"range\"][name=\"i\"] {\n   //   width: ${width - 90}px !important;\n   // }\n\n.${ns}{\n  font-size: 16px;  \n}\n\n\nbutton, input, textarea {\n    accent-color: #007490;\n}\n\n#butt input, textarea {\n    accent-color: green;\n}\n.brushFilter {\nbackground-color: #606060;\ncolor: \"#e0f5ee\"\n}\n\n.currentDot{\nbackground-color: none;\ncolor: \"#e0f5ee\"\n}\n\n.axisWhite line{\n  stroke: #e0f5ee;\n}\n\n.axisWhite path{\n  stroke: #e0f5ee;\n}\n\n// .selection{\n// fill: #d9d9d9;\n// fill-opacity: .6;\n// stroke: none;\n// }\n\n.radio {\n\n  color: deeppink;\n}\n  .button {\ncolor:lightgrey;\n  border: 0;\n  background: transparent;\n  box-sizing: border-box;\n  width: 100;\n  height: 74px;\n  border-color: transparent transparent transparent lightgrey;\n  transition: 100ms all ease;\n  cursor: pointer;\n  border-style: solid;\n  border-width: 37px 0 37px 60px;\ntransform: scale(.7);\n}\n.paused {\n  border-style: double;\n  border-width: 0px 0 0px 60px;\n}\n.button:hover {\n  border-color: transparent transparent transparent #8f8f8f;\n}\n// input[type=\"range\"][name=\"input\"] {\n// accent-color:blue\n\n// }\n\n#dot{\n accent-color:black\n}\n.fa-xs {\n    font-size: 5.75em;\n}\n\n\n\n</style>\n`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5826,
+            "value": "brushedData",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5813,
+            "value": "md`play`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5868,
+            "value": "viewof time1 = Scrubber(datesToPlot, {\n  width: 0,\n  delay: 100,\n  initial: newNum,\n  autoplay: false,\n  loop: false,\n  format: (d) => \"\"\n})",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5426,
+            "value": "md`anomaly or category button`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5373,
+            "value": "viewof colorView = Inputs.radio([\"Anomaly\", \"Heatwaves\"], {\n  value: \"Anomaly\",\n  // label: \"Choose category to view\",\n  format: (x) => html`<span style=\"color: white\">${x}`\n})",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5918,
+            "value": "mutable newNum = datesToPlot[datesToPlot.length - 1]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6169,
+            "value": "brushedData",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6192,
+            "value": "// brushedDataMHW.push({\n//   date: new Date(\"2022-08-20\"),\n//   none: 0,\n//   Moderate: 0,\n//   Strong: 0\n// })",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6206,
+            "value": "brusedAllDates[brusedAllDates.length - 1]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6209,
+            "value": "// {\n//   if (\n//     dateExtent[1].toISOString().substring(0, 7) + \"-01\" ===\n//     brusedAllDates[brusedAllDates.length - 1]\n//   ) {\n//     const temp = brushedDataMHW.filter(d => d.date != brusedAllDates[brusedAllDates.length - 1])\n    \n//   }\n// }",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6147,
+            "value": "",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5376,
+            "value": "chart = {\n  if (colorView === \"Heatwaves\") {\n    const height = focusHeight;\n    const svg = d3\n      .create(\"svg\")\n      .attr(\"viewBox\", [0, 0, width, height])\n      .style(\"display\", \"block\");\n\n    const y = d3\n      .scaleLinear()\n      .domain([0, 1])\n      .range([height - margin.bottom, margin.top + 5]);\n\n    const xAxis = (g, xMHW, height) =>\n      g\n        .attr(\"transform\", `translate(0,${height - margin.bottom})`)\n        .call(\n          d3\n            .axisBottom(xMHW)\n            .ticks(width / 80)\n            .tickSizeOuter(0)\n        )\n        .style(\"stroke\", \"#e0f5ee\");\n\n    svg.append(\"g\").call(xAxis, xMHW, height).attr(\"class\", \"axisWhite\");\n\n    const chartData = stack(brushedDataMHW);\n    // svg.append(\"path\")\n    const groups = svg\n      .append(\"g\")\n      // Each layer of the stack goes in a group\n      // the group contains that layer for all countries\n      .selectAll(\"g\")\n      .data(chartData)\n      .join(\"g\")\n      // rects in the same layer will all have the same color, so we can put it on the group\n      // we can use the key on the layer's array to set the color\n      .style(\"fill\", (d, i) => {\n        return d.date > new Date(\"2022-08-01\") ? \"grey\" : colors.get(d.key);\n      });\n\n    groups\n      .selectAll(\"rect\")\n      .data((d) => d)\n      .join(\"rect\")\n      .attr(\"x\", (d) => {\n        return x1MHW(new Date(d.data.date).toISOString().substring(0, 10));\n      })\n      .attr(\"y\", (d) => y(d[1]))\n      .attr(\"height\", (d) => y(d[0]) - y(d[1]))\n      .attr(\"width\", x1MHW.bandwidth());\n    const endLine = svg\n      .append(\"line\")\n      .datum([\n        {\n          date: endPlayDate,\n          value: 1\n        }\n      ])\n      .attr(\"x1\", (d) => {\n        return x(endPlayDate);\n      })\n      .attr(\"x2\", (d) => x(endPlayDate))\n      .attr(\"y2\", y(1))\n      .attr(\"y1\", y(0))\n      .attr(\"fill\", \"none\")\n      .attr(\"stroke\", \"blue\")\n      .attr(\"stoke-width\", 1.5)\n      .attr(\"stroke-linejoin\", \"round\");\n\n    const recordLine = svg\n      .append(\"line\")\n      .datum([\n        {\n          date: time1,\n          value: 1\n        }\n      ])\n      .attr(\"x1\", (d) => {\n        return x(time1);\n      })\n      .attr(\"x2\", (d) => x(time1))\n      .attr(\"y2\", y(1))\n      .attr(\"y1\", y(0))\n      .attr(\"fill\", \"none\")\n      .attr(\"stroke\", \"deeppink\")\n      .attr(\"stoke-width\", 1.5)\n      .attr(\"stroke-linejoin\", \"round\");\n\n    const circles = svg\n      .selectAll(\"circle\")\n      .data([\n        {\n          date: time1,\n          value: 1\n        }\n      ])\n      .join(\"circle\")\n      .attr(\"cx\", (d) => {\n        return x(d.date);\n      })\n      .attr(\"cy\", (d) => y(0.98))\n      .attr(\"r\", 7)\n      .attr(\"fill\", (d) => \"deeppink\")\n      .attr(\"stroke\", (d) => \"deeppink\")\n      .call(drag);\n\n    return svg.node();\n  } else {\n    // anomaly chart\n\n    const height = focusHeight;\n    const svg = d3\n      .create(\"svg\")\n      .attr(\"viewBox\", [0, 0, width, height])\n      .style(\"display\", \"block\");\n\n    const y = d3\n      .scaleLinear()\n      .domain([0, 1])\n      .range([height - margin.bottom, margin.top + 5]);\n\n    const xAxis = (g, x, height) =>\n      g\n        .attr(\"transform\", `translate(0,${height - margin.bottom})`)\n        .call(\n          d3\n            .axisBottom(x)\n            .ticks(width / 80)\n            .tickSizeOuter(0)\n        )\n        .style(\"stroke\", \"#e0f5ee\");\n\n    svg.append(\"g\").call(xAxis, x, height).attr(\"class\", \"axisWhite\");\n\n    const x2 = d3\n      .scaleBand()\n      .range([margin.left, width - margin.right], 0.01)\n      .padding(0.01)\n      .domain(brusedAllDates);\n\n    const bars = svg\n      .selectAll(\"rect\")\n      .data(brushedData)\n      .enter()\n      .append(\"rect\")\n      .attr(\"x\", (d) => x2(d.date.toISOString().substring(0, 10)))\n      .attr(\"y\", (d) => {\n        return y(1);\n      })\n      .attr(\"width\", (d) => x2.bandwidth())\n      .attr(\"height\", (d) => y(0) - y(1))\n      .attr(\"fill\", (d) => (d.value === -99 ? \"#ddd\" : sstaColors(d.value)));\n\n    const recordLine = svg\n      .append(\"line\")\n      .datum([\n        {\n          date: time1,\n          value: 1\n        }\n      ])\n      .attr(\"x1\", (d) => {\n        return x(time1);\n      })\n      .attr(\"x2\", (d) => x(time1))\n      .attr(\"y2\", y(1))\n      .attr(\"y1\", y(0))\n      .attr(\"fill\", \"none\")\n      .attr(\"stroke\", \"deeppink\")\n      .attr(\"stoke-width\", 1.5)\n      .attr(\"stroke-linejoin\", \"round\");\n\n    const endLine = svg\n      .append(\"line\")\n      .datum([\n        {\n          date: endPlayDate,\n          value: 1\n        }\n      ])\n      .attr(\"x1\", (d) => {\n        return x(endPlayDate);\n      })\n      .attr(\"x2\", (d) => x(endPlayDate))\n      .attr(\"y2\", y(1))\n      .attr(\"y1\", y(0))\n      .attr(\"fill\", \"none\")\n      .attr(\"stroke\", \"blue\")\n      .attr(\"stoke-width\", 1.5)\n      .attr(\"stroke-linejoin\", \"round\");\n\n    const circles = svg\n      .selectAll(\"circle\")\n      .data([\n        {\n          date: time1,\n          value: 1\n        }\n      ])\n      .join(\"circle\")\n      .attr(\"cx\", (d) => {\n        return x(d.date);\n      })\n      .attr(\"cy\", (d) => y(0.98))\n      .attr(\"r\", 7)\n      .attr(\"fill\", (d) => \"deeppink\")\n      .attr(\"stroke\", (d) => \"deeppink\")\n      .call(drag);\n    return svg.node();\n  }\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5898,
+            "value": "drag = {\n  function dragstarted(event, d) {\n    d3.select(this).raise().attr(\"stroke\", \"black\");\n  }\n\n  function dragged(event, d) {\n    let isBelowMax = event.x > x(+focus[0]);\n    let isAboveMin = event.x < x(+endPlayDate);\n    // mutable debug = new Date(\"2022-04-08\");\n    // console.log(d3.timeDay.offset(today, -1));\n\n    if (isBelowMax && isAboveMin) {\n      d3.select(this).attr(\"cx\", (d.x = event.x));\n      // console.log(event.x, event.dx);\n\n      const ind = d3.bisect(datesToPlot, +x.invert(event.x));\n      // mutable debug = ind;\n      mutable newNum = ind; // place ind we need to move the scrubber to\n      viewof time1.update(ind);\n    }\n\n    // .attr(\"cy\", (d.y = event.y));\n  }\n\n  function dragended(event, d) {\n    d3.select(this).attr(\"stroke\", null);\n  }\n\n  return d3\n    .drag()\n    .on(\"start\", dragstarted)\n    .on(\"drag\", dragged)\n    .on(\"end\", dragended);\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5602,
+            "value": "monthlyGrouped[115]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5778,
+            "value": "mutable debug1 = null",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5380,
+            "value": "viewof focus = {\n  if (colorView === \"Heatwaves\") {\n    const svg = d3\n      .create(\"svg\")\n      .attr(\"viewBox\", [0, 0, width, focusHeight])\n      .style(\"display\", \"block\");\n\n    const x = d3\n      .scaleTime()\n      .domain(dateExtent)\n      .range([margin.left, width - margin.right]);\n\n    const brush = d3\n      .brushX()\n      .extent([\n        [margin.left, 0.5],\n        [width - margin.right, focusHeight - margin.bottom + 0.5]\n      ])\n      .on(\"brush\", brushed)\n      .on(\"end\", brushended);\n\n    const defaultSelection = [\n      x(d3.utcYear.offset(x.domain()[1], -1)),\n      x.range()[1]\n    ];\n\n    svg.append(\"g\").call(xAxis, x, focusHeight).attr(\"class\", \"axisWhite\");\n    let previousS0, previousS1;\n\n    const chartData = stack(monthlyGrouped);\n\n    const groups = svg\n      .append(\"g\")\n      // Each layer of the stack goes in a group\n      // the group contains that layer for all countries\n      .selectAll(\"g\")\n      .data(chartData)\n      .join(\"g\")\n      // rects in the same layer will all have the same color, so we can put it on the group\n      // we can use the key on the layer's array to set the color\n      .style(\"fill\", (d, i) => {\n        return colors.get(d.key);\n      });\n    // .attr(\"d\", area(x, y.copy().range([focusHeight - margin.bottom, 4])));\n\n    groups\n      .selectAll(\"rect\")\n      // Now we place the rects, which are the children of the layer array\n      .data((d) => d)\n      .join(\"rect\")\n      .attr(\"x\", (d) => {\n        // console.log(d.data.date);\n        return x1(new Date(d.data.date).toISOString().substring(0, 10));\n      })\n      .attr(\"y\", (d) => y(d[1]))\n      .attr(\"height\", (d) => y(d[0]) - y(d[1]))\n      .attr(\"width\", x1.bandwidth());\n\n    const gb = svg.append(\"g\").call(brush);\n    gb.call(brush.move, defaultSelection);\n\n    function brushed({ selection }) {\n      if (selection) {\n        // console.log(\"fire1\");\n        var s = selection || x.range();\n\n        svg.property(\"value\", selection.map(x.invert, x).map(d3.utcMonth.ceil));\n        svg.dispatch(\"input\");\n\n        if (((s[1] - s[0]) / width) * 120 > 30) {\n          gb.call(brush.move, [previousS0, previousS1]);\n          return;\n        }\n        previousS0 = s[0];\n        previousS1 = s[1];\n      }\n    }\n\n    function brushended({ selection }) {\n      if (!selection) {\n        gb.call(brush.move, [defaultSelection]);\n      }\n    }\n    return svg.node();\n\n    /////\n  } else {\n    const svg = d3\n      .create(\"svg\")\n      .attr(\"viewBox\", [0, 0, width, focusHeight])\n      .style(\"display\", \"block\");\n\n    const x = d3\n      .scaleTime()\n      .domain(dateExtent)\n      .range([margin.left, width - margin.right]);\n\n    const brush = d3\n      .brushX()\n      .extent([\n        [margin.left, 0.5],\n        [width - margin.right, focusHeight - margin.bottom + 0.5]\n      ])\n      .on(\"brush\", brushed)\n      .on(\"end\", brushended);\n\n    const defaultSelection = [\n      x(d3.utcYear.offset(x.domain()[1], -1)),\n      x.range()[1]\n    ];\n\n    svg.append(\"g\").call(xAxis, x, focusHeight).attr(\"class\", \"axisWhite\");\n    let previousS0, previousS1;\n    // svg.append(\"path\")\n    const bars = svg\n      .selectAll(\"rect\")\n      .data(data)\n      .enter()\n      .append(\"rect\")\n      .attr(\"x\", (d) => x1(d.date.toISOString().substring(0, 10)))\n      .attr(\"y\", (d) => {\n        return y(1);\n      })\n      .attr(\"width\", (d) => x1.bandwidth())\n      .attr(\"height\", (d) => y(0) - y(1))\n      // .attr(\"fill\", (d) => sstaColors(d.value));\n      .attr(\"fill\", (d) => (d.value === -99 ? \"#ddd\" : sstaColors(d.value)));\n    // .attr(\"d\", area(x, y.copy().range([focusHeight - margin.bottom, 4])));\n\n    const gb = svg.append(\"g\").call(brush);\n    gb.call(brush.move, defaultSelection);\n\n    function brushed({ selection }) {\n      // mutable debug1 = selection;\n      if (selection) {\n        // console.log(\"fire1\");\n        var s = selection || x.range();\n\n        svg.property(\"value\", selection.map(x.invert, x).map(d3.utcMonth.ceil));\n        svg.dispatch(\"input\");\n\n        if (\n          ((s[1] - s[0]) / width) * 120 > 30 ||\n          ((s[1] - s[0]) / width) * 120 < 2\n        ) {\n          gb.call(brush.move, [previousS0, previousS1]);\n          return;\n        }\n        previousS0 = s[0];\n        previousS1 = s[1];\n      }\n    }\n\n    function brushended({ selection }) {\n      if (!selection) {\n        mutable debug1 = defaultSelection;\n        gb.call(brush.move, [previousS0, previousS1]); // changed from defaultSelection so that a single click doesn't mess things up\n      }\n    }\n\n    return svg.node();\n  }\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5576,
+            "value": "legTitle = md` ${\n  colorView === \"Anomaly\" ? \"Sea surface temperature anomaly\" : \" \"\n}`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5385,
+            "value": "leg = {\n  return colorView === \"Anomaly\"\n    ? Plot.legend({\n        marginLeft: 10,\n        marginRight: 10,\n\n        style: {\n          backgroundColor: \"#000000\",\n          color: \"#e0f5ee\",\n          fontSize: \"16px\",\n          fontWeight: \"normal\"\n        },\n        color: {\n          type: \"diverging\",\n          domain: [-4, 4],\n          pivot: 0,\n          reverse: true,\n          legend: true,\n          label: \"\"\n        }\n      })\n    : Plot.legend({\n        color: {\n          type: \"categorical\",\n          domain: [\"No heatwave\", \"Moderate\", \"Strong\", \"Severe\", \"Extreme\"],\n          range: [\"lightblue\", \"#FEDB67\", \"#f26722\", \"#cd3728\", \"#7E1416\"] // use the \"accent\" scheme\n        },\n        style: {\n          backgroundColor: \"#000000\",\n          color: \"#e0f5ee\",\n          fontSize: \"16px\",\n          fontWeight: \"normal\"\n        }\n      });\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5996,
+            "value": "Inputs.table(alldays)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6085,
+            "value": "clickedSite",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5989,
+            "value": "new Date(clickedSite[0].date) < new Date(limitsDelayed[1])",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6024,
+            "value": "// fill gaps in bouy data with nan so chart doesn't break\n\nalldays = {\n  const alldays = d3.timeDay\n    .range(new Date(focus[0]), focus[1])\n    .map((d) => d.toISOString().substring(0, 10));\n  const out = [];\n  alldays.forEach((day, i) => {\n    let isData = clickedSite.find((d) => +d.date === +new Date(day));\n\n    isData === undefined\n      ? out.push({\n          station: siteClicked,\n          sst: NaN,\n          ssta: NaN,\n          date: day\n        })\n      : out.push(isData);\n  });\n\n  return out;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6089,
+            "value": "alldays",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6045,
+            "value": "console.log(new Date(alldays[0]))",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6056,
+            "value": "console.log(clickedSite[0].date)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6042,
+            "value": "+clickedSite[0].date === +new Date(alldays[0])",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6104,
+            "value": "alldays.length",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6106,
+            "value": "alldays",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5998,
+            "value": "clickedSite.find((d) => +d.date === +new Date(alldays[0]))",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6118,
+            "value": "tempToShow === undefined\n",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5389,
+            "value": "viewof lineChart = {\n  const noData = \"No data during time period selected\";\n  const taLabel =\n    alldays.length === 0 || tempToShow === undefined\n      ? \"\"\n      : \"Temperature anomaly (°C)\";\n  const HWlineChart = Plot.plot({\n    x: {\n      domain: [limitsDelayed[0], limitsDelayed[1]]\n    },\n    y: {\n      label: \"↑ SST (°C)\",\n      domain: [0, yMaxDomainToUse]\n    },\n    style: {\n      backgroundColor: \"#000000\",\n      color: \"#e0f5ee\",\n      // fontFamily: \"system-ui\",\n      fontSize: 10\n      // overflow: \"visible\"\n    },\n    height: 500,\n    marginTop: 20,\n    className: \"hwclass\",\n    // y: {\n    //   nice: true\n    // },\n    // x: {\n    //   nice: true\n    // },\n    marks: [\n      Plot.dot(alldays, {\n        x: \"date\",\n        y: \"sst\",\n        stroke: \"category\",\n        fill: \"category\"\n      }),\n      // Plot.line(clickedSite, {\n      //   x: \"date\",\n      //   y: \"sst\",\n      //   stroke: \"#ccc\",\n      //   curve: \"step\",\n      //   strokeWidth: 0.5\n      // }),\n      // vertical rule to mark date/time of event\n      Plot.ruleX([time1], {\n        stroke: \"white\",\n        y1: 0,\n        y2: d3.max(alldays, (d) => d.sst)\n      }),\n      Plot.text(\n        [\n          {\n            x: dateForLabel,\n            y: yValueForLabel,\n            text: buoyClicked\n          }\n        ],\n        {\n          x: \"x\",\n          y: \"y\",\n          text: \"text\",\n          fontSize: 16\n        }\n      )\n    ],\n    color: {\n      domain: [\"none\", \"Moderate\", \"Strong\", \"Severe\", \"Extreme\"],\n      range: [\n        colors.get(\"none\"),\n        colors.get(\"Moderate\"),\n        colors.get(\"Strong\"),\n        colors.get(\"Severe\"),\n        colors.get(\"Extreme\")\n      ]\n      // legend: true\n    },\n\n    width: 500,\n    height: 300\n    // marginBottom: 70,\n    // label: buoyClicked\n    // title: \"some stie\"\n  });\n\n  const SSTAlineChart = Plot.plot({\n    x: {\n      domain: [limitsDelayed[0], limitsDelayed[1]]\n    },\n    y: {\n      label: \"↑ SST (°C)\",\n      domain: [0, yMaxDomainToUse]\n    },\n    style: {\n      backgroundColor: \"#000000\",\n      color: \"#e0f5ee\",\n      // fontFamily: \"system-ui\",\n      fontSize: 10\n      // overflow: \"visible\"\n    },\n    height: 500,\n    marginTop: 20,\n    className: \"hwclass\",\n    // y: {\n    //   nice: true\n    // },\n    // x: {\n    //   nice: true\n    // },\n    marks: [\n      Plot.dot(alldays, {\n        x: \"date\",\n        y: \"sst\",\n        stroke: \"ssta\",\n        fill: \"ssta\"\n      }),\n      // Plot.line(clickedSite, {\n      //   x: \"date\",\n      //   y: \"sst\",\n      //   stroke: \"#ccc\",\n      //   curve: \"step\",\n      //   strokeWidth: 0.5\n      // }),\n      // vertical rule to mark date/time of event\n      Plot.ruleX([time1], {\n        stroke: \"white\",\n        y1: 0,\n        y2: d3.max(alldays, (d) => d.sst)\n      }),\n      Plot.text(\n        [\n          {\n            x: dateForLabel,\n            y: yValueForLabel,\n            text: buoyClicked\n          }\n        ],\n        {\n          x: \"x\",\n          y: \"y\",\n          text: \"text\",\n          fontSize: 16\n        }\n      ),\n      Plot.text(\n        [\n          {\n            x: dateForLabelVal,\n            y: yValueForLabel,\n            text: taLabel\n          }\n        ],\n        {\n          x: \"x\",\n          y: \"y\",\n          text: \"text\",\n          fontSize: 10\n        }\n      ),\n      Plot.text(\n        [\n          {\n            x: dateForLabelVal,\n            y: yValueForLabel - 1,\n            text: currentValue\n          }\n        ],\n        {\n          x: \"x\",\n          y: \"y\",\n          text: \"text\",\n          fontSize: 10\n        }\n      )\n    ],\n    color: {\n      type: \"diverging\",\n      domain: [-4, 4],\n      pivot: 0,\n      reverse: true\n      // legend: true,\n      // label: \"SSTA (°C) →\"\n    },\n\n    width: 500,\n    height: 300\n    // marginBottom: 70,\n    // label: buoyClicked\n    // title: \"some stie\"\n  });\n  if (alldays !== null) {\n    return colorView === \"Anomaly\" ? SSTAlineChart : HWlineChart;\n  } else {\n    return md``;\n  }\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3219,
+            "value": "mutable siteClicked = 16",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 1511,
+            "value": "ind = dates.indexOf(time1)",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 2202,
+            "value": "today = d3.timeDay.offset(d3.utcDay(), -2) //d3.utcDay()",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 2246,
+            "value": "start = d3.timeDay.offset(today, -365)",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3568,
+            "value": "limitsDelayed = {\n  await Promises.delay(1000, \"\"); // delay returning\n  return focus;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5164,
+            "value": "limitsDelayedMHW = {\n  await Promises.delay(1000, \"\"); // delay returning\n  return focus;\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4444,
+            "value": "// buttonStyle = faStyle({ solid: true })",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3843,
+            "value": "// import { Player, faStyle } from \"2b1bbd5c6560d3d0\"",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4199,
+            "value": "## bar charts",
+            "pinned": false,
+            "mode": "md",
+            "data": null,
+            "name": ""
+        },
+        {
+            "id": 4179,
+            "value": "focusHeight = 60",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4181,
+            "value": "margin = ({ top: 4, right: 20, bottom: 30, left: 10 })",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4186,
+            "value": "x1 = d3\n  .scaleBand()\n  .range([margin.left, width - margin.right], 0.01)\n  .padding(0.1)\n  .domain(alldates)",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5124,
+            "value": "x1MHW = d3\n  .scaleBand()\n  .range([margin.left, width - margin.right], 0.01)\n  .padding(0.01)\n  .domain(brusedAllDatesMHW)",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4184,
+            "value": "xAxis = (g, x, height) =>\n  g\n    .attr(\"transform\", `translate(0,${height - margin.bottom})`)\n    .call(\n      d3\n        .axisBottom(x)\n        .ticks(width / 80)\n        .tickSizeOuter(0)\n    )\n    .style(\"stroke\", \"#e0f5ee\")",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4188,
+            "value": "y = d3\n  .scaleLinear()\n  .domain([0, 1])\n  .range([focusHeight - margin.bottom, margin.top])",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5093,
+            "value": "brushedDataMHW = monthlyGrouped.filter(\n  (d) => d.date >= focus[0] && new Date(d.date) < new Date(focus[1])\n)",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6127,
+            "value": "monthlyGrouped",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4196,
+            "value": "brusedAllDates = d3.timeMonth\n  .range(new Date(focus[0]), focus[1])\n  .map((d) => d.toISOString().substring(0, 10))",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5137,
+            "value": "brusedAllDatesMHW = d3.timeMonth\n  .range(new Date(focus[0]), new Date(focus[1]))\n  .map((d) => d.toISOString().substring(0, 10))",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4369,
+            "value": "x = d3\n  .scaleTime()\n  .domain(focus)\n  .range([margin.left, width - margin.right])",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5111,
+            "value": "xMHW = d3\n    .scaleTime()\n    .domain(focus)\n    .range([margin.left, width - margin.right]);",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4758,
+            "value": "stack = d3.stack().keys(cats)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5166,
+            "value": "brushedData = data.filter(\n  (d) => d.date >= focus[0] && new Date(d.date) < new Date(focus[1])\n)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4177,
+            "value": "sstaColors = d3.scaleDiverging(d3.interpolateRdBu).domain([4, 0, -4])",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4009,
+            "value": "brushHandle = (g, selection, margin, height) =>\n  g\n    .selectAll(\".handle--custom\")\n    .data([{ type: \"w\" }, { type: \"e\" }])\n    .join((enter) =>\n      enter\n        .append(\"path\")\n        .attr(\"class\", \"handle--custom\")\n        .attr(\"fill\", \"#afafaf\")\n        .attr(\"fill-opacity\", 0.8)\n        .attr(\"stroke\", \"#000\")\n        .attr(\"stroke-width\", 1)\n        .attr(\"cursor\", \"ew-resize\")\n        .attr(\"d\", arc)\n    )\n    .attr(\"display\", selection === null ? \"none\" : null)\n    .attr(\n      \"transform\",\n      selection === null\n        ? null\n        : (d, i) =>\n            `translate(${selection[i]},${\n              (height + margin.top - margin.bottom) / 2\n            })`\n    )",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4016,
+            "value": "arc = {\n  let height = 50;\n  let margin = { top: 10, right: 20, bottom: 20, left: 95 };\n  return d3\n    .arc()\n    .innerRadius(0)\n    .outerRadius((height - margin.top - margin.bottom) / 2)\n    .startAngle(0)\n    .endAngle((d, i) => (i ? Math.PI : -Math.PI));\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6329,
+            "value": "new Date(data[data.length - 1].date).toISOString().substring(0, 7) <\n  new Date().toISOString().substring(0, 7)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6335,
+            "value": "new Date(data[data.length - 1].date.toISOString().substring(0, 7) + \"-01\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6331,
+            "value": "new Date(new Date().toISOString().substring(0, 7) + \"-01\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6363,
+            "value": "data[data.length - 1].date",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6311,
+            "value": "dataToPlot = {\n  if (\n    new Date(data[data.length - 1].date).toISOString().substring(0, 7) <\n    new Date().toISOString().substring(0, 7)\n  ) {\n    data.push({\n      date: new Date(new Date().toISOString().substring(0, 7) + \"-01\"),\n      value: -99\n    });\n  }\n  return data;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4164,
+            "value": "data = {\n  const out = [];\n  Object.keys(dataSsta).forEach((d) => {\n    out.push({\n      date: new Date(d.slice(0, 4) + \"-\" + d.slice(-2)),\n      value: dataSsta[d][0]\n    });\n  });\n\n  return out;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3506,
+            "value": "ns = Inputs.text().classList[0] // to customize radio styling",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 2940,
+            "value": "datesToPlot = datesCopy.filter(\n  (d) => d >= limitsDelayed[0] && d <= limitsDelayed[1]\n)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3147,
+            "value": "dates = d3.timeDay\n  .range(new Date(dateExtent[0]), new Date(dateExtent[1]))\n  .map((d) => +d)",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3164,
+            "value": "datesCopy = [...dates]",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3153,
+            "value": "dateExtent = [\n  new Date(\"2013-01-01\"),\n  new Date(d3.timeDay.offset(d3.utcDay(), -3))\n] //d3.extent(HWStatus, (d) => new Date(d.date_start1))",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5717,
+            "value": "buoys.find((d) => d.long_name === siteClickeds).pk",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5724,
+            "value": "siteClickeds",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5702,
+            "value": "viewof siteClickeds = Inputs.select(\n  [null].concat(buoys.map((d) => d.long_name)),\n  {\n    label: \"site\",\n    value: \"North Hecate Strait\"\n  }\n)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6108,
+            "value": "clickedSite",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6111,
+            "value": "new Date(time1).toISOString().substring(0, 10)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6113,
+            "value": "tempToShow = clickedSite.find(\n  (d) =>\n    new Date(d.date).toISOString().substring(0, 10) ===\n    new Date(time1).toISOString().substring(0, 10)\n)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4598,
+            "value": "currentValue = {\n  let value;\n  if (clickedSite.length !== 0 && tempToShow !== undefined) {\n    value = tempToShow.ssta.toFixed(2);\n  } else {\n    value = \"\";\n  }\n\n  // if (clickedSite.length === 0) value = \"\";\n  return value;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3226,
+            "value": "yMaxDomainToUse = {\n  return clickedSite[Math.floor(clickedSite.length / 1.2)] === undefined ?\n    18 :  d3.max(clickedSite, (d) => d.sst) * 1.1\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3197,
+            "value": "yValueForLabel = {\n  return clickedSite[Math.floor(clickedSite.length / 1.2)] === undefined\n    ? 18\n    : d3.max(clickedSite, (d) => d.sst) * 1.1;\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3100,
+            "value": "dateForLabel = {\n  return clickedSite[Math.floor(clickedSite.length / 1.2)] === undefined\n    ? d3.timeDay.offset(limitsDelayed[0], 30)\n    : clickedSite[Math.floor(clickedSite.length * 0.2)].date;\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4630,
+            "value": "dateForLabelVal = {\n  return clickedSite[Math.floor(clickedSite.length / 2)] === undefined\n    ? d3.timeDay.offset(limitsDelayed[0], 30)\n    : clickedSite[Math.floor(clickedSite.length * 0.8)].date;\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3047,
+            "value": "buoyClicked = buoys.find((d) => d.pk === siteClicked).long_name",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5731,
+            "value": "buoyDailyData[buoyDailyData.length - 1]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 1343,
+            "value": "clickedSite = buoyDailyData.filter((d) => d.station === siteClicked)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 1292,
+            "value": "colors = new Map([\n  [\"avg\", \"#5b6187\"],\n  [\"thresh\", \"#FEDB67\"],\n  [\"below\", \"#89119c\"], // actuals below forecast\n  [\"above\", \"pink\"], // actuals above forecast\n  [\"none\", \"lightblue\"],\n  [\"Moderate\", \"#FEDB67\"],\n  [\"Strong\", \"#f26722\"],\n  [\"Severe\", \"#cd3728\"],\n  [\"Extreme\", \"#7E1416\"],\n  [\"noData\", \"#ddd\"],\n  [\"seas\", \"pink\"]\n])\n// \"#FEDB67\", \"#f26722\", \"#cd3728\", \"#7E1416\"",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 447,
+            "value": "buoys = [\n  {\n    short_name: \"C46004\",\n    lat: 50.94,\n    lon: -135.87,\n    long_name: \"Middle Nomad\",\n    pk: 1\n  },\n  {\n    short_name: \"C46036\",\n    lat: 48.3,\n    lon: -133.86,\n    long_name: \"South Nomad\",\n    pk: 2\n  },\n  {\n    short_name: \"C46131\",\n    lat: 49.91,\n    lon: -124.99,\n    long_name: \"Sentry Shoal\",\n    pk: 3\n  },\n  {\n    short_name: \"C46132\",\n    lat: 49.74,\n    lon: -127.93,\n    long_name: \"South Brooks\",\n    pk: 4\n  },\n  // {\n  //   short_name: \"C46134\",\n  //   lat: 48.66,\n  //   lon: -123.48,\n  //   long_name: \"Pat Bay Test Buoy\",\n  //   pk: 5\n  // },\n  {\n    short_name: \"C46145\",\n    lat: 54.38,\n    lon: -132.42,\n    long_name: \"Central Dixon Entran\",\n    pk: 6\n  },\n  {\n    short_name: \"C46146\",\n    lat: 49.34,\n    lon: -123.73,\n    long_name: \"Halibut Bank\",\n    pk: 7\n  },\n  {\n    short_name: \"C46147\",\n    lat: 51.83,\n    lon: -131.23,\n    long_name: \"South Moresby\",\n    pk: 8\n  },\n  // {\n  //   short_name: \"C46181\",\n  //   lat: 53.82,\n  //   lon: -128.84,\n  //   long_name: \"Nanakwa Shoal\",\n  //   pk: 9\n  // },\n  // {\n  //   short_name: \"C46182\",\n  //   lat: 49.48,\n  //   lon: -123.29,\n  //   long_name: \"Pam Rocks\",\n  //   pk: 10\n  // },\n  {\n    short_name: \"C46183\",\n    lat: 53.57,\n    lon: -131.14,\n    long_name: \"North Hecate Strait\",\n    pk: 11\n  },\n  {\n    short_name: \"C46184\",\n    lat: 53.92,\n    lon: -138.85,\n    long_name: \"North Nomad\",\n    pk: 12\n  },\n  {\n    short_name: \"C46185\",\n    lat: 52.42,\n    lon: -129.79,\n    long_name: \"South Hecate Strait\",\n    pk: 13\n  },\n  {\n    short_name: \"C46204\",\n    lat: 51.38,\n    lon: -128.77,\n    long_name: \"West Sea Otter\",\n    pk: 14\n  },\n  {\n    short_name: \"C46205\",\n    lat: 54.3,\n    lon: -133.4,\n    long_name: \"West Dixon Entrance\",\n    pk: 15\n  },\n  {\n    short_name: \"C46206\",\n    lat: 48.83,\n    lon: -126,\n    long_name: \"La Perouse Bank\",\n    pk: 16\n  },\n  {\n    short_name: \"C46207\",\n    lat: 50.88,\n    lon: -129.91,\n    long_name: \"East Dellwood\",\n    pk: 17\n  },\n  {\n    short_name: \"C46208\",\n    lat: 52.51,\n    lon: -132.69,\n    long_name: \"West Moresby\",\n    pk: 18\n  }\n]",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 1388,
+            "value": "HWsForDate = buoyDailyData.filter(\n  (d) =>\n    new Date(time1).toISOString().substring(0, 10) ===\n    new Date(d.result_time).toISOString().substring(0, 10)\n)",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 1853,
+            "value": "dayBeforeStart = {\n  const b = Object.assign(focus[0]);\n  const fistDate = new Date(b);\n\n  return new Date(fistDate.setDate(fistDate.getDate() - 1))\n    .toISOString()\n    .substring(0, 10);\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 1150,
+            "value": "buoyDailyData = {\n  // let daysago = new Date().getDate() - 7;\n  // let st = new Date(new Date().setDate(daysago));\n\n  return fetch(\n    \"https://t6r95rekqe.execute-api.us-east-1.amazonaws.com/dev/getDailySSTStats?startDate=\" +\n      dayBeforeStart +\n      \"&endDate=\" +\n      limitsDelayed[1].toISOString().substring(0, 10) +\n      \"\"\n  )\n    .then((resp) => resp.json())\n    .then((data) => {\n      data.forEach((d) => {\n        d.ssta = d.sst - d.seas;\n        d.diff = d.thresh;\n        \n        d.diffStrong = d.thresh;\n        d.diffExtreme = d.thresh;\n        d.diffSevere = d.thresh;\n        if (d.category === \"Strong\") {\n          d.diffStrong = Math.max(d.thresh, d.sst);\n        }\n        if (d.category === \"Extreme\") {\n          d.diffExtreme = Math.max(d.thresh, d.sst);\n        }\n        if (d.category === \"Severe\") {\n          d.diffSevere = Math.max(d.thresh, d.sst);\n        }\n        if (d.category === \"Moderate\") {\n          d.diff = Math.max(d.thresh, d.sst);\n        }\n        if (d.category === null) {\n          d.category = \"none\";\n        }\n        d.date = new Date(d.result_time);\n      });\n      return data;\n    });\n}",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 124,
+            "value": "// projection = d3\n//   .geoAlbers()\n//   .rotate([126, 0])\n//   .fitSize(\n//     [width, height],\n//     topojson.feature(BC_Midres, BC_Midres.objects.BC_Midres_latlng)\n//   )",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 11,
+            "value": "height = 500",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 519,
+            "value": "colorMHW = d3\n  .scaleOrdinal()\n  .domain([\"none\", \"Moderate\", \"Strong\", \"Severe\",\"Extreme\"])\n  .range([\"#31a354\", \"#FEDB67\", \"#f26722\", \"#7E1416\", \"#cd3728\"])",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 525,
+            "value": "opacityMHW = d3\n  .scaleOrdinal()\n  .domain([\"none\", \"Moderate\", \"Strong\", \"Severe\", \"Extreme\"])\n// .range([0.9, 0.9, 0.9, 0.9, 0.9])",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 347,
+            "value": "numFormat = d3.format(\",d\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 87,
+            "value": "timeFormat = d3.timeFormat(\"%Y-%m-%d\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 29,
+            "value": "// import { Scrubber } from \"@mbrownshoes/stylized-scrubber\"",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 106,
+            "value": "// import {legend} from \"@d3/color-legend\"",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 528,
+            "value": "// import { BC_Midres } from \"@mbrownshoes/how-i-start-maps-in-d3\"",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 9,
+            "value": "d3 = require(\"d3@6\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 2331,
+            "value": "// import { textcolor } from \"@observablehq/text-color-annotations-in-markdown\";",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 3676,
+            "value": "mutable p = new Date(time1).toISOString().substring(0, 10)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 2784,
+            "value": "hwEvent = [\n  { date: \"2013-10-01\", value: 1 },\n  { date: \"2013-11-01\", value: 1 },\n  { date: \"2013-12-01\", value: 1 },\n  { date: \"2014-01-01\", value: 1 },\n  { date: \"2014-02-01\", value: 1 },\n  { date: \"2014-03-01\", value: 1 },\n  { date: \"2014-04-01\", value: 1 },\n  { date: \"2014-05-01\", value: 1 },\n  { date: \"2014-06-01\", value: 1 },\n  { date: \"2014-07-01\", value: 1 },\n  { date: \"2014-08-01\", value: 1 },\n  { date: \"2014-09-01\", value: 1 },\n  { date: \"2014-10-01\", value: 1 },\n  { date: \"2014-11-01\", value: 1 },\n  { date: \"2014-12-01\", value: 1 },\n  { date: \"2015-01-01\", value: 1 },\n  { date: \"2015-02-01\", value: 1 },\n  { date: \"2015-03-01\", value: 1 },\n  { date: \"2015-04-01\", value: 1 },\n  { date: \"2015-05-01\", value: 1 },\n  { date: \"2015-06-01\", value: 1 },\n  { date: \"2015-07-01\", value: 1 },\n  { date: \"2015-08-01\", value: 1 },\n  { date: \"2015-09-01\", value: 1 },\n  { date: \"2015-10-01\", value: 1 },\n  { date: \"2015-11-01\", value: 1 },\n  { date: \"2015-12-01\", value: 1 },\n  { date: \"2016-01-01\", value: 1 },\n  { date: \"2016-02-01\", value: 1 },\n  { date: \"2016-03-01\", value: 1 },\n  { date: \"2016-04-01\", value: 1 },\n  { date: \"2016-05-01\", value: 1 },\n  { date: \"2016-06-01\", value: 1 },\n  { date: \"2016-07-01\", value: 1 },\n  { date: \"2016-08-01\", value: 1 },\n  { date: \"2016-09-01\", value: 1 },\n  { date: \"2016-10-01\", value: 1 },\n  { date: \"2016-11-01\", value: 1 },\n  { date: \"2019-08-01\", value: 1 },\n  { date: \"2019-09-01\", value: 1 },\n  { date: \"2019-10-01\", value: 1 },\n  { date: \"2019-11-01\", value: 1 }\n]\n",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 2786,
+            "value": "alldates = d3.timeMonth\n  .range(new Date(dateExtent[0]), new Date(dateExtent[1]))\n  .map((d) => d.toISOString().substring(0, 10))",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 1644,
+            "value": "allmonths = [...new Set(mhwBarData.map((d) => d.date.slice(0, 7)))]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4910,
+            "value": "monthlyTots.filter((d) => d.date === \"2013-01\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4879,
+            "value": "monthlyTots = {\n  const out = [];\n  allmonths.forEach((month) => {\n    let t = 0;\n    for (let i = 0; i < cats.length; i++) {\n      let s = d3.sum(\n        mhwBarData.filter((d) => {\n          return +new Date(d.month) === +new Date(month);\n        }),\n        (d) => d[cats[i]]\n      );\n      // 15541891 is the total amount of points\n      out.push({ date: month, [cats[i]]: s });\n      t += s;\n      // console.log(month, [cats[i]], s);\n      // console.log(t);\n    }\n    // console.log(t);\n  });\n  return out;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5000,
+            "value": "monthlyGrouped = {\n  const out = [];\n  groups.forEach((d) => {\n    let sum = 0;\n    d[1].forEach((d) => {\n      sum += Object.values(d)[1];\n    });\n    // return sum;\n    out.push({\n      date: new Date(d[0]),\n      [cats[0]]: d[1][0][cats[0]] / sum,\n      [cats[1]]: d[1][1][cats[1]] / sum,\n      [cats[2]]: d[1][2][cats[2]] / sum,\n      [cats[3]]: d[1][3][cats[3]] / sum,\n      [cats[4]]: d[1][4][cats[4]] / sum,\n      noData: 0,\n      sum: sum\n    });\n  });\n\n  // remove current month's incomplete data with -999\n  const corrected = out.map((d) => {\n    if (\n      new Date(d.date).toISOString().substring(0, 7) ===\n      new Date().toISOString().substring(0, 7)\n    ) {\n      (d.none = 0),\n        (d.Moderate = 0),\n        (d.Strong = 0),\n        (d.Extreme = 0),\n        (d.Severe = 0),\n        (d.noData = 1);\n    }\n    return d;\n  });\n\n  return corrected;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6252,
+            "value": "monthlyGrouped[115]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6260,
+            "value": "monthlyGrouped[115].date",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 6247,
+            "value": "new Date().toISOString().substring(0, 7)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4881,
+            "value": "cats = [\"none\", \"Moderate\", \"Strong\", \"Extreme\", \"Severe\", \"noData\"]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5012,
+            "value": "groups = d3.groups(monthlyTots, (d) => +new Date(d.date))",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4657,
+            "value": "mhwBarData = {\n  // const raw = await FileAttachment(\"monthlyMHW@4.json\").json();\n  const raw = tt;\n  const out = [];\n  Object.keys(raw).forEach((d) => {\n    for (let i = 0; i < 1; i++) {\n      let tot = raw[d].reduce((a, b) => a + b, 0);\n      out.push({\n        date: d.replace(/(\\d{4})(\\d{2})(\\d{2})/g, \"$1-$2-$3\"),\n        month: d.replace(/(\\d{4})(\\d{2})(\\d{2})/g, \"$1-$2-$3\").slice(0, 7),\n        none: raw[d][0],\n        Moderate: raw[d][1],\n        Strong: raw[d][2],\n        Extreme: raw[d][3],\n        Severe: raw[d][4]\n      });\n    }\n  });\n  return out;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 4739,
+            "value": "tt = fetch(\n  \"https://raw.githubusercontent.com/HakaiInstitute/ssta_images/gh-pages/src/monthlyMHW.json\",\n  { Method: \"GET\" }\n).then((response) => {\n  return response.json();\n})",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5750,
+            "value": "dataSsta[\"202203\"]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5758,
+            "value": "dataSsta[\"202207\"]",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5734,
+            "value": "dataSsta = fetch(\n  \"https://raw.githubusercontent.com/HakaiInstitute/ssta_images/gh-pages/src/monthly.json\",\n  { Method: \"GET\" }\n).then((response) => {\n  return response.json();\n})",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5745,
+            "value": "dataSstaOld = FileAttachment(\"monthly@7.json\").json()",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5870,
+            "value": "import { Scrubber } from \"@mbrownshoes/stylized-scrubber\"",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        }
+    ],
+    "resolutions": [],
+    "schedule": null,
+    "last_view_time": null
+}
