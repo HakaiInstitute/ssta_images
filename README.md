@@ -26,6 +26,7 @@ To deploy to production (from gh-pages branch)
 
 git push
 
+Production site - https://cioospacific.ca/applied-data/marine-heat-monitor/
 ## Visualizations
 Most of the visualization elements, as well as the date player are in his observable [notebook](https://observablehq.com/d/0b936d79280ee3bd).
 
