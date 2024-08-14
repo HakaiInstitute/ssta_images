@@ -1,4 +1,4 @@
-# SSTA
+# Marine heatwave monitor
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
