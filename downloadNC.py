@@ -24,7 +24,7 @@ ddir='./static/textures/'
 try:
     ftp = FTP("ftp.star.nesdis.noaa.gov")
     ftp.login()
-    ftp.cwd("pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/2024")
+    ftp.cwd("pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/2024")
     
     # script_path = Path(__file__).parent
     # print(script_path)
