@@ -33,13 +33,15 @@ mmmin_lat = 52
 
 # download latest month
 today = datetime.datetime.utcnow().date()
+current_year = str(today.year)
+
 last_month = today - relativedelta(months=1)
 last_month = last_month.strftime("%Y%m")
 
 ddir='./static/textures/'
 ftp = FTP("ftp.star.nesdis.noaa.gov")
 ftp.login()
-ftp.cwd("pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/monthly/2024")
+ftp.cwd("pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/monthly/{current_year}")
 fileAnomaly = "ct5km_ssta-mean_v3.1_{}.nc".format(last_month)
 
 local_filename = ddir + fileAnomaly
