@@ -18,13 +18,14 @@ import matplotlib.colors
 
 # ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/
 today = datetime.datetime.utcnow().date()
+current_year = str(today.year)
 
 
 ddir='./static/textures/'
 try:
     ftp = FTP("ftp.star.nesdis.noaa.gov")
     ftp.login()
-    ftp.cwd("pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/2024")
+    ftp.cwd(f"pub/socd/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/{current_year}")
     
     # script_path = Path(__file__).parent
     # print(script_path)
