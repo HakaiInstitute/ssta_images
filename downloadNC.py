@@ -10,7 +10,7 @@ import os
 # import cartopy.feature as cfeature
 # import cartopy.io.img_tiles as cimgt
 import glob
-
+ 
 ## Get the data from ftp sites
 
 # ftp://ftp.star.nesdis.noaa.gov/pub/sod/mecb/crw/data/5km/v3.1_op/nc/v1.0/daily/ssta/
