@@ -16,13 +16,12 @@ dependencies:
   - cmocean>=2.0,<3.0
   - xarray>=0.21.1,<0.22.0
   - glob2>=0.7,<0.8
-  - netcdf4==1.5.8
   - cartopy==0.21.1
-  - pyproj
-  - proj
+  - netcdf4==1.5.8
+  - pyproj=9.3.1
+  - proj=9.3.1
   - matplotlib
   - numpy
   - gdal
   - geos
-  - libtiff
   - pip

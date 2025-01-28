@@ -14,7 +14,7 @@ jobs:
         with:
           ref: gh-pages
 
-      - name: Install system libraries
+      - name: Install system libraries and create symlink
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -22,7 +22,12 @@ jobs:
             libgeos-dev \
             libproj-dev \
             libtiff6 \
-            python3-gdal
+            python3-gdal \
+            python3-pyproj \
+            proj-bin \
+            proj-data
+          # Create symlink from libtiff6 to libtiff5
+          sudo ln -s /usr/lib/x86_64-linux-gnu/libtiff.so.6 /usr/lib/x86_64-linux-gnu/libtiff.so.5
 
       - uses: mamba-org/setup-micromamba@v1
         with:
@@ -30,9 +35,13 @@ jobs:
           cache-environment: true
           create-args: >-
             python=3.9
-            cartopy
-            pyproj
             --channel conda-forge
+          
+      - name: Verify environment
+        shell: bash -l {0}
+        run: |
+          micromamba list
+          python -c "import cartopy; print('Cartopy import successful')"
 
       - name: Execute Python script
         shell: bash -l {0}
@@ -48,7 +57,6 @@ jobs:
         run: npm run build --if-present
 
       - name: Commit files
-        id: commit
         run: |
           git config --local user.email "action[bot]@github.com"
           git config --local user.name "github-actions[bot]"
