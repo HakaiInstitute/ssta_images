@@ -2,48 +2,41 @@ name: Download and Make
 
 on:
   schedule:
-    - cron: "0 20 * * *" #runs at 00:00 UTC everyday
+    - cron: "0 20 * * *"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.9]
 
     steps:
       - uses: actions/checkout@v2
         with:
           ref: gh-pages
 
-      - name: Install system dependencies
+      - name: Install system libraries
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            libtiff6 \
+            libgdal-dev \
             libgeos-dev \
             libproj-dev \
-            proj-data \
-            proj-bin \
-            libgdal-dev \
-            python3-gdal \
-            python3-pyproj \
-            libcurl4-openssl-dev \
-            build-essential
+            libtiff6 \
+            python3-gdal
 
-      - name: Update Conda
-        run: $CONDA/bin/conda update -n base -c defaults conda
-  
-      - name: Install dependencies
-        run: |
-          $CONDA/bin/conda env create -f environment.yaml
-          source $CONDA/bin/activate environment
-          $CONDA/bin/conda install -c conda-forge cartopy pyproj shapely --force-reinstall
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: environment.yaml
+          cache-environment: true
+          create-args: >-
+            python=3.9
+            cartopy
+            pyproj
+            --channel conda-forge
 
-      - name: execute py script
+      - name: Execute Python script
+        shell: bash -l {0}
         run: |
-          source $CONDA/bin/activate environment
           python downloadNC.py
 
       - name: Use Node.js
@@ -60,6 +53,5 @@ jobs:
           git config --local user.email "action[bot]@github.com"
           git config --local user.name "github-actions[bot]"
           git add --all
-          git commit -m "Add changes" -a
+          git commit -m "Add changes" -a || echo "No changes to commit"
           git push
-        shell: bash
