@@ -18,8 +18,13 @@ dependencies:
   - glob2>=0.7,<0.8
   - cartopy==0.21.1
   - netcdf4==1.5.8
-  - libtiff
   - pyproj
+  - shapely
+  - geos
+  - proj
   - matplotlib
   - numpy
   - pip
+  - gdal
+  - pip:
+    - cartopy==0.21.1

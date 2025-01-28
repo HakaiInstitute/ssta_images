@@ -2,12 +2,15 @@ name: Download and Make
 
 on:
   schedule:
-    - cron: "0 20 * * *" # runs at 20:00 UTC everyday
+    - cron: "0 20 * * *" #runs at 00:00 UTC everyday
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
 
     steps:
       - uses: actions/checkout@v2
@@ -17,44 +20,46 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libtiff6 libtiff-tools
+          sudo apt-get install -y \
+            libtiff6 \
+            libgeos-dev \
+            libproj-dev \
+            proj-data \
+            proj-bin \
+            libgdal-dev \
+            python3-gdal \
+            python3-pyproj \
+            libcurl4-openssl-dev \
+            build-essential
 
-      - name: Setup Conda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-activate-base: true
-          activate-environment: ssta-env
-          environment-file: environment.yaml
-          python-version: 3.9
-
-      - name: Install Python Dependencies
-        shell: bash -l {0}
+      - name: Update Conda
+        run: $CONDA/bin/conda update -n base -c defaults conda
+  
+      - name: Install dependencies
         run: |
-          conda info
-          conda list
-          python -V
+          $CONDA/bin/conda env create -f environment.yaml
+          source $CONDA/bin/activate environment
+          $CONDA/bin/conda install -c conda-forge cartopy pyproj shapely --force-reinstall
 
-      - name: Execute Python script
-        shell: bash -l {0}
+      - name: execute py script
         run: |
+          source $CONDA/bin/activate environment
           python downloadNC.py
 
-      - name: Setup Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
-
-      - name: Install Node dependencies
-        run: npm install
-
-      - name: Build Node project
+      - run: npm install
+      - name: "Run Node script with NODE_OPTIONS to allow deprecated SSL"
         env:
           NODE_OPTIONS: "--openssl-legacy-provider"
         run: npm run build --if-present
 
       - name: Commit files
+        id: commit
         run: |
           git config --local user.email "action[bot]@github.com"
           git config --local user.name "github-actions[bot]"
           git add --all
-          git commit -m "Add changes" -a || echo "No changes to commit"
-          git push origin gh-pages --force
+          git commit -m "Add changes" -a
+          git push
         shell: bash
