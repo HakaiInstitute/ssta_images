@@ -2,57 +2,59 @@ name: Download and Make
 
 on:
   schedule:
-    - cron: "0 20 * * *" #runs at 00:00 UTC everyday
+    - cron: "0 20 * * *" # runs at 20:00 UTC everyday
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.9]
 
     steps:
       - uses: actions/checkout@v2
         with:
           ref: gh-pages
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
 
-      - name: Update Conda
-        run: $CONDA/bin/conda update -n base -c defaults conda
-  
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-      - name: Install dependencies
-        run: $CONDA/bin/conda env update --file environment.yaml --name base
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libtiff5
+
       - name: Setup Conda
-        run: |
-          echo "Setting up Conda environment..."
-          $CONDA/bin/conda create --name myenv
-          echo "source $CONDA/bin/activate" && echo "conda activate myenv" && echo "conda install -c conda-forge necessary-package"
-      - name: execute py script
-        run: |
-          dir
-          $CONDA/bin/python downloadNC.py
-          dir
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: true
+          activate-environment: ssta-env
+          environment-file: environment.yaml
+          python-version: 3.9
 
-      - name: Use Node.js
+      - name: Install Python Dependencies
+        shell: bash -l {0}
+        run: |
+          conda info
+          conda list
+          python -V
+
+      - name: Execute Python script
+        shell: bash -l {0}
+        run: |
+          python downloadNC.py
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
-      - run: npm install
-      - name: "Run Node script with NODE_OPTIONS to allow deprecated SSL"
+
+      - name: Install Node dependencies
+        run: npm install
+
+      - name: Build Node project
         env:
           NODE_OPTIONS: "--openssl-legacy-provider"
         run: npm run build --if-present
 
       - name: Commit files
-        id: commit
         run: |
           git config --local user.email "action[bot]@github.com"
           git config --local user.name "github-actions[bot]"
           git add --all
-          git commit -m "Add changes" -a
-          echo "::set-output name=push::true force:true"
-          git push
+          git commit -m "Add changes" -a || echo "No changes to commit"
+          git push origin gh-pages --force
         shell: bash
