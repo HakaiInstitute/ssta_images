@@ -11,7 +11,12 @@ import matplotlib.colors
 import time
 import logging
 import warnings
+import re
+import socket
+
+# Suppress the type cast warning
 warnings.filterwarnings("ignore", message="invalid value encountered in cast")
+
 # Set up logging
 logging.basicConfig(
     level=logging.INFO,
@@ -19,12 +24,46 @@ logging.basicConfig(
 )
 logger = logging.getLogger('download_script')
 
-## Get the data from ftp sites
-today = datetime.datetime.utcnow().date()
-current_year = str(today.year)
-
-ddir = './static/textures/'
-os.makedirs(ddir, exist_ok=True)  # Ensure directory exists
+def extract_full_date_key(filename):
+    """
+    Extract the full 8-digit date key (YYYYMMDD) from a filename.
+    Works with various filename patterns by attempting different strategies.
+    """
+    # Get just the filename without the path
+    base_filename = os.path.basename(filename)
+    
+    # Try different patterns
+    # Pattern for filenames like: noaa-crw_mhw_v1.0.1_category_20250510.nc
+    match = re.search(r'_(\d{8})\.nc$', base_filename)
+    if match:
+        return match.group(1)
+    
+    # Pattern for filenames with date at the end: something_202505.nc
+    match = re.search(r'_(\d{6})\.nc$', base_filename)
+    if match:
+        date_str = match.group(1)
+        # Ensure it has the full year (YYYY)
+        if date_str.startswith('20') or date_str.startswith('19'):
+            return date_str
+        else:
+            # If it's just YYMMDD, prepend 20 for years 21st century
+            return "20" + date_str
+    
+    # Fallback: Extract from last positions in filename
+    # Check if we're dealing with a shortened key (YYMMDD)
+    if len(base_filename) >= 9:
+        short_key = base_filename[-9:-3]  # This would extract YYMMDD
+        if short_key.isdigit() and len(short_key) == 6:
+            # Add century prefix for 21st century dates
+            return "20" + short_key
+    
+    # Last resort: return whatever was there before
+    if len(base_filename) >= 11:
+        return base_filename[-11:-3]  # This would try to extract YYYYMMDD
+    
+    # If all else fails, log an error and return a fallback
+    logger.error(f"Could not extract date from filename: {filename}")
+    return "00000000"  # Obviously invalid date to make it clear there was an error
 
 def connect_to_ftp_with_retry(host, max_retries=3, delay_seconds=5):
     """Connect to FTP with retry logic."""
@@ -47,6 +86,45 @@ def connect_to_ftp_with_retry(host, max_retries=3, delay_seconds=5):
     logger.error(f"All connection attempts to {host} failed")
     return None
 
+def write_json(new_data, filename='./src/monthlyMHW.json'):
+    """Write JSON data to file."""
+    try:
+        # Create directory if it doesn't exist
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        
+        # Check if file exists
+        if not os.path.isfile(filename):
+            with open(filename, 'w') as file:
+                json.dump({}, file)
+        
+        with open(filename, 'r+') as file:
+            try:
+                file_data = json.load(file)
+            except json.JSONDecodeError:
+                # If the file is empty or has invalid JSON
+                file_data = {}
+            
+            # Update the data
+            file_data.update(new_data)
+            
+            # Reset file position and write updated data
+            file.seek(0)
+            file.truncate()
+            json.dump(file_data, file, indent=4)
+            
+        logger.info(f"Successfully wrote data to {filename}")
+        
+    except Exception as e:
+        logger.error(f"Error writing JSON to {filename}: {str(e)}")
+
+## Get the data from ftp sites
+today = datetime.datetime.utcnow().date()
+current_year = str(today.year)
+logger.info(f"Current year: {current_year}")
+
+ddir = './static/textures/'
+os.makedirs(ddir, exist_ok=True)  # Ensure directory exists
+
 # Try to download SSTA data
 try:
     logger.info("Starting SSTA data download")
@@ -58,8 +136,8 @@ try:
             
             for d in range(2, 14):
                 yesterday = today - datetime.timedelta(days=d)
-                yesterday = yesterday.strftime("%Y%m%d")
-                fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
+                yesterday_str = yesterday.strftime("%Y%m%d")
+                fileAnomaly = f"ct5km_ssta_v3.1_{yesterday_str}.nc"
                 logger.info(f"Attempting to download {fileAnomaly}")
                 local_filename = ddir + fileAnomaly
                 try:
@@ -83,8 +161,8 @@ try:
 
             for d in range(2, 14):
                 yesterday = today - datetime.timedelta(days=d)
-                yesterday = yesterday.strftime("%Y%m%d")
-                fileAnomaly = "ct5km_ssta_v3.1_{}.nc".format(yesterday)
+                yesterday_str = yesterday.strftime("%Y%m%d")
+                fileAnomaly = f"ct5km_ssta_v3.1_{yesterday_str}.nc"
                 local_filename = ddir + fileAnomaly
                 
                 if not os.path.exists(local_filename):
@@ -92,7 +170,7 @@ try:
                     continue
                 
                 try:
-                    with xr.open_dataset(local_filename) as data:
+                    with xr.open_dataset(local_filename, engine='netcdf4') as data:
                         dataDub = data
                         dataDub2 = data
                         mask_lon = (data.lon >= min_lon) & (data.lon <= max_lon)
@@ -166,8 +244,8 @@ try:
             
             for d in range(2, 14):
                 yesterday = today - datetime.timedelta(days=d)
-                yesterday = yesterday.strftime("%Y%m%d")
-                fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
+                yesterday_str = yesterday.strftime("%Y%m%d")
+                fileHW = f"noaa-crw_mhw_v1.0.1_category_{yesterday_str}.nc"
                 local_filename = ddir + fileHW
                 logger.info(f"Attempting to download {fileHW}")
                 
@@ -182,13 +260,12 @@ try:
             ftp.quit()  # Important: properly close the connection
             
             # Process the MHW files
-            import matplotlib.colors
             a = {}
             
             for d in range(2, 14):
                 yesterday = today - datetime.timedelta(days=d)
-                yesterday = yesterday.strftime("%Y%m%d")
-                fileHW = "noaa-crw_mhw_v1.0.1_category_{}.nc".format(yesterday)
+                yesterday_str = yesterday.strftime("%Y%m%d")
+                fileHW = f"noaa-crw_mhw_v1.0.1_category_{yesterday_str}.nc"
                 local_filename = ddir + fileHW
                 
                 if not os.path.exists(local_filename):
@@ -196,13 +273,16 @@ try:
                     continue
                 
                 try:
-                    with xr.open_dataset(local_filename) as data:
+                    with xr.open_dataset(local_filename, engine='netcdf4') as data:
                         min_lon, max_lon = -180, -50
                         min_lat, max_lat = -25, 90
                         mmin_lon, mmax_lon = 130, 180
                         mmin_lat = 70
                         
-                        key = local_filename[-9:-3]
+                        # Use the extract_full_date_key function to get the proper full-date key
+                        key = extract_full_date_key(local_filename)
+                        logger.info(f"Using key: {key} for {local_filename}")
+                        
                         a.setdefault(key, [])
                         
                         dataDub = data
@@ -279,28 +359,7 @@ try:
                         a[key].append(t4)
                         
                         # Write JSON data
-                        filename = './src/monthlyMHW.json'
-                        os.makedirs(os.path.dirname(filename), exist_ok=True)
-                        
-                        try:
-                            if not os.path.isfile(filename):
-                                with open(filename, 'w') as file:
-                                    json.dump({}, file)
-                            
-                            with open(filename, 'r+') as file:
-                                try:
-                                    file_data = json.load(file)
-                                except json.JSONDecodeError:
-                                    file_data = {}
-                                
-                                file_data.update(a)
-                                file.seek(0)
-                                file.truncate()
-                                json.dump(file_data, file, indent=4)
-                                
-                            logger.info(f"Successfully wrote data to {filename}")
-                        except Exception as e:
-                            logger.error(f"Error writing JSON: {str(e)}")
+                        write_json(a)
                         
                         # Clean up
                         os.remove(ddir+fileHW)
